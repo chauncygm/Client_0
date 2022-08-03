@@ -11,7 +11,7 @@ public class Launcher : MonoBehaviour
     private static float _lastTickTime;
 
     private LuaTable _scriptEnv;
-    private static readonly LuaEnv LuaEnv = new LuaEnv();
+    public static readonly LuaEnv LuaEnv = new LuaEnv();
 
     private Action _luaStart;
     private Action _luaUpdate;
@@ -25,14 +25,17 @@ public class Launcher : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         // 启动时先加载资源 
         ResourceManager.Instance.Init(StartGame);
+        #if UNITY_EDITOR
+            gameObject.AddComponent<DebugInfo>();
+        #endif
     }
 
     private void StartGame()
     {
         Debug.Log("Start game!!");
-        _scriptEnv = LuaEnv.NewTable();
         // 指定加载器，当脚本有require的时候如何加载
         LuaEnv.AddLoader(FileUtils.RequireLua);
+        _scriptEnv = LuaEnv.NewTable();
         // 为每个脚本设置一个独立的环境，可一定程度上防止脚本间全局变量、函数冲突
         var meta = LuaEnv.NewTable();
         meta.Set("__index", LuaEnv.Global);
