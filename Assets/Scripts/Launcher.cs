@@ -41,9 +41,10 @@ public class Launcher : MonoBehaviour
         _scriptEnv.Set("self", this);
         
         // 加载启动类
-        var luaLauncher = "LuaLauncher";
-        LuaEnv.DoString(FileUtils.RequireLua(ref luaLauncher), luaLauncher, _scriptEnv);
-        
+        const string luaLauncher = "LuaLauncher";
+        LuaEnv.DoString("require '" + luaLauncher + "'");
+        // LuaEnv.DoString(FileUtils.RequireLua(ref luaLauncher), luaLauncher, _scriptEnv);
+
         _scriptEnv.Get("start", out _luaStart);
         _scriptEnv.Get("update", out _luaUpdate);
         _scriptEnv.Get("fixUpdate", out _luaFixUpdate);
