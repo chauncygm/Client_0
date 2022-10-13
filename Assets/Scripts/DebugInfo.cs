@@ -1,7 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Profiling;
 using XLua;
+using XLua.LuaDLL;
 
 public class DebugInfo : MonoBehaviour
 {
@@ -17,10 +17,20 @@ public class DebugInfo : MonoBehaviour
     private string _xLuaMemory;
     private string _totalMemory;
 
+
+    private Rect m_fps = new Rect(10, 10, 30, 30);
+    private Rect m_totalMemery = new Rect(10, 30, 30, 30);
+    private GUIStyle m_style = new GUIStyle();
+
     private void Start()
     {
         _lastTickTime = Time.realtimeSinceStartup;
         _preFrameCount = Time.frameCount;
+        
+        _monoMemory = ConvertSize(Profiler.GetMonoUsedSizeLong());
+        _unityMemory = ConvertSize(Profiler.GetTotalAllocatedMemoryLong());
+        _totalMemory = ConvertSize(Profiler.GetTotalReservedMemoryLong());
+        _xLuaMemory = GetXLuaMemory();
     }
 
     private void Update()
@@ -52,8 +62,14 @@ public class DebugInfo : MonoBehaviour
     private static string GetXLuaMemory()
     {
         var l = Launcher.LuaEnv.L;
-        double size = XLua.LuaDLL.Lua.lua_gc(l, LuaGCOptions.LUA_GCCOUNT, 0)
-               + XLua.LuaDLL.Lua.lua_gc(l, LuaGCOptions.LUA_GCCOUNTB, 0) / 1024;
+        double size = Lua.lua_gc(l, LuaGCOptions.LUA_GCCOUNT, 0)
+               + Lua.lua_gc(l, LuaGCOptions.LUA_GCCOUNTB, 0) / 1024;
         return size < 1024 ? $"{size:N2}KB" : $"{size / 1024:N2}MB";
+    }
+
+    private void OnGUI()
+    {
+        GUI.Label(m_fps, "帧率: " + _frameRate, m_style);
+        GUI.Label(m_totalMemery, "总内存: " + _totalMemory, m_style);
     }
 }

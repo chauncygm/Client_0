@@ -90,5 +90,6 @@ public class Launcher : MonoBehaviour
         _luaLateUpdate = null;
         _luaDestroy = null;
         LuaEnv.Dispose();
+        // TODO  关闭服务器连接
     }
 }
