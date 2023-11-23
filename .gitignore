@@ -1,7 +1,15 @@
 .idea
+.vs
 Temp
 Logs
+obj
+Library
+*_Build
 
 *.sln
 *.csproj
 *.vsconfig
+*.meta
+
+//启动场景设置
+!Library/LastSceneManagerSetup.txt
