@@ -1,10 +1,11 @@
 .idea
 .vs
-Temp
-Logs
-obj
-Library
-*_Build
+Temp/
+Logs/
+obj/
+Library/
+UserSettings/
+*_Build/
 
 *.sln
 *.csproj
