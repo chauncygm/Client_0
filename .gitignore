@@ -1,16 +1,21 @@
 .idea
 .vs
-Temp/
-Logs/
-obj/
-Library/
+[Bb]in
+[Ll]ibrary/
+[Tt]emp/
+[Ll]ogs/
+[Oo]bj/
 UserSettings/
 *_Build/
 
 *.sln
+*.suo
 *.csproj
+*.unityproj
 *.vsconfig
-*.meta
+*.~$lock
+*.DS_Store
+*.bak
 
 //启动场景设置
 !Library/LastSceneManagerSetup.txt
