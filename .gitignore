@@ -16,6 +16,7 @@ UserSettings/
 *.~$lock
 *.DS_Store
 *.bak
+*.meta
 
 //启动场景设置
 !Library/LastSceneManagerSetup.txt
