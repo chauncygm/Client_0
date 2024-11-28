@@ -1946,7 +1946,19 @@ MonoBehaviour:
     m_ActionId: 185d18d3-e758-4d84-935e-c63245bee39e
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 912523561}
+        m_TargetAssemblyTypeName: AnimatorTest, Assembly-CSharp
+        m_MethodName: PlayerFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b428522d-401d-40c4-8b89-610ee1fdc542
     m_ActionName: 'Player/Fire[/Mouse/leftButton]'
   - m_PersistentCalls:
@@ -2005,6 +2017,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9a80de19-daaf-4383-952f-1d1014244306
     m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 912523561}
+        m_TargetAssemblyTypeName: AnimatorTest, Assembly-CSharp
+        m_MethodName: PlayerRun
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 01248644-7fa8-4b4a-8a1f-9f0990aa826e
+    m_ActionName: 'Player/Run[/Keyboard/shift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
