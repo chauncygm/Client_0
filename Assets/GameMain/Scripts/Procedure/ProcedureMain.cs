@@ -13,13 +13,12 @@ namespace GameMain.Scripts.Procedure
         {
             base.OnEnter(procedureOwner);
             
-            var welcomeMessage = Utility.Text.Format("Hellooo! This is an empty project based on Game Framework {0}.", Version.GameFrameworkVersion);
+            var welcomeMessage = Utility.Text.Format("Helloo! This is an empty project based on Game Framework {0}.", Version.GameFrameworkVersion);
             Log.Info(welcomeMessage);
             Log.Warning(welcomeMessage);
             Log.Error(welcomeMessage);
             Debug.Log(welcomeMessage);
             ChangeState<ProcedureExample>(procedureOwner);
-            
         }
     }
 }

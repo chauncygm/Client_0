@@ -1,34 +1,36 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class InputControlScript : MonoBehaviour
+namespace GameMain.Scripts.test
 {
-    private Vector3 pos;
+    public class InputControlScript : MonoBehaviour
+    {
+        private Vector3 _pos;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        pos = GetComponent<Transform>().position;
-    }
+        private void Start()
+        {
+            _pos = GetComponent<Transform>().position;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.W))
+        private void Update()
         {
-            pos.z += 1;
+            if (Keyboard.current.wKey.wasPressedThisFrame)
+            {
+                _pos.z += 1;
+            }
+            if (Keyboard.current.sKey.wasPressedThisFrame)
+            {
+                _pos.z -= 1;
+            }
+            if (Keyboard.current.aKey.wasPressedThisFrame)
+            {
+                _pos.x -= 1;
+            }
+            if (Keyboard.current.dKey.wasPressedThisFrame)
+            {
+                _pos.x += 1;
+            }
+            GetComponent<Transform>().SetPositionAndRotation(_pos, Quaternion.identity);
         }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            pos.z -= 1;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            pos.x -= 1;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            pos.x += 1;
-        }
-        GetComponent<Transform>().SetPositionAndRotation(pos, Quaternion.identity);
     }
 }

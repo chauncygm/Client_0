@@ -1,39 +1,44 @@
 ﻿//AutoPathFinding.cs 挂在角色的gameobject上
+
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
-public class AutoPathFinding : MonoBehaviour
+namespace GameMain.Scripts
 {
-    private NavMeshAgent m_navAgent;
-    private Transform m_selfTrans;
-    private Vector3 m_targetPos;
-    private bool m_isMoving = false;
-    
-    void Awake()
+    public class AutoPathFinding : MonoBehaviour
     {
-        // 给角色挂上NavMeshAgent组件
-        m_navAgent = gameObject.GetComponent<NavMeshAgent>();
-        m_selfTrans = transform;
-    }
-    
-    void Update()
-    {
-        if(Input.GetMouseButton(0))
+        private NavMeshAgent _mNavAgent;
+        private Transform _mSelfTrans;
+        private Vector3 _mTargetPos;
+        private bool _mIsMoving;
+
+        private void Awake()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if(Physics.Raycast(ray, out hit))
-            {
-                m_targetPos = hit.point;
-                // 自动寻路移动到目标点
-                m_navAgent.SetDestination(m_targetPos);
-                m_isMoving = true;
-            }
+            // 给角色挂上NavMeshAgent组件
+            _mNavAgent = gameObject.GetComponent<NavMeshAgent>();
+            _mSelfTrans = transform;
         }
-        
-        if(Vector3.Distance(m_selfTrans.position, m_targetPos) <= 0.1f)
+
+        private void Update()
         {
-            m_isMoving = false;
+            if(Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                var mousePosition = Mouse.current.position.ReadValue();
+                var ray = Camera.main!.ScreenPointToRay(mousePosition);
+                if(Physics.Raycast(ray, out var hit))
+                {
+                    _mTargetPos = hit.point;
+                    // 自动寻路移动到目标点
+                    _mNavAgent.SetDestination(_mTargetPos);
+                    _mIsMoving = true;
+                }
+            }
+        
+            if(Vector3.Distance(_mSelfTrans.position, _mTargetPos) <= 0.1f)
+            {
+                _mIsMoving = false;
+            }
         }
     }
 }
