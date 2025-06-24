@@ -33,7 +33,7 @@ namespace GameMain.Scripts.Net
         public void Initialize(INetworkChannel networkChannel)
         {
             _mNetworkChannel = networkChannel;
-            networkChannel.HeartBeatInterval = 3L;
+            networkChannel.HeartBeatInterval = 5L;
             networkChannel.RegisterHandler(_messageDispatcher);
             networkChannel.SetDefaultHandler((_, packet) =>
             {

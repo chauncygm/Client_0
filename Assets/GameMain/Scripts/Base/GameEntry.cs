@@ -185,7 +185,7 @@ namespace GameMain.Scripts.Base
             get;
             private set;
         }
-        private void Start()
+        public static void Start()
         {
             Base = UnityGameFramework.Runtime.GameEntry.GetComponent<BaseComponent>();
             Config = UnityGameFramework.Runtime.GameEntry.GetComponent<ConfigComponent>();

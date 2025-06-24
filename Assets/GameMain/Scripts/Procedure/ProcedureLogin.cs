@@ -49,7 +49,6 @@ namespace GameMain.Scripts.Procedure
             base.OnEnter(procedureOwner);
             Debug.Log("开始登录流程...");
             _networkChannel = _networkComponent.CreateNetworkChannel("tcp-channel", ServiceType.Tcp, _mNetworkChannelHelper);
-            _mNetworkChannelHelper.Initialize(_networkChannel);
             _networkChannel.Connect(IPAddress.Parse(ServerIp), ServerPort);
         }
 

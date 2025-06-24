@@ -1,13 +1,18 @@
 ﻿using GameFramework;
-using GameMain.Scripts.Procedure;
 using UnityEngine;
 using UnityGameFramework.Runtime;
-using ProcedureBase = GameFramework.Procedure.ProcedureBase;
+using GameEntry = GameMain.Scripts.Base.GameEntry;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
-namespace Example {
-    public class ProcedureExample : ProcedureBase
+namespace GameMain.Scripts.Procedure {
+    public class ProcedureEntry : ProcedureBase
     {
+        protected override void OnInit(ProcedureOwner procedureOwner)
+        {
+            base.OnInit(procedureOwner);
+            GameEntry.Start();
+        }
+
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);

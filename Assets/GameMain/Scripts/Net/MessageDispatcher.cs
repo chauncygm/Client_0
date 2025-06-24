@@ -37,30 +37,22 @@ namespace GameMain.Scripts.Net
                         continue;
                     }
 
+                    var handlerType = typeof(Action<>).MakeGenericType(parameterType);
+                    var registerMethod = typeof(MessageDispatcher)
+                        .GetMethod("RegisterHandler", new[] { typeof(Action<IMessage>) })
+                        ?.MakeGenericMethod(parameterType);
+                    Delegate handlerDelegate;
                     if (method.IsStatic)
                     {
-                        // 静态方法：直接注册
-                        var handlerType = typeof(Action<>).MakeGenericType(parameterType);
-                        var handlerDelegate = Delegate.CreateDelegate(handlerType, method);
-
-                        var registerMethod = typeof(MessageDispatcher)
-                            .GetMethod("RegisterHandler", new[] { handlerType })
-                            ?.MakeGenericMethod(parameterType);
-
-                        registerMethod?.Invoke(null, new object[] { handlerDelegate });
+                        handlerDelegate = Delegate.CreateDelegate(handlerType, method);
                     }
                     else
                     {
-                        // 实例方法：需要创建实例或从对象池中获取
                         Debug.Assert(method.DeclaringType != null, "method.DeclaringType != null");
                         var instance = Activator.CreateInstance(method.DeclaringType);
-                        var handlerType = typeof(Action<>).MakeGenericType(parameterType);
-                        var handlerDelegate = Delegate.CreateDelegate(handlerType, instance, method);
-                        var registerMethod = typeof(MessageDispatcher)
-                            .GetMethod("RegisterHandler", new[] { typeof(Action<IMessage>) })
-                            ?.MakeGenericMethod(parameterType);
-                        registerMethod?.Invoke(null, new object[] { handlerDelegate });
+                        handlerDelegate = Delegate.CreateDelegate(handlerType, instance, method);
                     }
+                    registerMethod?.Invoke(null, new object[] { handlerDelegate });
                 }
             }
         }
