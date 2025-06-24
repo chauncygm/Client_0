@@ -30,7 +30,8 @@ namespace GameMain.Scripts.Net
                             .FirstOrDefault() is not MessageHandlerAttribute attribute)
                         continue;
 
-                    if (method.GetParameters().Length != 1 || typeof(IMessage).IsAssignableFrom(method.GetParameters()[0].ParameterType))
+                    var parameterType = method.GetParameters()[0].ParameterType;
+                    if (method.GetParameters().Length != 1 || !typeof(IMessage).IsAssignableFrom(parameterType))
                     {
                         Log.Error($"{method.Name} is not a valid message handler");
                         continue;
@@ -39,12 +40,12 @@ namespace GameMain.Scripts.Net
                     if (method.IsStatic)
                     {
                         // 静态方法：直接注册
-                        var handlerType = typeof(Action<>).MakeGenericType(attribute.MessageType);
+                        var handlerType = typeof(Action<>).MakeGenericType(parameterType);
                         var handlerDelegate = Delegate.CreateDelegate(handlerType, method);
 
                         var registerMethod = typeof(MessageDispatcher)
                             .GetMethod("RegisterHandler", new[] { handlerType })
-                            ?.MakeGenericMethod(attribute.MessageType);
+                            ?.MakeGenericMethod(parameterType);
 
                         registerMethod?.Invoke(null, new object[] { handlerDelegate });
                     }
@@ -53,9 +54,12 @@ namespace GameMain.Scripts.Net
                         // 实例方法：需要创建实例或从对象池中获取
                         Debug.Assert(method.DeclaringType != null, "method.DeclaringType != null");
                         var instance = Activator.CreateInstance(method.DeclaringType);
-                        var handler = (Action<IMessage>)Delegate.CreateDelegate(typeof(Action<IMessage>), instance, method);
-
-                        RegisterHandler(handler);
+                        var handlerType = typeof(Action<>).MakeGenericType(parameterType);
+                        var handlerDelegate = Delegate.CreateDelegate(handlerType, instance, method);
+                        var registerMethod = typeof(MessageDispatcher)
+                            .GetMethod("RegisterHandler", new[] { typeof(Action<IMessage>) })
+                            ?.MakeGenericMethod(parameterType);
+                        registerMethod?.Invoke(null, new object[] { handlerDelegate });
                     }
                 }
             }
@@ -64,9 +68,10 @@ namespace GameMain.Scripts.Net
         public static void RegisterHandler<T>(Action<T> handler) where T : IMessage
         {
             var type = typeof(T);
-            if (!Handlers.ContainsKey(type))
+            if (Handlers.ContainsKey(type))
             {
                 Log.Error($"repeated register handler for {type}");
+                return;
             }
             Handlers[type] = new MessageHandler<T>(handler);
         }

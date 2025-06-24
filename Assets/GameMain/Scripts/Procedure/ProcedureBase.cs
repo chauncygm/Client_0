@@ -12,6 +12,7 @@ namespace GameMain.Scripts.Procedure
         {
             base.OnEnter(procedureOwner);
             Log.Debug($"开始流程：OnEnter{this.GetType()}");
+            Debug.Log($"开始流程：OnEnter{this.GetType()}");
         }
 
         protected override void OnInit(IFsm<IProcedureManager> procedureOwner)

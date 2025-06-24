@@ -8,7 +8,7 @@ namespace GameMain.Scripts.Net
         public static readonly int EventId = typeof(ProtoMessage).GetHashCode();
 
         public int MsgId { get; private set; }
-        public IMessage Data { get ; set;}
+        public IMessage Data { get ; private set;}
 
         public ProtoMessage(int msgId, IMessage data)
         {

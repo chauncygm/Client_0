@@ -1,7 +1,8 @@
 ﻿using GameFramework;
-using GameFramework.Procedure;
+using GameMain.Scripts.Procedure;
 using UnityEngine;
 using UnityGameFramework.Runtime;
+using ProcedureBase = GameFramework.Procedure.ProcedureBase;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
 namespace Example {
@@ -16,6 +17,7 @@ namespace Example {
             Log.Warning(welcomeMessage);
             Log.Error(welcomeMessage);
             Debug.Log(welcomeMessage);
+            ChangeState<ProcedureLogin>(procedureOwner);
         }
     }
 }

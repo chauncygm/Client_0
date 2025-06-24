@@ -1,11 +1,8 @@
 using System;
 using System.Buffers.Binary;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using GameFramework.Network;
-using GameMain.Scripts.Message;
+using GameMain.Scripts.Logic.Player.Manager;
 using Google.Protobuf;
 using ICSharpCode.SharpZipLib.Checksums;
 using UnityEngine;
@@ -17,7 +14,7 @@ namespace GameMain.Scripts.Net
         private INetworkChannel _mNetworkChannel;
         private readonly MessageRegistry _mMessageRegistry = new();
         private readonly MessageDispatcher _messageDispatcher = new();
-        
+
         /// <summary>
         /// 网络包头长度固定为2
         /// </summary>
@@ -56,12 +53,7 @@ namespace GameMain.Scripts.Net
 
         public bool SendHeartBeat()
         {
-            Debug.Log($"{_mNetworkChannel.Name} 发送心跳包...");
-
-            var reqLogin = new ReqLogin();
-            var protoId = typeof(ReqLogin).FullName!.GetHashCode();
-            _mNetworkChannel.Send(new ProtoMessage(protoId, reqLogin));
-            return true;
+            return PlayerManager.SendHeartBeat();
         }
 
         public bool Serialize<T>(T packet, Stream destination) where T : Packet
@@ -133,7 +125,7 @@ namespace GameMain.Scripts.Net
                 customErrorData = "无法读取 CRC 校验码";
                 return null;
             }
-            var crc32Value = BinaryPrimitives.ReadInt64BigEndian(receivedCrc);;
+            var crc32Value = BinaryPrimitives.ReadInt64BigEndian(receivedCrc);
 
             // 验证 CRC
             if (CalculateCrc32(protoData) != crc32Value)
@@ -146,13 +138,13 @@ namespace GameMain.Scripts.Net
             // 从 protoData 前4位获取协议号
             var protocolIdBytes = new byte[4];
             Buffer.BlockCopy(protoData, 0, protocolIdBytes, 0, 4);
-            var protocolId = BinaryPrimitives.ReadInt32BigEndian(protocolIdBytes);;
+            var protocolId = BinaryPrimitives.ReadInt32BigEndian(protocolIdBytes);
 
             // 调用 Proto 类的 Parse 方法解析数据（跳过前4位协议号）
             var messageData = new byte[protoData.Length - 4];
             Buffer.BlockCopy(protoData, 4, messageData, 0, messageData.Length);
 
-            var parser = _mMessageRegistry.getParser(protocolId, out var parseFromMethod, out var outData);
+            var parser = _mMessageRegistry.GetParser(protocolId, out var parseFromMethod, out var outData);
             if (parser == null)
             {
                 customErrorData = outData;
