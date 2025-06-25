@@ -4,21 +4,15 @@ namespace GameMain.Scripts.Logic.Player.Data
 {
     public class PlayerSession
     {
-
         /// <summary>
-        /// 网络通道
-        /// </summary>
-        public INetworkChannel Channel { get; set; }
-
-        /// <summary>
-        /// Uid
+        /// 用户Id
         /// </summary>
         public long Uid { get; set; }
         
         /// <summary>
-        /// 玩家Id
+        /// 网络通道
         /// </summary>
-        public long PlayerId { get; set; }
+        public INetworkChannel Channel { get; set; }
         
         /// <summary>
         /// 上次心跳的时间

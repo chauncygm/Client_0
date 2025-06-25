@@ -5,7 +5,7 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 
 namespace GameMain.Scripts.Procedure
 {
-    public class ProcedureMain : ProcedureBase
+    public class ProcedureMain : BaseProcedure
     {
 
         protected override void OnEnter(ProcedureOwner procedureOwner)

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using GameFramework.Procedure;
+using GameMain.Scripts.Procedure;
+using UnityEngine;
 using UnityGameFramework.Runtime;
 
 namespace GameMain.Scripts.Base
@@ -185,7 +187,7 @@ namespace GameMain.Scripts.Base
             get;
             private set;
         }
-        public static void Start()
+        public static void Init()
         {
             Base = UnityGameFramework.Runtime.GameEntry.GetComponent<BaseComponent>();
             Config = UnityGameFramework.Runtime.GameEntry.GetComponent<ConfigComponent>();
@@ -208,5 +210,11 @@ namespace GameMain.Scripts.Base
             UI = UnityGameFramework.Runtime.GameEntry.GetComponent<UIComponent>();
             WebRequest = UnityGameFramework.Runtime.GameEntry.GetComponent<WebRequestComponent>();
         }
+        
+        public static void ChangeProcedure<T>() where T : BaseProcedure
+        {
+            ((BaseProcedure)Procedure.CurrentProcedure).ChangeProcedure<T>();
+        }
+        
     }
 }

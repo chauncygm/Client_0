@@ -17,7 +17,7 @@ using NetworkErrorEventArgs = UnityGameFramework.Runtime.NetworkErrorEventArgs;
 
 namespace GameMain.Scripts.Procedure
 {
-    public class ProcedureLogin : ProcedureBase
+    public class ProcedureLogin : BaseProcedure
     {
         private const string ServerIp = "127.0.0.1";
         private const int ServerPort = 10001;
@@ -58,7 +58,7 @@ namespace GameMain.Scripts.Procedure
             Debug.Log($"[网络事件] 连接成功: {ne.NetworkChannel.Name}");
             var player = Player.Self;
             player.Session.Channel = ne.NetworkChannel;
-            PlayerManager.SendMsg(new ReqLogin { Uid = player.Data.Uid });
+            PlayerManager.SendMsg(new ReqLogin { Uid = player.Session.Uid });
         }
 
         private static void OnNetworkClosed(object sender, GameFrameworkEventArgs e)

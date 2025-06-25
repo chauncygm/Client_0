@@ -1,8 +1,13 @@
 using System;
+using GameFramework.Event;
+using GameMain.Scripts.Base;
+using GameMain.Scripts.Logic.Event;
 using GameMain.Scripts.Message;
 using GameMain.Scripts.Net;
+using GameMain.Scripts.Procedure;
 using Google.Protobuf;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameMain.Scripts.Logic.Player.Manager
 {
@@ -10,15 +15,41 @@ namespace GameMain.Scripts.Logic.Player.Manager
     {
         public static readonly Lazy<PlayerManager> Instance = new(() => new PlayerManager());
 
-        static PlayerManager()
+        public PlayerManager()
         {
-            InitPlayer();
+            GameEntry.Event.Subscribe(LoginEventArgs.EventId, OnLoginEventArgs);
         }
 
-        private static void InitPlayer()
+        private static void OnLoginEventArgs(object sender, GameEventArgs e)
         {
+            var loginEventArgs = (LoginEventArgs)e;
             var player = Data.Player.Self;
-            player.Data.Uid = 1001;
+            if (player.Session.Channel != null)
+            {
+                Debug.Log("已登录，请勿重复登录");
+                return;
+            }
+
+            player.Session.Uid = loginEventArgs.Uid;
+            GameEntry.ChangeProcedure<ProcedureLogin>();
+        }
+
+        [MessageHandler]
+        public static void OnSyncLoginData(SyncLoginData msg)
+        {
+            Debug.Log($"OnSyncLoginData：{msg}");
+            var player = Data.Player.Self;
+            if (msg.Uid != player.Session.Uid)
+            {
+                Debug.Log($"登录失败，Uid不一致");
+                return;
+            }
+
+            player.Data.Uid = msg.Uid;
+            player.Data.PlayerId = msg.PlayerData.PlayerId;
+            player.Data.Online = true;
+            Debug.Log($"Load main scene：{player.Data.PlayerId}");
+            SceneManager.LoadScene("GameMain/Scenes/Main", LoadSceneMode.Single);
         }
 
         [MessageHandler]
@@ -27,16 +58,6 @@ namespace GameMain.Scripts.Logic.Player.Manager
             Debug.Log($"OnHeatBeat: {msg}");
             var player = Data.Player.Self;
             player.Session.LastHeartBeatTime = msg.Time;
-        }
-
-        [MessageHandler]
-        public void OnSyncLoginData(SyncLoginData msg)
-        {
-            Debug.Log($"OnSyncLoginData：{msg}");
-            var player = Data.Player.Self;
-            player.Data.Online = true;
-            player.Data.Uid = msg.Uid;
-            player.Data.PlayerId = msg.PlayerData.PlayerId;
         }
 
         public static bool SendHeartBeat()
