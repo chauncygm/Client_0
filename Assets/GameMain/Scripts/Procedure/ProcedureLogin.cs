@@ -23,17 +23,12 @@ namespace GameMain.Scripts.Procedure
         private const int ServerPort = 10001;
         private ClientNetWorkChannelHelper _mNetworkChannelHelper;
 
-        private NetworkComponent _networkComponent;
-
-        private INetworkChannel _networkChannel;
-        
         protected override void OnInit(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnInit(procedureOwner);
             _mNetworkChannelHelper = new ClientNetWorkChannelHelper();
             _mNetworkChannelHelper.RegisterProto("GameMain.Scripts.Message");
-            _networkComponent = GameEntry.GetComponent<NetworkComponent>();
-            var eventComponent = GameEntry.GetComponent<EventComponent>();
+            var eventComponent = Base.GameEntry.Event;
             // 订阅连接成功事件
             eventComponent.Subscribe(NetworkConnectedEventArgs.EventId, OnNetworkConnected);
             // 订阅连接关闭事件（包括主动关闭和异常断开）
@@ -48,8 +43,14 @@ namespace GameMain.Scripts.Procedure
         {
             base.OnEnter(procedureOwner);
             Debug.Log("开始登录流程...");
-            _networkChannel = _networkComponent.CreateNetworkChannel("tcp-channel", ServiceType.Tcp, _mNetworkChannelHelper);
-            _networkChannel.Connect(IPAddress.Parse(ServerIp), ServerPort);
+            var networkChannel = Base.GameEntry.Network.CreateNetworkChannel("tcp-channel", ServiceType.Tcp, _mNetworkChannelHelper);
+            networkChannel.Connect(IPAddress.Parse(ServerIp), ServerPort);
+            Base.GameEntry.UI.OpenUIForm("GameMain/Prefab/UI/Waiting.prefab", "Top");
+        }
+
+        protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
+        {
+            base.OnLeave(procedureOwner, isShutdown);
         }
 
         private static void OnNetworkConnected(object sender, GameFrameworkEventArgs e)

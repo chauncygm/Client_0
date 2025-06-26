@@ -15,47 +15,26 @@ namespace GameMain.Scripts.Logic.Player.Manager
     {
         public static readonly Lazy<PlayerManager> Instance = new(() => new PlayerManager());
 
-        public PlayerManager()
-        {
-            GameEntry.Event.Subscribe(LoginEventArgs.EventId, OnLoginEventArgs);
-        }
-
-        private static void OnLoginEventArgs(object sender, GameEventArgs e)
-        {
-            var loginEventArgs = (LoginEventArgs)e;
-            var player = Data.Player.Self;
-            if (player.Session.Channel != null)
-            {
-                Debug.Log("已登录，请勿重复登录");
-                return;
-            }
-
-            player.Session.Uid = loginEventArgs.Uid;
-            GameEntry.ChangeProcedure<ProcedureLogin>();
-        }
-
         [MessageHandler]
         public static void OnSyncLoginData(SyncLoginData msg)
         {
-            Debug.Log($"OnSyncLoginData：{msg}");
             var player = Data.Player.Self;
             if (msg.Uid != player.Session.Uid)
             {
-                Debug.Log($"登录失败，Uid不一致");
+                Debug.Log($"登录失败，Uid不一致, {msg.Uid} != {player.Session.Uid} ");
                 return;
             }
 
             player.Data.Uid = msg.Uid;
             player.Data.PlayerId = msg.PlayerData.PlayerId;
             player.Data.Online = true;
-            Debug.Log($"Load main scene：{player.Data.PlayerId}");
-            SceneManager.LoadScene("GameMain/Scenes/Main", LoadSceneMode.Single);
+            Debug.Log($"登录完成 {msg.Uid}");
+            GameEntry.ChangeProcedure<ProcedureMain>();
         }
 
         [MessageHandler]
         public static void OnHeatBeat(ResHeartbeat msg)
         {
-            Debug.Log($"OnHeatBeat: {msg}");
             var player = Data.Player.Self;
             player.Session.LastHeartBeatTime = msg.Time;
         }

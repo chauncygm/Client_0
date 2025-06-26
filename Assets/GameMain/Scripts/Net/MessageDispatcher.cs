@@ -71,7 +71,13 @@ namespace GameMain.Scripts.Net
         private static void Dispatch(IMessage message)
         {
             var type = message.GetType();
-            if (!Handlers.TryGetValue(type, out var handler)) return;
+            if (!Handlers.TryGetValue(type, out var handler))
+            {
+                UnityEngine.Debug.Log($"未注册的消息: {type}, {message}");
+                return;
+            }
+            
+            UnityEngine.Debug.Log($"收到消息{type}: {message}");
             handler.Handle(message);
         }
 
