@@ -166,8 +166,9 @@ GameObject:
   - component: {fileID: 5838802412263083976}
   - component: {fileID: 994107780189724011}
   - component: {fileID: 4585935623575674979}
+  - component: {fileID: 3974031173206355982}
   m_Layer: 5
-  m_Name: Login
+  m_Name: LoginPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,6 +248,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputField: {fileID: 4332596611238493959}
   loginButton: {fileID: 6901820535271571125}
+--- !u!225 &3974031173206355982
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123932734620773939}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3276078714241931789
 GameObject:
   m_ObjectHideFlags: 0

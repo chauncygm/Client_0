@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1366411706991537956}
   - component: {fileID: 5653918926212259183}
   - component: {fileID: 6647439195004796928}
+  - component: {fileID: 6866050279039805764}
   m_Layer: 5
   m_Name: ItemMaskBg
   m_TagString: Untagged
@@ -75,6 +76,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6866050279039805764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799962558287176436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c017a8958e44edaa1584ddd98b4504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loading: {fileID: 7869027843213136618}
+  rotateSpeed: 180
 --- !u!1 &2930172584486900598
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +125,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 5, y: 10}
+  m_SizeDelta: {x: 5, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6957468983266990768
 CanvasRenderer:
@@ -161,8 +176,9 @@ GameObject:
   - component: {fileID: 2620467001886117513}
   - component: {fileID: 4356270857787684262}
   - component: {fileID: 5262629431608003874}
+  - component: {fileID: 1108311656283644977}
   m_Layer: 5
-  m_Name: Waiting
+  m_Name: WaitingPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,3 +243,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1108311656283644977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668903713367263523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c017a8958e44edaa1584ddd98b4504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loading: {fileID: 7869027843213136618}
+  rotateSpeed: 180

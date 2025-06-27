@@ -23,6 +23,8 @@ namespace GameMain.Scripts.Procedure
         private const int ServerPort = 10001;
         private ClientNetWorkChannelHelper _mNetworkChannelHelper;
 
+        private int waitingPanelId;
+
         protected override void OnInit(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnInit(procedureOwner);
@@ -45,12 +47,18 @@ namespace GameMain.Scripts.Procedure
             Debug.Log("开始登录流程...");
             var networkChannel = Base.GameEntry.Network.CreateNetworkChannel("tcp-channel", ServiceType.Tcp, _mNetworkChannelHelper);
             networkChannel.Connect(IPAddress.Parse(ServerIp), ServerPort);
-            Base.GameEntry.UI.OpenUIForm("GameMain/Prefab/UI/Waiting.prefab", "Top");
+            waitingPanelId = Base.GameEntry.UI.OpenUIForm("Assets/GameMain/Prefab/UI/WaitingPanel.prefab", "Top");
         }
 
         protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
+            var variable = (VarInt32)procedureOwner.GetData("LoginUIForm");
+            if (variable != null)
+            {
+                Base.GameEntry.UI.CloseUIForm(variable);
+            }
+            Base.GameEntry.UI.CloseUIForm(waitingPanelId);
         }
 
         private static void OnNetworkConnected(object sender, GameFrameworkEventArgs e)

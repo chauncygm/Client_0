@@ -21,8 +21,16 @@ namespace GameMain.Scripts.Procedure {
         {
             base.OnEnter(procedureOwner);
             Debug.Log($"Project is running based on Game Framework {Version.GameFrameworkVersion}.");
-            var curLoginUIForm = GameEntry.UI.OpenUIForm("Assets/GameMain/Prefabs/UI/Login.prefab", "Normal");
-            procedureOwner.SetData("LoginUIForm", (VarInt32)curLoginUIForm);
+            GameEntry.UI.OpenUIForm("Assets/GameMain/Prefabs/UI/LoginPanel.prefab", "Default");
+            GameEntry.Event.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccessEvent);
+        }
+
+        private void OnOpenUIFormSuccessEvent(object sender, GameEventArgs e)
+        {
+            var args = (OpenUIFormSuccessEventArgs)e;
+            var uiFormSerialId = args.UIForm.SerialId;
+            Debug.Log($"open ui success, {uiFormSerialId}");
+            SetData<VarInt32>("LoginUIForm", uiFormSerialId);
             GameEntry.Event.Subscribe(LoginEventArgs.EventId, OnLoginEventArgs);
         }
         

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using GameFramework;
 using GameFramework.Fsm;
 using GameFramework.Procedure;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityGameFramework.Runtime;
 
 namespace GameMain.Scripts.Procedure
 {
-    public abstract class BaseProcedure : GameFramework.Procedure.ProcedureBase
+    public abstract class BaseProcedure : ProcedureBase
     {
 
         private IFsm<IProcedureManager> _procedureOwner;
@@ -34,6 +34,11 @@ namespace GameMain.Scripts.Procedure
         public void ChangeProcedure<T>() where T : BaseProcedure
         {
             ChangeState<T>(_procedureOwner);
+        }
+
+        public void SetData<T>(string name, T data) where T : Variable
+        {
+            _procedureOwner.SetData(name, data);
         }
     }
 }
