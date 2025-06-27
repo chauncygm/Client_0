@@ -4,7 +4,7 @@ using System.IO;
 using GameFramework.Network;
 using GameMain.Scripts.Logic.Player.Manager;
 using Google.Protobuf;
-using ICSharpCode.SharpZipLib.Checksums;
+using ICSharpCode.SharpZipLib.Checksum;
 using UnityEngine;
 
 namespace GameMain.Scripts.Net

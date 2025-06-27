@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Skin: {fileID: 0}
-  m_ActiveWindow: 0
+  m_ActiveWindow: 2
   m_ShowFullWindow: 0
   m_ConsoleWindow:
     m_LockScroll: 1
@@ -858,7 +858,15 @@ MonoBehaviour:
   m_CustomUIFormHelper: {fileID: 0}
   m_UIGroupHelperTypeName: UnityGameFramework.Runtime.DefaultUIGroupHelper
   m_CustomUIGroupHelper: {fileID: 0}
-  m_UIGroups: []
+  m_UIGroups:
+  - m_Name: Background
+    m_Depth: 10
+  - m_Name: Default
+    m_Depth: 20
+  - m_Name: Top
+    m_Depth: 30
+  - m_Name: System
+    m_Depth: 40
 --- !u!1 &176370
 GameObject:
   m_ObjectHideFlags: 0
