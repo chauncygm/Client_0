@@ -45,6 +45,7 @@ namespace UnityGameFramework.Runtime
 
             Transform transform = gameObject.transform;
             transform.SetParent(((MonoBehaviour)uiGroup.Helper).transform);
+            transform.localPosition = Vector3.zero;
             transform.localScale = Vector3.one;
 
             return gameObject.GetOrAddComponent<UIForm>();
