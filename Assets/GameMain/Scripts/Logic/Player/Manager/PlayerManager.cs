@@ -1,13 +1,13 @@
 using System;
-using GameFramework.Event;
 using GameMain.Scripts.Base;
+using GameMain.Scripts.Logic.Enum;
 using GameMain.Scripts.Logic.Event;
+using GameMain.Scripts.Logic.Player.Data;
 using GameMain.Scripts.Message;
 using GameMain.Scripts.Net;
 using GameMain.Scripts.Procedure;
 using Google.Protobuf;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace GameMain.Scripts.Logic.Player.Manager
 {
@@ -27,9 +27,15 @@ namespace GameMain.Scripts.Logic.Player.Manager
 
             player.Data.Uid = msg.Uid;
             player.Data.PlayerId = msg.PlayerData.PlayerId;
+            player.Data.Name = msg.PlayerData.Name;
             player.Data.Online = true;
+            player.Data.LevelExp = new LevelExpInfo
+            {
+                Level = msg.PlayerData.Level,
+                Exp = msg.PlayerData.Exp
+            };
             Debug.Log($"登录完成 {msg.Uid}");
-            GameEntry.ChangeProcedure<ProcedureMain>();
+            GameEntry.Event.Fire(LoginEventResultArgs.EventId, LoginEventResultArgs.Create(LoginResult.SUCCESS));
         }
 
         [MessageHandler]

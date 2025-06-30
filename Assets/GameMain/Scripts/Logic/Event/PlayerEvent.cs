@@ -6,5 +6,7 @@ namespace GameMain.Scripts.Logic.Event
     {
         LoginEventID = 1000,
         LoginResultEventID = 1001,
+        
+        PlayerBaseInfoChangeEventID = 2001
     }
 }

@@ -1,5 +1,6 @@
 using GameFramework;
 using GameFramework.Event;
+using GameMain.Scripts.Logic.Enum;
 
 namespace GameMain.Scripts.Logic.Event
 {
@@ -12,16 +13,18 @@ namespace GameMain.Scripts.Logic.Event
 
         public override int Id => EventId;
 
-        public int Code { get; set; }
+        public LoginResult Result { get; private set; }
 
-        public static LoginEventArgs Create()
+        public static LoginEventResultArgs Create(LoginResult result)
         {
-            return ReferencePool.Acquire<LoginEventArgs>();
+            var loginEventArgs = ReferencePool.Acquire<LoginEventResultArgs>();
+            loginEventArgs.Result = result;
+            return loginEventArgs;
         }
 
         public override void Clear()
         {
-            Code = 0;
+            Result = 0;
         }
     }
 }
