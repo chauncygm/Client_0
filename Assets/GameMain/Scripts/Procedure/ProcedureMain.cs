@@ -8,12 +8,12 @@ namespace GameMain.Scripts.Procedure
     public class ProcedureMain : BaseProcedure
     {
 
-        private int mainPanelSerialId;
+        private int _mainPanelSerialId;
         
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            mainPanelSerialId = Base.GameEntry.UI.OpenUIForm("Assets/GameMain/Prefab/UI/MainPanel.prefab", "Default");
+            _mainPanelSerialId = Base.GameEntry.UI.OpenUIForm("Assets/GameMain/Prefab/UI/MainPanel.prefab", "Default");
             Base.GameEntry.Event.Subscribe(PlayerInfoChangeEventArgs.EventId, OnPlayerInfoChangeEvent);
             Debug.Log("Main start");
         }
@@ -21,7 +21,7 @@ namespace GameMain.Scripts.Procedure
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
-            Base.GameEntry.UI.CloseUIForm(mainPanelSerialId);
+            Base.GameEntry.UI.CloseUIForm(_mainPanelSerialId);
         }
 
         private static void OnPlayerInfoChangeEvent(object sender, GameEventArgs e)
