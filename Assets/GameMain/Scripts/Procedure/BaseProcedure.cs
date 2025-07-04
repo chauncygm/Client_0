@@ -1,7 +1,6 @@
 ﻿using GameFramework;
 using GameFramework.Fsm;
 using GameFramework.Procedure;
-using UnityEngine;
 using UnityGameFramework.Runtime;
 
 namespace GameMain.Scripts.Procedure
@@ -15,7 +14,6 @@ namespace GameMain.Scripts.Procedure
         {
             base.OnEnter(procedureOwner);
             Log.Debug($"开始流程：OnEnter{GetType().Name}");
-            Debug.Log($"开始流程：OnEnter{GetType().Name}");
         }
 
         protected override void OnInit(IFsm<IProcedureManager> procedureOwner)
@@ -36,7 +34,7 @@ namespace GameMain.Scripts.Procedure
             ChangeState<T>(_procedureOwner);
         }
 
-        public void SetData<T>(string name, T data) where T : Variable
+        protected void SetData<T>(string name, T data) where T : Variable
         {
             _procedureOwner.SetData(name, data);
         }

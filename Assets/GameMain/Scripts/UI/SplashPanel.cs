@@ -8,11 +8,6 @@ namespace GameMain.Scripts.UI
     public class SplashPanel : UIFormLogic
     {
 
-        protected override void OnInit(object userData)
-        {
-            base.OnInit(userData);
-        }
-
         protected override void OnOpen(object userData)
         {
             base.OnOpen(userData);
