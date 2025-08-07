@@ -29,7 +29,10 @@ namespace GameMain.Scripts.Net
             {
                 // 简单处理，使用类型名crc32码作为协议号
                 var protocolHash = GetProtoEnum(type.Name);
-                _mProtocolIdToType[protocolHash] = type;
+                if (!_mProtocolIdToType.TryAdd(protocolHash, type))
+                {
+                    throw new Exception($"协议号重复: {protocolHash}, {type}, {_mProtocolIdToType[protocolHash]}");
+                }
             }
             
         }
