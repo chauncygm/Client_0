@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 447378}
-  - component: {fileID: 11472694}
+  - component: {fileID: 4477756866967713329}
   m_Layer: 0
   m_Name: FSM
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 433714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11472694
+--- !u!114 &4477756866967713329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 105264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a587c6c9c8f0c84093008714a84cb07, type: 3}
+  m_Script: {fileID: 11500000, guid: a489f447807eb81408f58edd7dddfbf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &108464
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 432002}
-  - component: {fileID: 11497722}
+  - component: {fileID: 4637611694530570311}
   m_Layer: 0
   m_Name: Resource
   m_TagString: Untagged
@@ -76,7 +76,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 433714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11497722
+--- !u!114 &4637611694530570311
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 108464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813a8a3a3cc50b1419adb6b80ca21b22, type: 3}
+  m_Script: {fileID: 11500000, guid: a4fd937b7f9f50343b9705240f9bb53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ResourceMode: 1
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 109252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d422c5b4f5e30a429e0f1371a62043a, type: 3}
+  m_Script: {fileID: 11500000, guid: 55abb59ab0179404cbdcd70976fab9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnableLoadDictionaryUpdateEvent: 0
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 472238}
-  - component: {fileID: 7596939981513102811}
+  - component: {fileID: 1964186484315898000}
   m_Layer: 0
   m_Name: Download
   m_TagString: Untagged
@@ -190,7 +190,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 433714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7596939981513102811
+--- !u!114 &1964186484315898000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 109548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fdd6039c20c68b4aa98b91cb9fe7e43, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ea1ac9dc607599418abb4872d652c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InstanceRoot: {fileID: 0}
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 110832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1b4f2d881afed14db0af9814540108f, type: 3}
+  m_Script: {fileID: 11500000, guid: 56a5d756e4888cb4c97a2a19f6b50762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnableShowEntityUpdateEvent: 0
@@ -269,8 +269,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 433714}
-  - component: {fileID: 11499388}
-  - component: {fileID: 11463816}
   m_Layer: 0
   m_Name: GameFramework
   m_TagString: Untagged
@@ -313,45 +311,6 @@ Transform:
   - {fileID: 450964}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11499388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00323b49c6d646347b5c272b03fed4d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EditorResourceMode: 1
-  m_EditorLanguage: 0
-  m_TextHelperTypeName: UnityGameFramework.Runtime.DefaultTextHelper
-  m_VersionHelperTypeName: UnityGameFramework.Runtime.DefaultVersionHelper
-  m_LogHelperTypeName: UnityGameFramework.Runtime.DefaultLogHelper
-  m_CompressionHelperTypeName: UnityGameFramework.Runtime.DefaultCompressionHelper
-  m_JsonHelperTypeName: UnityGameFramework.Runtime.DefaultJsonHelper
-  m_FrameRate: 30
-  m_GameSpeed: 1
-  m_RunInBackground: 1
-  m_NeverSleep: 1
---- !u!114 &11463816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705316c748211ab48810e54adcb77100, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EnableCachedAssets: 1
-  m_LoadAssetCountPerFrame: 1
-  m_MinLoadAssetRandomDelaySeconds: 0
-  m_MaxLoadAssetRandomDelaySeconds: 0
 --- !u!1 &118246
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 429090}
-  - component: {fileID: 1632950621450154477}
+  - component: {fileID: 6990479093139850291}
   m_Layer: 0
   m_Name: File System
   m_TagString: Untagged
@@ -384,7 +343,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 433714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1632950621450154477
+--- !u!114 &6990479093139850291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -393,7 +352,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 118246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79fe9c12de66e0846a7cbd4af521a8d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d98cb61541dafd42b719cf11dd58a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_FileSystemHelperTypeName: UnityGameFramework.Runtime.DefaultFileSystemHelper
@@ -407,7 +366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 404872}
-  - component: {fileID: 11402440}
+  - component: {fileID: 1834027504456718449}
   m_Layer: 0
   m_Name: Debugger
   m_TagString: Untagged
@@ -430,7 +389,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 433714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11402440
+--- !u!114 &1834027504456718449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -439,11 +398,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 119488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28e99bc69890b3a4aa94e28f305131f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9759135da99258a43857fab881578967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Skin: {fileID: 0}
-  m_ActiveWindow: 2
+  m_ActiveWindow: 0
   m_ShowFullWindow: 0
   m_ConsoleWindow:
     m_LockScroll: 1
@@ -505,7 +464,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 126534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78ceb0ff7acf0c44c9a9a8d74cb51e7d, type: 3}
+  m_Script: {fileID: 11500000, guid: bc6b964393ddcbe479e8552adb238123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InstanceRoot: {fileID: 0}
@@ -554,7 +513,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 132194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 257938e0d0348f4458019501ae768db9, type: 3}
+  m_Script: {fileID: 11500000, guid: 66a6b297df5110c4d8170e4e3cb08496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_SettingHelperTypeName: UnityGameFramework.Runtime.DefaultSettingHelper
@@ -600,7 +559,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 137260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e884643242fe25d45a1bd1e013873fbd, type: 3}
+  m_Script: {fileID: 11500000, guid: d24501c3af0477a4db7797d5ee387ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnableLoadConfigUpdateEvent: 0
@@ -649,13 +608,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 139170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7269f883d4dc6ae4a9aeb1019efb4685, type: 3}
+  m_Script: {fileID: 11500000, guid: ffe4e49b32977d74d921678d2bb662f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_AvailableProcedureTypeNames:
   - GameMain.Scripts.Procedure.ProcedureEntry
+  - GameMain.Scripts.Procedure.ProcedureLoadingScene
   - GameMain.Scripts.Procedure.ProcedureLogin
   - GameMain.Scripts.Procedure.ProcedureMain
+  - GameMain.Scripts.Procedure.ProcedurePreLoad
   m_EntranceProcedureTypeName: GameMain.Scripts.Procedure.ProcedureEntry
 --- !u!1 &140694
 GameObject:
@@ -698,7 +659,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 140694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a07173bd5bdda4b9629e7a7793bee8, type: 3}
+  m_Script: {fileID: 11500000, guid: 589a420258b198c4a930a5f65c5e062c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnablePlaySoundUpdateEvent: 0
@@ -753,7 +714,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 151938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e1452306b5e47141a650868f478d678, type: 3}
+  m_Script: {fileID: 11500000, guid: 25fb675d7aa891e48be959172f484ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &159784
@@ -765,7 +726,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 431700}
-  - component: {fileID: 11402158}
+  - component: {fileID: 1012146622400906451}
   m_Layer: 0
   m_Name: Object Pool
   m_TagString: Untagged
@@ -788,7 +749,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 433714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11402158
+--- !u!114 &1012146622400906451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -797,7 +758,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 159784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2dc1c7390f94684bb1f038f56c11621, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ce2a1e63f8593042ab905215552c57c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &167768
@@ -841,7 +802,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 167768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ac645bc3aebcbe4a8131ccf72e13b51, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a5dc916edf8e3f42a93d3cb046f888f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnableOpenUIFormSuccessEvent: 1
@@ -858,15 +819,7 @@ MonoBehaviour:
   m_CustomUIFormHelper: {fileID: 0}
   m_UIGroupHelperTypeName: UnityGameFramework.Runtime.DefaultUIGroupHelper
   m_CustomUIGroupHelper: {fileID: 0}
-  m_UIGroups:
-  - m_Name: Background
-    m_Depth: 10
-  - m_Name: Default
-    m_Depth: 20
-  - m_Name: Top
-    m_Depth: 30
-  - m_Name: System
-    m_Depth: 40
+  m_UIGroups: []
 --- !u!1 &176370
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,7 +861,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 176370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2d8f4c5ef5bf3143bf4c9bbdc26e06e, type: 3}
+  m_Script: {fileID: 11500000, guid: 33335419e5e7e5d4c956f5eda09d6a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &178960
@@ -952,7 +905,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 178960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d33db075cb3f0974688ee898f1bc9e30, type: 3}
+  m_Script: {fileID: 11500000, guid: 98a42b5b15279a64ab98b294b92f4bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &179612
@@ -964,7 +917,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 465000}
-  - component: {fileID: 2639131435905592918}
+  - component: {fileID: 8383192532007026899}
   m_Layer: 0
   m_Name: Data Table
   m_TagString: Untagged
@@ -987,7 +940,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 433714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2639131435905592918
+--- !u!114 &8383192532007026899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -996,9 +949,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 179612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d33db075cb3f0974688ee898f1bc9e30, type: 3}
+  m_Script: {fileID: 11500000, guid: 38101cdd8c7f5e24e917507208b7a5e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EnableLoadDataTableUpdateEvent: 0
+  m_EnableLoadDataTableDependencyAssetEvent: 0
+  m_DataTableHelperTypeName: UnityGameFramework.Runtime.DefaultDataTableHelper
+  m_CustomDataTableHelper: {fileID: 0}
+  m_CachedBytesSize: 0
 --- !u!1 &180508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +998,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 180508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd2245a42a1a94646adf238c80c36a31, type: 3}
+  m_Script: {fileID: 11500000, guid: 067a26ff412bd6043890dcf09ddce227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnableLoadSceneUpdateEvent: 1
@@ -1054,7 +1012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461836}
-  - component: {fileID: 11461162}
+  - component: {fileID: 1111241168712685718}
   m_Layer: 0
   m_Name: Reference Pool
   m_TagString: Untagged
@@ -1077,7 +1035,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 433714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11461162
+--- !u!114 &1111241168712685718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1086,7 +1044,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 189908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b507b300d338d1a42b8e80451fc688f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6662f07a5ebbf5b439886fa4c138b860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnableStrictCheck: 0
