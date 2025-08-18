@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.WebRequest;
 using System.Collections.Generic;
 using UnityEngine;
@@ -105,7 +98,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            m_WebRequestManager = GameFrameworkEntry.GetModule<IWebRequestManager>();
+            m_WebRequestManager = GameFrameworkSystem.GetModule<IWebRequestManager>();
             if (m_WebRequestManager == null)
             {
                 Log.Fatal("Web request manager is invalid.");
@@ -120,7 +113,7 @@ namespace UnityGameFramework.Runtime
 
         private void Start()
         {
-            m_EventComponent = GameEntry.GetComponent<EventComponent>();
+            m_EventComponent = GameSystem.GetComponent<EventComponent>();
             if (m_EventComponent == null)
             {
                 Log.Fatal("Event component is invalid.");

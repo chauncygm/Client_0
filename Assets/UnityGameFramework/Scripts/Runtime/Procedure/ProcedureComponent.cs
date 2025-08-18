@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.Fsm;
 using GameFramework.Procedure;
 using System;
@@ -37,6 +30,10 @@ namespace UnityGameFramework.Runtime
         {
             get
             {
+                if (m_ProcedureManager == null)
+                {
+                    return null;
+                }
                 return m_ProcedureManager.CurrentProcedure;
             }
         }
@@ -48,6 +45,10 @@ namespace UnityGameFramework.Runtime
         {
             get
             {
+                if (m_ProcedureManager == null)
+                {
+                    return 0f;
+                }
                 return m_ProcedureManager.CurrentProcedureTime;
             }
         }
@@ -59,7 +60,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            m_ProcedureManager = GameFrameworkEntry.GetModule<IProcedureManager>();
+            m_ProcedureManager = GameFrameworkSystem.GetModule<IProcedureManager>();
             if (m_ProcedureManager == null)
             {
                 Log.Fatal("Procedure manager is invalid.");
@@ -98,7 +99,7 @@ namespace UnityGameFramework.Runtime
                 yield break;
             }
 
-            m_ProcedureManager.Initialize(GameFrameworkEntry.GetModule<IFsmManager>(), procedures);
+            m_ProcedureManager.Initialize(GameFrameworkSystem.GetModule<IFsmManager>(), procedures);
 
             yield return new WaitForEndOfFrame();
 

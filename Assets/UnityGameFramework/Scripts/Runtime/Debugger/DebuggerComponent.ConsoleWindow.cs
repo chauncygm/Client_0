@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.Debugger;
 using System;
 using System.Collections.Generic;
@@ -218,7 +211,7 @@ namespace UnityGameFramework.Runtime
 
             public void Initialize(params object[] args)
             {
-                m_SettingComponent = GameEntry.GetComponent<SettingComponent>();
+                m_SettingComponent = GameSystem.GetComponent<SettingComponent>();
                 if (m_SettingComponent == null)
                 {
                     Log.Fatal("Setting component is invalid.");

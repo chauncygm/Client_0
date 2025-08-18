@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.FileSystem;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,7 +38,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            m_FileSystemManager = GameFrameworkEntry.GetModule<IFileSystemManager>();
+            m_FileSystemManager = GameFrameworkSystem.GetModule<IFileSystemManager>();
             if (m_FileSystemManager == null)
             {
                 Log.Fatal("File system manager is invalid.");

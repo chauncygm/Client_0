@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.Localization;
 using GameFramework.Resource;
 using System;
@@ -23,9 +16,6 @@ namespace UnityGameFramework.Runtime
         private const int DefaultDpi = 96;  // default windows dpi
 
         private float m_GameSpeedBeforePause = 1f;
-
-        [SerializeField]
-        private bool m_EditorResourceMode = true;
 
         [SerializeField]
         private Language m_EditorLanguage = Language.Unspecified;
@@ -58,21 +48,6 @@ namespace UnityGameFramework.Runtime
         private bool m_NeverSleep = true;
 
         /// <summary>
-        /// 获取或设置是否使用编辑器资源模式（仅编辑器内有效）。
-        /// </summary>
-        public bool EditorResourceMode
-        {
-            get
-            {
-                return m_EditorResourceMode;
-            }
-            set
-            {
-                m_EditorResourceMode = value;
-            }
-        }
-
-        /// <summary>
         /// 获取或设置编辑器语言（仅编辑器内有效）。
         /// </summary>
         public Language EditorLanguage
@@ -85,15 +60,6 @@ namespace UnityGameFramework.Runtime
             {
                 m_EditorLanguage = value;
             }
-        }
-
-        /// <summary>
-        /// 获取或设置编辑器资源辅助器。
-        /// </summary>
-        public IResourceManager EditorResourceHelper
-        {
-            get;
-            set;
         }
 
         /// <summary>
@@ -202,13 +168,7 @@ namespace UnityGameFramework.Runtime
             {
                 Utility.Converter.ScreenDpi = DefaultDpi;
             }
-
-            m_EditorResourceMode &= Application.isEditor;
-            if (m_EditorResourceMode)
-            {
-                Log.Info("During this run, Game Framework will use editor resource files, which you should validate first.");
-            }
-
+            
             Application.targetFrameRate = m_FrameRate;
             Time.timeScale = m_GameSpeed;
             Application.runInBackground = m_RunInBackground;
@@ -228,7 +188,7 @@ namespace UnityGameFramework.Runtime
 
         private void Update()
         {
-            GameFrameworkEntry.Update(Time.deltaTime, Time.unscaledDeltaTime);
+            GameFrameworkSystem.Update(Time.deltaTime, Time.unscaledDeltaTime);
         }
 
         private void OnApplicationQuit()
@@ -241,7 +201,7 @@ namespace UnityGameFramework.Runtime
 
         private void OnDestroy()
         {
-            GameFrameworkEntry.Shutdown();
+            GameFrameworkSystem.Shutdown();
         }
 
         /// <summary>
@@ -409,16 +369,16 @@ namespace UnityGameFramework.Runtime
         {
             Log.Info("Low memory reported...");
 
-            ObjectPoolComponent objectPoolComponent = GameEntry.GetComponent<ObjectPoolComponent>();
+            ObjectPoolComponent objectPoolComponent = GameSystem.GetComponent<ObjectPoolComponent>();
             if (objectPoolComponent != null)
             {
                 objectPoolComponent.ReleaseAllUnused();
             }
 
-            ResourceComponent resourceCompoent = GameEntry.GetComponent<ResourceComponent>();
-            if (resourceCompoent != null)
+            ResourceComponent resourceComponent = GameSystem.GetComponent<ResourceComponent>();
+            if (resourceComponent != null)
             {
-                resourceCompoent.ForceUnloadUnusedAssets(true);
+                resourceComponent.ForceUnloadUnusedAssets(true);
             }
         }
     }

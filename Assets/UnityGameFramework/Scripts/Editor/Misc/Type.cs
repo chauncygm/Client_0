@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -22,6 +15,12 @@ namespace UnityGameFramework.Editor
             "UnityGameFramework.Runtime",
 #endif
             "Assembly-CSharp",
+            "GameMain.Runtime",
+            
+            "GameBase",
+            "GameLogic",
+            "GameProto",
+            "BattleCore.Runtime",
         };
 
         private static readonly string[] RuntimeOrEditorAssemblyNames =
@@ -34,6 +33,13 @@ namespace UnityGameFramework.Editor
             "UnityGameFramework.Editor",
 #endif
             "Assembly-CSharp-Editor",
+            "GameMain.Runtime",
+            "GameMain",
+            "GameMain.Editor",
+            "GameBase",
+            "GameLogic",
+            "GameProto",
+            "BattleCore.Runtime",
         };
 
         /// <summary>

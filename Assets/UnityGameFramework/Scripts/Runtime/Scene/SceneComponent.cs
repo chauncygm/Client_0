@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.Resource;
 using GameFramework.Scene;
 using System;
@@ -33,9 +26,6 @@ namespace UnityGameFramework.Runtime
         [SerializeField]
         private bool m_EnableLoadSceneUpdateEvent = true;
 
-        [SerializeField]
-        private bool m_EnableLoadSceneDependencyAssetEvent = true;
-
         /// <summary>
         /// 获取当前场景主摄像机。
         /// </summary>
@@ -54,7 +44,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            m_SceneManager = GameFrameworkEntry.GetModule<ISceneManager>();
+            m_SceneManager = GameFrameworkSystem.GetModule<ISceneManager>();
             if (m_SceneManager == null)
             {
                 Log.Fatal("Scene manager is invalid.");
@@ -69,15 +59,10 @@ namespace UnityGameFramework.Runtime
                 m_SceneManager.LoadSceneUpdate += OnLoadSceneUpdate;
             }
 
-            if (m_EnableLoadSceneDependencyAssetEvent)
-            {
-                m_SceneManager.LoadSceneDependencyAsset += OnLoadSceneDependencyAsset;
-            }
-
             m_SceneManager.UnloadSceneSuccess += OnUnloadSceneSuccess;
             m_SceneManager.UnloadSceneFailure += OnUnloadSceneFailure;
 
-            m_GameFrameworkScene = SceneManager.GetSceneAt(GameEntry.GameFrameworkSceneId);
+            m_GameFrameworkScene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(GameSystem.GameFrameworkSceneId);
             if (!m_GameFrameworkScene.IsValid())
             {
                 Log.Fatal("Game Framework scene is invalid.");
@@ -87,28 +72,21 @@ namespace UnityGameFramework.Runtime
 
         private void Start()
         {
-            BaseComponent baseComponent = GameEntry.GetComponent<BaseComponent>();
+            BaseComponent baseComponent = GameSystem.GetComponent<BaseComponent>();
             if (baseComponent == null)
             {
                 Log.Fatal("Base component is invalid.");
                 return;
             }
 
-            m_EventComponent = GameEntry.GetComponent<EventComponent>();
+            m_EventComponent = GameSystem.GetComponent<EventComponent>();
             if (m_EventComponent == null)
             {
                 Log.Fatal("Event component is invalid.");
                 return;
             }
 
-            if (baseComponent.EditorResourceMode)
-            {
-                m_SceneManager.SetResourceManager(baseComponent.EditorResourceHelper);
-            }
-            else
-            {
-                m_SceneManager.SetResourceManager(GameFrameworkEntry.GetModule<IResourceManager>());
-            }
+            m_SceneManager.SetResourceManager(GameFrameworkSystem.GetModule<IResourceManager>());
         }
 
         /// <summary>
@@ -238,51 +216,22 @@ namespace UnityGameFramework.Runtime
                 return false;
             }
 
-            if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
-            {
-                Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
-                return false;
-            }
-
             return m_SceneManager.HasScene(sceneAssetName);
         }
 
         /// <summary>
-        /// 加载场景。
+        /// 异步加载场景。
         /// </summary>
-        /// <param name="sceneAssetName">场景资源名称。</param>
-        public void LoadScene(string sceneAssetName)
-        {
-            LoadScene(sceneAssetName, DefaultPriority, null);
-        }
-
-        /// <summary>
-        /// 加载场景。
-        /// </summary>
-        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="sceneAssetName">要加载场景资源的名称。</param>
+        /// <param name="sceneMode">场景加载模式</param>
+        /// <param name="suspendLoad">加载完毕时是否主动挂起</param>
         /// <param name="priority">加载场景资源的优先级。</param>
-        public void LoadScene(string sceneAssetName, int priority)
-        {
-            LoadScene(sceneAssetName, priority, null);
-        }
-
-        /// <summary>
-        /// 加载场景。
-        /// </summary>
-        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="loadSceneCallbacks">加载场景回调函数集。</param>
+        /// <param name="gcCollect">加载场景是否回收垃圾。</param>
+        /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void LoadScene(string sceneAssetName, object userData)
-        {
-            LoadScene(sceneAssetName, DefaultPriority, userData);
-        }
-
-        /// <summary>
-        /// 加载场景。
-        /// </summary>
-        /// <param name="sceneAssetName">场景资源名称。</param>
-        /// <param name="priority">加载场景资源的优先级。</param>
-        /// <param name="userData">用户自定义数据。</param>
-        public void LoadScene(string sceneAssetName, int priority, object userData)
+        public void LoadScene(string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks = null, LoadSceneMode sceneMode = LoadSceneMode.Single, 
+            bool suspendLoad = false, int priority = 100, bool gcCollect = false, string packageName = "", object userData = null)
         {
             if (string.IsNullOrEmpty(sceneAssetName))
             {
@@ -290,22 +239,17 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
-            {
-                Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
-                return;
-            }
-
-            m_SceneManager.LoadScene(sceneAssetName, priority, userData);
+            m_SceneManager.LoadScene(sceneAssetName, loadSceneCallbacks, sceneMode, suspendLoad, priority, gcCollect, packageName, userData);
         }
 
         /// <summary>
         /// 卸载场景。
         /// </summary>
         /// <param name="sceneAssetName">场景资源名称。</param>
-        public void UnloadScene(string sceneAssetName)
+        /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
+        public void UnloadScene(string sceneAssetName, string packageName = "")
         {
-            UnloadScene(sceneAssetName, null);
+            UnloadScene(sceneAssetName, null, packageName);
         }
 
         /// <summary>
@@ -313,7 +257,8 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="sceneAssetName">场景资源名称。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void UnloadScene(string sceneAssetName, object userData)
+        /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
+        public void UnloadScene(string sceneAssetName, object userData, string packageName = "")
         {
             if (string.IsNullOrEmpty(sceneAssetName))
             {
@@ -321,13 +266,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
-            {
-                Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
-                return;
-            }
-
-            m_SceneManager.UnloadScene(sceneAssetName, userData);
+            m_SceneManager.UnloadScene(sceneAssetName, userData, packageName);
             m_SceneOrder.Remove(sceneAssetName);
         }
 
@@ -341,12 +280,6 @@ namespace UnityGameFramework.Runtime
             if (string.IsNullOrEmpty(sceneAssetName))
             {
                 Log.Error("Scene asset name is invalid.");
-                return;
-            }
-
-            if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
-            {
-                Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
                 return;
             }
 
@@ -407,7 +340,7 @@ namespace UnityGameFramework.Runtime
                     return;
                 }
 
-                Scene scene = SceneManager.GetSceneByName(GetSceneName(maxSceneName));
+                Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(GetSceneName(maxSceneName));
                 if (!scene.IsValid())
                 {
                     Log.Error("Active scene '{0}' is invalid.", maxSceneName);
@@ -424,10 +357,10 @@ namespace UnityGameFramework.Runtime
 
         private void SetActiveScene(Scene activeScene)
         {
-            Scene lastActiveScene = SceneManager.GetActiveScene();
+            Scene lastActiveScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             if (lastActiveScene != activeScene)
             {
-                SceneManager.SetActiveScene(activeScene);
+                UnityEngine.SceneManagement.SceneManager.SetActiveScene(activeScene);
                 m_EventComponent.Fire(this, ActiveSceneChangedEventArgs.Create(lastActiveScene, activeScene));
             }
 
@@ -454,11 +387,6 @@ namespace UnityGameFramework.Runtime
         private void OnLoadSceneUpdate(object sender, GameFramework.Scene.LoadSceneUpdateEventArgs e)
         {
             m_EventComponent.Fire(this, LoadSceneUpdateEventArgs.Create(e));
-        }
-
-        private void OnLoadSceneDependencyAsset(object sender, GameFramework.Scene.LoadSceneDependencyAssetEventArgs e)
-        {
-            m_EventComponent.Fire(this, LoadSceneDependencyAssetEventArgs.Create(e));
         }
 
         private void OnUnloadSceneSuccess(object sender, GameFramework.Scene.UnloadSceneSuccessEventArgs e)

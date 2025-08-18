@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using UnityEngine;
 #if UNITY_5_5_OR_NEWER
 using UnityEngine.Rendering;
@@ -22,14 +15,14 @@ namespace UnityGameFramework.Runtime
 
             public override void Initialize(params object[] args)
             {
-                m_BaseComponent = GameEntry.GetComponent<BaseComponent>();
+                m_BaseComponent = GameSystem.GetComponent<BaseComponent>();
                 if (m_BaseComponent == null)
                 {
                     Log.Fatal("Base component is invalid.");
                     return;
                 }
 
-                m_ResourceComponent = GameEntry.GetComponent<ResourceComponent>();
+                m_ResourceComponent = GameSystem.GetComponent<ResourceComponent>();
                 if (m_ResourceComponent == null)
                 {
                     Log.Fatal("Resource component is invalid.");
@@ -51,7 +44,7 @@ namespace UnityGameFramework.Runtime
 #endif
                     DrawItem("Game Framework Version", Version.GameFrameworkVersion);
                     DrawItem("Game Version", Utility.Text.Format("{0} ({1})", Version.GameVersion, Version.InternalGameVersion));
-                    DrawItem("Resource Version", m_BaseComponent.EditorResourceMode ? "Unavailable in editor resource mode" : (string.IsNullOrEmpty(m_ResourceComponent.ApplicableGameVersion) ? "Unknown" : Utility.Text.Format("{0} ({1})", m_ResourceComponent.ApplicableGameVersion, m_ResourceComponent.InternalResourceVersion)));
+                    DrawItem("Resource Version", (string.IsNullOrEmpty(m_ResourceComponent.ApplicableGameVersion) ? "Unknown" : Utility.Text.Format("{0} ({1})", m_ResourceComponent.ApplicableGameVersion, m_ResourceComponent.InternalResourceVersion)));
                     DrawItem("Application Version", Application.version);
                     DrawItem("Unity Version", Application.unityVersion);
                     DrawItem("Platform", Application.platform.ToString());

@@ -1,16 +1,10 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.Entity;
 using GameFramework.ObjectPool;
 using GameFramework.Resource;
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace UnityGameFramework.Runtime
@@ -31,9 +25,6 @@ namespace UnityGameFramework.Runtime
 
         [SerializeField]
         private bool m_EnableShowEntityUpdateEvent = false;
-
-        [SerializeField]
-        private bool m_EnableShowEntityDependencyAssetEvent = false;
 
         [SerializeField]
         private Transform m_InstanceRoot = null;
@@ -82,7 +73,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            m_EntityManager = GameFrameworkEntry.GetModule<IEntityManager>();
+            m_EntityManager = GameFrameworkSystem.GetModule<IEntityManager>();
             if (m_EntityManager == null)
             {
                 Log.Fatal("Entity manager is invalid.");
@@ -97,40 +88,28 @@ namespace UnityGameFramework.Runtime
                 m_EntityManager.ShowEntityUpdate += OnShowEntityUpdate;
             }
 
-            if (m_EnableShowEntityDependencyAssetEvent)
-            {
-                m_EntityManager.ShowEntityDependencyAsset += OnShowEntityDependencyAsset;
-            }
-
             m_EntityManager.HideEntityComplete += OnHideEntityComplete;
         }
 
         private void Start()
         {
-            BaseComponent baseComponent = GameEntry.GetComponent<BaseComponent>();
+            BaseComponent baseComponent = GameSystem.GetComponent<BaseComponent>();
             if (baseComponent == null)
             {
                 Log.Fatal("Base component is invalid.");
                 return;
             }
 
-            m_EventComponent = GameEntry.GetComponent<EventComponent>();
+            m_EventComponent = GameSystem.GetComponent<EventComponent>();
             if (m_EventComponent == null)
             {
                 Log.Fatal("Event component is invalid.");
                 return;
             }
 
-            if (baseComponent.EditorResourceMode)
-            {
-                m_EntityManager.SetResourceManager(baseComponent.EditorResourceHelper);
-            }
-            else
-            {
-                m_EntityManager.SetResourceManager(GameFrameworkEntry.GetModule<IResourceManager>());
-            }
+            m_EntityManager.SetResourceManager(GameFrameworkSystem.GetModule<IResourceManager>());
 
-            m_EntityManager.SetObjectPoolManager(GameFrameworkEntry.GetModule<IObjectPoolManager>());
+            m_EntityManager.SetObjectPoolManager(GameFrameworkSystem.GetModule<IObjectPoolManager>());
 
             EntityHelperBase entityHelper = Helper.CreateHelper(m_EntityHelperTypeName, m_CustomEntityHelper);
             if (entityHelper == null)
@@ -210,7 +189,7 @@ namespace UnityGameFramework.Runtime
         /// <param name="instanceExpireTime">实体实例对象池对象过期秒数。</param>
         /// <param name="instancePriority">实体实例对象池的优先级。</param>
         /// <returns>是否增加实体组成功。</returns>
-        public bool AddEntityGroup(string entityGroupName, float instanceAutoReleaseInterval, int instanceCapacity, float instanceExpireTime, int instancePriority)
+        public bool AddEntityGroup(string entityGroupName, float instanceAutoReleaseInterval = 60, int instanceCapacity = 64, float instanceExpireTime = 60, int instancePriority = 1000)
         {
             if (m_EntityManager.HasEntityGroup(entityGroupName))
             {
@@ -492,6 +471,42 @@ namespace UnityGameFramework.Runtime
             }
 
             m_EntityManager.ShowEntity(entityId, entityAssetName, entityGroupName, priority, ShowEntityInfo.Create(entityLogicType, userData));
+        }
+
+        /// <summary>
+        /// 同步显示实体。
+        /// </summary>
+        /// <param name="entityId">实体编号。</param>
+        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityGroupName">实体组名称。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public T ShowEntitySync<T>(int entityId, string entityAssetName, string entityGroupName, object userData = null) where T : class
+        {
+            Entity entity = (Entity)m_EntityManager.ShowEntitySync(entityId, entityAssetName, entityGroupName, ShowEntityInfo.Create(typeof(T), userData));
+            if (entity == null)
+            {
+                throw new GameFrameworkException($"Show Entity Failed.");
+            }
+
+            return entity.Logic as T;
+        }
+
+        /// <summary>
+        /// 异步显示实体。
+        /// </summary>
+        /// <param name="entityId">实体编号。</param>
+        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityGroupName">实体组名称。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public async UniTask<T> ShowEntityAsync<T>(int entityId, string entityAssetName, string entityGroupName, object userData = null) where T : class
+        {
+            Entity entity = (Entity) await m_EntityManager.ShowEntityAsync(entityId, entityAssetName, entityGroupName, ShowEntityInfo.Create(typeof(T), userData));
+            if (entity == null)
+            {
+                throw new GameFrameworkException($"Show Entity Failed.");
+            }
+
+            return entity.Logic as T;
         }
 
         /// <summary>
@@ -1131,11 +1146,6 @@ namespace UnityGameFramework.Runtime
         private void OnShowEntityUpdate(object sender, GameFramework.Entity.ShowEntityUpdateEventArgs e)
         {
             m_EventComponent.Fire(this, ShowEntityUpdateEventArgs.Create(e));
-        }
-
-        private void OnShowEntityDependencyAsset(object sender, GameFramework.Entity.ShowEntityDependencyAssetEventArgs e)
-        {
-            m_EventComponent.Fire(this, ShowEntityDependencyAssetEventArgs.Create(e));
         }
 
         private void OnHideEntityComplete(object sender, GameFramework.Entity.HideEntityCompleteEventArgs e)

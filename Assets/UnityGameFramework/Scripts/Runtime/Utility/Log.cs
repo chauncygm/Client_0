@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using System.Diagnostics;
 
 namespace UnityGameFramework.Runtime
@@ -2723,6 +2716,35 @@ namespace UnityGameFramework.Runtime
         public static void Fatal<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(string format, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14, T15 arg15, T16 arg16)
         {
             GameFrameworkLog.Fatal(format, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16);
+        }
+        
+        /// <summary>
+        /// 断言严重错误级别日志，建议在发生严重错误。
+        /// </summary>
+        /// <param name="condition">条件。</param>
+        [Conditional("ENABLE_LOG")]
+        public static void Assert(bool condition)
+        {
+            if (!condition)
+            {
+                string message = System.String.Format("{0}\n{1}", "Assert Failed", System.Environment.StackTrace);
+                Fatal(message);
+            }
+        }
+        
+        /// <summary>
+        /// 断言严重错误级别日志，建议在发生严重错误。
+        /// </summary>
+        /// <param name="condition">条件。</param>
+        /// <param name="retStr">断言输出字符串。</param>
+        [Conditional("ENABLE_LOG")]
+        public static void Assert(bool condition,string retStr)
+        {
+            if (!condition)
+            {
+                string message = System.String.Format("{0}\n{1}", "Assert Failed" + retStr, System.Environment.StackTrace);
+                Fatal(message);
+            }
         }
     }
 }

@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.ObjectPool;
 using System;
 using System.Collections.Generic;
@@ -40,7 +33,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            m_ObjectPoolManager = GameFrameworkEntry.GetModule<IObjectPoolManager>();
+            m_ObjectPoolManager = GameFrameworkSystem.GetModule<IObjectPoolManager>();
             if (m_ObjectPoolManager == null)
             {
                 Log.Fatal("Object pool manager is invalid.");

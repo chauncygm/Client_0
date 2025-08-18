@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.Resource;
 #if UNITY_5_3
 using GameFramework.Scene;
@@ -33,9 +26,6 @@ namespace UnityGameFramework.Runtime
 
         [SerializeField]
         private bool m_EnablePlaySoundUpdateEvent = false;
-
-        [SerializeField]
-        private bool m_EnablePlaySoundDependencyAssetEvent = false;
 
         [SerializeField]
         private Transform m_InstanceRoot = null;
@@ -93,7 +83,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            m_SoundManager = GameFrameworkEntry.GetModule<ISoundManager>();
+            m_SoundManager = GameFrameworkSystem.GetModule<ISoundManager>();
             if (m_SoundManager == null)
             {
                 Log.Fatal("Sound manager is invalid.");
@@ -106,11 +96,6 @@ namespace UnityGameFramework.Runtime
             if (m_EnablePlaySoundUpdateEvent)
             {
                 m_SoundManager.PlaySoundUpdate += OnPlaySoundUpdate;
-            }
-
-            if (m_EnablePlaySoundDependencyAssetEvent)
-            {
-                m_SoundManager.PlaySoundDependencyAsset += OnPlaySoundDependencyAsset;
             }
 
             m_AudioListener = gameObject.GetOrAddComponent<AudioListener>();
@@ -135,28 +120,21 @@ namespace UnityGameFramework.Runtime
 
         private void Start()
         {
-            BaseComponent baseComponent = GameEntry.GetComponent<BaseComponent>();
+            BaseComponent baseComponent = GameSystem.GetComponent<BaseComponent>();
             if (baseComponent == null)
             {
                 Log.Fatal("Base component is invalid.");
                 return;
             }
 
-            m_EventComponent = GameEntry.GetComponent<EventComponent>();
+            m_EventComponent = GameSystem.GetComponent<EventComponent>();
             if (m_EventComponent == null)
             {
                 Log.Fatal("Event component is invalid.");
                 return;
             }
 
-            if (baseComponent.EditorResourceMode)
-            {
-                m_SoundManager.SetResourceManager(baseComponent.EditorResourceHelper);
-            }
-            else
-            {
-                m_SoundManager.SetResourceManager(GameFrameworkEntry.GetModule<IResourceManager>());
-            }
+            m_SoundManager.SetResourceManager(GameFrameworkSystem.GetModule<IResourceManager>());
 
             SoundHelperBase soundHelper = Helper.CreateHelper(m_SoundHelperTypeName, m_CustomSoundHelper);
             if (soundHelper == null)
@@ -647,11 +625,6 @@ namespace UnityGameFramework.Runtime
         private void OnPlaySoundUpdate(object sender, GameFramework.Sound.PlaySoundUpdateEventArgs e)
         {
             m_EventComponent.Fire(this, PlaySoundUpdateEventArgs.Create(e));
-        }
-
-        private void OnPlaySoundDependencyAsset(object sender, GameFramework.Sound.PlaySoundDependencyAssetEventArgs e)
-        {
-            m_EventComponent.Fire(this, PlaySoundDependencyAssetEventArgs.Create(e));
         }
 
         private void OnLoadSceneSuccess(object sender, GameFramework.Scene.LoadSceneSuccessEventArgs e)

@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UnityGameFramework.Runtime
 {
@@ -136,7 +129,14 @@ namespace UnityGameFramework.Runtime
         /// <param name="userData">用户自定义数据。</param>
         protected internal virtual void OnHide(bool isShutdown, object userData)
         {
-            gameObject.SetLayerRecursively(m_OriginalLayer);
+            if (isShutdown)
+            {
+                return;
+            }
+            if (gameObject != null)
+            {
+                gameObject.SetLayerRecursively(m_OriginalLayer);
+            }
             Visible = false;
             m_Available = false;
         }

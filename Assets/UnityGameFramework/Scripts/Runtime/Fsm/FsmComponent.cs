@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.Fsm;
 using System;
 using System.Collections.Generic;
@@ -40,7 +33,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            m_FsmManager = GameFrameworkEntry.GetModule<IFsmManager>();
+            m_FsmManager = GameFrameworkSystem.GetModule<IFsmManager>();
             if (m_FsmManager == null)
             {
                 Log.Fatal("FSM manager is invalid.");

@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.Download;
 using System.Collections.Generic;
 using UnityEngine;
@@ -150,7 +143,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            m_DownloadManager = GameFrameworkEntry.GetModule<IDownloadManager>();
+            m_DownloadManager = GameFrameworkSystem.GetModule<IDownloadManager>();
             if (m_DownloadManager == null)
             {
                 Log.Fatal("Download manager is invalid.");
@@ -167,7 +160,7 @@ namespace UnityGameFramework.Runtime
 
         private void Start()
         {
-            m_EventComponent = GameEntry.GetComponent<EventComponent>();
+            m_EventComponent = GameSystem.GetComponent<EventComponent>();
             if (m_EventComponent == null)
             {
                 Log.Fatal("Event component is invalid.");

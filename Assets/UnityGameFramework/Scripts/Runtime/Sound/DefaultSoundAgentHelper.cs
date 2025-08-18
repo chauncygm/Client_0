@@ -1,23 +1,13 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
+﻿using System;
+using System.Collections;
 using GameFramework;
 using GameFramework.Sound;
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
 namespace UnityGameFramework.Runtime
 {
-    /// <summary>
-    /// 默认声音代理辅助器。
-    /// </summary>
-    public class DefaultSoundAgentHelper : SoundAgentHelperBase
+    public class DefaultSoundAgentHelper: SoundAgentHelperBase
     {
         private Transform m_CachedTransform = null;
         private AudioSource m_AudioSource = null;
@@ -25,7 +15,8 @@ namespace UnityGameFramework.Runtime
         private float m_VolumeWhenPause = 0f;
         private bool m_ApplicationPauseFlag = false;
         private EventHandler<ResetSoundAgentEventArgs> m_ResetSoundAgentEventHandler = null;
-
+        private bool m_IsPaused;
+        
         /// <summary>
         /// 获取当前是否正在播放。
         /// </summary>
@@ -33,7 +24,7 @@ namespace UnityGameFramework.Runtime
         {
             get
             {
-                return m_AudioSource.isPlaying;
+                return m_AudioSource.isPlaying || m_IsPaused;
             }
         }
 
@@ -279,6 +270,7 @@ namespace UnityGameFramework.Runtime
             }
             else
             {
+                m_IsPaused = true;
                 m_AudioSource.Pause();
             }
         }
@@ -290,7 +282,7 @@ namespace UnityGameFramework.Runtime
         public override void Resume(float fadeInSeconds)
         {
             StopAllCoroutines();
-
+            m_IsPaused = false;
             m_AudioSource.UnPause();
             if (fadeInSeconds > 0f)
             {
@@ -311,6 +303,7 @@ namespace UnityGameFramework.Runtime
             m_AudioSource.clip = null;
             m_BindingEntityLogic = null;
             m_VolumeWhenPause = 0f;
+            m_IsPaused = false;
         }
 
         /// <summary>

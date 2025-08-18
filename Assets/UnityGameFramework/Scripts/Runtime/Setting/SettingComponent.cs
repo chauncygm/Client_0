@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.Setting;
 using System;
 using System.Collections.Generic;
@@ -46,7 +39,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            m_SettingManager = GameFrameworkEntry.GetModule<ISettingManager>();
+            m_SettingManager = GameFrameworkSystem.GetModule<ISettingManager>();
             if (m_SettingManager == null)
             {
                 Log.Fatal("Setting manager is invalid.");
@@ -80,6 +73,11 @@ namespace UnityGameFramework.Runtime
         /// 保存游戏配置。
         /// </summary>
         public void Save()
+        {
+            m_SettingManager.Save();
+        }
+
+        private void OnDestroy()
         {
             m_SettingManager.Save();
         }

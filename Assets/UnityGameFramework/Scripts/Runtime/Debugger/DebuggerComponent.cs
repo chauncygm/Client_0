@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.Debugger;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,8 +27,8 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         internal static readonly float DefaultWindowScale = 1f;
 
-        private static TextEditor s_TextEditor;
-        private IDebuggerManager m_DebuggerManager;
+        private static readonly TextEditor s_TextEditor = new TextEditor();
+        private IDebuggerManager m_DebuggerManager = null;
         private Rect m_DragRect = new Rect(0f, 0f, float.MaxValue, 25f);
         private Rect m_IconRect = DefaultIconRect;
         private Rect m_WindowRect = DefaultWindowRect;
@@ -47,6 +40,8 @@ namespace UnityGameFramework.Runtime
         [SerializeField]
         private DebuggerActiveWindowType m_ActiveWindow = DebuggerActiveWindowType.AlwaysOpen;
 
+        public DebuggerActiveWindowType ActiveWindowType => m_ActiveWindow;
+        
         [SerializeField]
         private bool m_ShowFullWindow = false;
 
@@ -75,6 +70,7 @@ namespace UnityGameFramework.Runtime
         private RuntimeMemoryInformationWindow<Mesh> m_RuntimeMemoryMeshInformationWindow = new RuntimeMemoryInformationWindow<Mesh>();
         private RuntimeMemoryInformationWindow<Material> m_RuntimeMemoryMaterialInformationWindow = new RuntimeMemoryInformationWindow<Material>();
         private RuntimeMemoryInformationWindow<Shader> m_RuntimeMemoryShaderInformationWindow = new RuntimeMemoryInformationWindow<Shader>();
+        private RuntimeMemoryInformationWindow<ShaderVariantCollection> m_RuntimeMemoryShaderVariantInformationWindow = new RuntimeMemoryInformationWindow<ShaderVariantCollection>();
         private RuntimeMemoryInformationWindow<AnimationClip> m_RuntimeMemoryAnimationClipInformationWindow = new RuntimeMemoryInformationWindow<AnimationClip>();
         private RuntimeMemoryInformationWindow<AudioClip> m_RuntimeMemoryAudioClipInformationWindow = new RuntimeMemoryInformationWindow<AudioClip>();
         private RuntimeMemoryInformationWindow<Font> m_RuntimeMemoryFontInformationWindow = new RuntimeMemoryInformationWindow<Font>();
@@ -171,8 +167,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            s_TextEditor = new TextEditor();
-            m_DebuggerManager = GameFrameworkEntry.GetModule<IDebuggerManager>();
+            m_DebuggerManager = GameFrameworkSystem.GetModule<IDebuggerManager>();
             if (m_DebuggerManager == null)
             {
                 Log.Fatal("Debugger manager is invalid.");
@@ -207,6 +202,7 @@ namespace UnityGameFramework.Runtime
             RegisterDebuggerWindow("Profiler/Memory/Mesh", m_RuntimeMemoryMeshInformationWindow);
             RegisterDebuggerWindow("Profiler/Memory/Material", m_RuntimeMemoryMaterialInformationWindow);
             RegisterDebuggerWindow("Profiler/Memory/Shader", m_RuntimeMemoryShaderInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/ShaderVariant", m_RuntimeMemoryShaderVariantInformationWindow);
             RegisterDebuggerWindow("Profiler/Memory/AnimationClip", m_RuntimeMemoryAnimationClipInformationWindow);
             RegisterDebuggerWindow("Profiler/Memory/AudioClip", m_RuntimeMemoryAudioClipInformationWindow);
             RegisterDebuggerWindow("Profiler/Memory/Font", m_RuntimeMemoryFontInformationWindow);

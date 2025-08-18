@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework;
+﻿using GameFramework;
 using GameFramework.Network;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,7 +33,7 @@ namespace UnityGameFramework.Runtime
         {
             base.Awake();
 
-            m_NetworkManager = GameFrameworkEntry.GetModule<INetworkManager>();
+            m_NetworkManager = GameFrameworkSystem.GetModule<INetworkManager>();
             if (m_NetworkManager == null)
             {
                 Log.Fatal("Network manager is invalid.");
@@ -56,7 +49,7 @@ namespace UnityGameFramework.Runtime
 
         private void Start()
         {
-            m_EventComponent = GameEntry.GetComponent<EventComponent>();
+            m_EventComponent = GameSystem.GetComponent<EventComponent>();
             if (m_EventComponent == null)
             {
                 Log.Fatal("Event component is invalid.");
