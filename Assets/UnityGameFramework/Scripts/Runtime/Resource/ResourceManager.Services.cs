@@ -40,22 +40,48 @@ namespace GameFramework.Resource
             /// 同步方式获取解密的资源包对象
             /// 注意：加载流对象在资源包对象释放的时候会自动释放
             /// </summary>
-            AssetBundle IDecryptionServices.LoadAssetBundle(DecryptFileInfo fileInfo, out Stream managedStream)
+            DecryptResult IDecryptionServices.LoadAssetBundle(DecryptFileInfo fileInfo)
             {
-                BundleStream bundleStream = new BundleStream(fileInfo.FileLoadPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-                managedStream = bundleStream;
-                return AssetBundle.LoadFromStream(bundleStream, fileInfo.ConentCRC, GetManagedReadBufferSize());
+                var bundleStream = new BundleStream(fileInfo.FileLoadPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                var assetBundle = AssetBundle.LoadFromStream(bundleStream, fileInfo.FileLoadCRC, GetManagedReadBufferSize());
+                var loadAssetBundle = new DecryptResult
+                {
+                    ManagedStream = bundleStream,
+                    Result = assetBundle
+                };
+                return loadAssetBundle;
             }
 
             /// <summary>
             /// 异步方式获取解密的资源包对象
             /// 注意：加载流对象在资源包对象释放的时候会自动释放
             /// </summary>
-            AssetBundleCreateRequest IDecryptionServices.LoadAssetBundleAsync(DecryptFileInfo fileInfo, out Stream managedStream)
+            DecryptResult IDecryptionServices.LoadAssetBundleAsync(DecryptFileInfo fileInfo)
             {
-                BundleStream bundleStream = new BundleStream(fileInfo.FileLoadPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-                managedStream = bundleStream;
-                return AssetBundle.LoadFromStreamAsync(bundleStream, fileInfo.ConentCRC, GetManagedReadBufferSize());
+                var bundleStream = new BundleStream(fileInfo.FileLoadPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                var assetBundleCreateRequest = AssetBundle.LoadFromStreamAsync(bundleStream, fileInfo.FileLoadCRC, GetManagedReadBufferSize());
+                var loadAssetBundleAsync = new DecryptResult
+                {
+                    CreateRequest = assetBundleCreateRequest,
+                    ManagedStream = bundleStream,
+                    Result = assetBundleCreateRequest.assetBundle
+                };
+                return loadAssetBundleAsync;
+            }
+
+            public DecryptResult LoadAssetBundleFallback(DecryptFileInfo fileInfo)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public byte[] ReadFileData(DecryptFileInfo fileInfo)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public string ReadFileText(DecryptFileInfo fileInfo)
+            {
+                throw new System.NotImplementedException();
             }
 
             private static uint GetManagedReadBufferSize()
@@ -73,20 +99,44 @@ namespace GameFramework.Resource
             /// 同步方式获取解密的资源包对象
             /// 注意：加载流对象在资源包对象释放的时候会自动释放
             /// </summary>
-            AssetBundle IDecryptionServices.LoadAssetBundle(DecryptFileInfo fileInfo, out Stream managedStream)
+            DecryptResult IDecryptionServices.LoadAssetBundle(DecryptFileInfo fileInfo)
             {
-                managedStream = null;
-                return AssetBundle.LoadFromFile(fileInfo.FileLoadPath, fileInfo.ConentCRC, GetFileOffset());
+                var assetBundle = AssetBundle.LoadFromFile(fileInfo.FileLoadPath, fileInfo.FileLoadCRC, GetFileOffset());
+                var loadAssetBundle = new DecryptResult
+                {
+                    Result = assetBundle
+                };
+                return loadAssetBundle;
             }
 
             /// <summary>
             /// 异步方式获取解密的资源包对象
             /// 注意：加载流对象在资源包对象释放的时候会自动释放
             /// </summary>
-            AssetBundleCreateRequest IDecryptionServices.LoadAssetBundleAsync(DecryptFileInfo fileInfo, out Stream managedStream)
+            DecryptResult IDecryptionServices.LoadAssetBundleAsync(DecryptFileInfo fileInfo)
             {
-                managedStream = null;
-                return AssetBundle.LoadFromFileAsync(fileInfo.FileLoadPath, fileInfo.ConentCRC, GetFileOffset());
+                var assetBundleCreateRequest = AssetBundle.LoadFromFileAsync(fileInfo.FileLoadPath, fileInfo.FileLoadCRC, GetFileOffset());
+                var loadAssetBundle = new DecryptResult
+                {
+                    CreateRequest = assetBundleCreateRequest,
+                    Result = assetBundleCreateRequest.assetBundle
+                };
+                return loadAssetBundle;
+            }
+
+            public DecryptResult LoadAssetBundleFallback(DecryptFileInfo fileInfo)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public byte[] ReadFileData(DecryptFileInfo fileInfo)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public string ReadFileText(DecryptFileInfo fileInfo)
+            {
+                throw new System.NotImplementedException();
             }
 
             private static ulong GetFileOffset()
@@ -122,23 +172,6 @@ namespace GameFramework.Resource
             return index;
         }
     }
-
-    /// <summary>
-    /// 资源文件查询服务类
-    /// </summary>
-    public class GameQueryServices : IBuildinQueryServices
-    {
-        /// <summary>
-        /// 查询内置文件的时候，是否比对文件哈希值
-        /// </summary>
-        public static bool CompareFileCRC = false;
-
-        public bool Query(string packageName, string fileName, string fileCRC)
-        {
-            // 注意：fileName包含文件格式
-            return StreamingAssetsHelper.FileExists(packageName, fileName, fileCRC);
-        }
-    }
     
     public class StreamingAssetsDefine
     {
@@ -160,20 +193,10 @@ namespace GameFramework.Resource
             string filePath = Path.Combine(Application.streamingAssetsPath, StreamingAssetsDefine.RootFolderName, packageName, fileName);
             if (File.Exists(filePath))
             {
-                if (GameQueryServices.CompareFileCRC)
-                {
-                    string crc32 = YooAsset.HashUtility.FileCRC32(filePath);
-                    return crc32 == fileCRC;
-                }
-                else
-                {
-                    return true;
-                }
+                string crc32 = YooAsset.HashUtility.FileCRC32(filePath);
+                return crc32 == fileCRC;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 #else

@@ -2,7 +2,6 @@ using GameMain.Scripts.Logic.Event;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityGameFramework.Runtime;
 using GameEntry = GameMain.Scripts.Base.GameEntry;
 
 namespace GameMain.Scripts.UI

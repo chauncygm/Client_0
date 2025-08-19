@@ -434,12 +434,13 @@ namespace GameFramework.Scene
         {
             if (string.IsNullOrEmpty(packageName))
             {
-                return YooAssets.LoadSceneAsync(sceneAssetName, sceneMode, suspendLoad, (uint)priority);
+                return YooAssets.LoadSceneAsync(sceneAssetName, sceneMode, LocalPhysicsMode.None, suspendLoad, (uint)priority);
             }
 
             var package = YooAssets.GetPackage(packageName);
-            return package.LoadSceneAsync(sceneAssetName, sceneMode, suspendLoad, (uint)priority);
+            return package.LoadSceneAsync(sceneAssetName, sceneMode,  LocalPhysicsMode.None, suspendLoad, (uint)priority);
         }
+        
         
         /// <summary>
         /// 异步加载场景。
@@ -452,7 +453,8 @@ namespace GameFramework.Scene
         /// <param name="gcCollect">加载场景是否回收垃圾。</param>
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
         /// <param name="userData">用户自定义数据。</param>
-        public async UniTaskVoid LoadScene(string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks = null, LoadSceneMode sceneMode = LoadSceneMode.Single, 
+        public async UniTaskVoid LoadScene(string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks = null,
+            LoadSceneMode sceneMode = LoadSceneMode.Single,
             bool suspendLoad = false, int priority = 100, bool gcCollect = false, string packageName = "", object userData = null)
         {
             if (string.IsNullOrEmpty(sceneAssetName))
@@ -682,20 +684,25 @@ namespace GameFramework.Scene
         /// <returns>是否主场景。</returns>
         public bool IsMainScene(string sceneAssetName)
         {
+            if (string.IsNullOrEmpty(sceneAssetName))
+            {
+                return false;
+            }
+    
+            // 直接通过比较当前主场景名称来判断
             if (_currentMainSceneName.Equals(sceneAssetName))
             {
-                if (_currentMainScene != null)
-                {
-                    return _currentMainScene.IsMainScene();
-                }
                 return true;
             }
-            _subScenes.TryGetValue(sceneAssetName, out SceneHandle subScene);
-            if (subScene != null)
+    
+            // 检查是否在子场景列表中（子场景不应该被认为是主场景）
+            if (_subScenes.ContainsKey(sceneAssetName))
             {
-                return subScene.IsMainScene();
+                return false;
             }
-            Log.Warning($"IsMainScene invalid location:{sceneAssetName}");
+    
+            // 如果既不是主场景也不在子场景列表中，说明场景未加载
+            Log.Warning($"Scene '{sceneAssetName}' is not loaded, cannot determine if it's main scene.");
             return false;
         }
         #endregion

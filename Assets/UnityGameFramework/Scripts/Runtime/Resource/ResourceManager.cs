@@ -34,7 +34,7 @@ namespace GameFramework.Resource
         /// <summary>
         /// 下载文件校验等级。
         /// </summary>
-        public EVerifyLevel VerifyLevel { get; set; }
+        public EFileVerifyLevel VerifyLevel { get; set; }
 
         /// <summary>
         /// 设置异步系统参数，每帧执行消耗的最大时间切片（单位：毫秒）
@@ -210,9 +210,10 @@ namespace GameFramework.Resource
             InitializationOperation initializationOperation = null;
             if (playMode == EPlayMode.EditorSimulateMode)
             {
+                var buildResult = EditorSimulateModeHelper.SimulateBuild(packageName);
+                var packageRoot = buildResult.PackageRootDirectory;
                 var createParameters = new EditorSimulateModeParameters();
-                createParameters.CacheBootVerifyLevel = VerifyLevel;
-                createParameters.SimulateManifestFilePath = EditorSimulateModeHelper.SimulateBuild(EDefaultBuildPipeline.BuiltinBuildPipeline, packageName);
+                createParameters.EditorFileSystemParameters = FileSystemParameters.CreateDefaultEditorFileSystemParameters(packageRoot);
                 initializationOperation = package.InitializeAsync(createParameters);
             }
 
@@ -220,8 +221,7 @@ namespace GameFramework.Resource
             if (playMode == EPlayMode.OfflinePlayMode)
             {
                 var createParameters = new OfflinePlayModeParameters();
-                createParameters.CacheBootVerifyLevel = VerifyLevel;
-                createParameters.DecryptionServices = new FileStreamDecryption();
+                createParameters.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
                 initializationOperation = package.InitializeAsync(createParameters);
             }
 
@@ -231,29 +231,32 @@ namespace GameFramework.Resource
                 string defaultHostServer = HostServerURL;
                 string fallbackHostServer = FallbackHostServerURL;
                 var createParameters = new HostPlayModeParameters();
-                createParameters.CacheBootVerifyLevel = VerifyLevel;
-                createParameters.DecryptionServices = new FileStreamDecryption();
-                createParameters.BuildinQueryServices = new GameQueryServices();
-                createParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+                var remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+                createParameters.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
+                createParameters.CacheFileSystemParameters = FileSystemParameters.CreateDefaultCacheFileSystemParameters(remoteServices);
                 initializationOperation = package.InitializeAsync(createParameters);
             }
 
             // WebGL运行模式
             if (playMode == EPlayMode.WebPlayMode)
             {
-                string defaultHostServer = HostServerURL;
-                string fallbackHostServer = FallbackHostServerURL;
                 var createParameters = new WebPlayModeParameters();
-                createParameters.CacheBootVerifyLevel = VerifyLevel;
-                createParameters.DecryptionServices = new FileStreamDecryption();
-                createParameters.BuildinQueryServices = new GameQueryServices();
-                createParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+                // string defaultHostServer = HostServerURL;
+                // string fallbackHostServer = FallbackHostServerURL;
+                // var IRemoteService = new RemoteServices(defaultHostServer, fallbackHostServer);
+                // string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE"; //注意：如果有子目录，请修改此处！
+                // IRemoteServices remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+                // createParameters.WebServerFileSystemParameters = WechatFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices);
+                createParameters.WebServerFileSystemParameters = FileSystemParameters.CreateDefaultWebServerFileSystemParameters();
                 initializationOperation = package.InitializeAsync(createParameters);
             }
 
             await initializationOperation.ToUniTask();
 
-            Log.Info($"Init resource package version : {initializationOperation?.PackageVersion}");
+            var operation = package.RequestPackageVersionAsync();
+            await operation.ToUniTask();
+
+            Log.Info($"Init resource package version : {operation?.PackageVersion}");
 
             return initializationOperation;
         }
@@ -946,7 +949,7 @@ namespace GameFramework.Resource
             {
                 if (package is { InitializeStatus: EOperationStatus.Succeed })
                 {
-                    package.UnloadUnusedAssets();
+                    package.UnloadUnusedAssetsAsync();
                 }
             }
         }
@@ -962,7 +965,7 @@ namespace GameFramework.Resource
             {
                 if (package is { InitializeStatus: EOperationStatus.Succeed })
                 {
-                    package.ForceUnloadAllAssets();
+                    package.UnloadAllAssetsAsync();
                 }
             }
 #endif
