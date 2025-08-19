@@ -10,6 +10,7 @@ using System.Reflection;
 using GameFramework;
 using GameFramework.Fsm;
 using GameFramework.Procedure;
+using HybridCLR;
 using UnityGameFramework.Runtime;
 using YooAsset;
 
@@ -251,7 +252,7 @@ namespace GameMain
         /// 加载元数据资源成功回调。
         /// </summary>
         /// <param name="textAsset">资源操作句柄。</param>
-        private unsafe void LoadMetadataAssetSuccess(TextAsset textAsset)
+        private void LoadMetadataAssetSuccess(TextAsset textAsset)
         {
             m_LoadMetadataAssetCount--;
 
@@ -267,15 +268,12 @@ namespace GameMain
             try
             {
                 byte[] dllBytes = textAsset.bytes;
-                fixed (byte* ptr = dllBytes)
-                {
 #if ENABLE_HYBRIDCLR
-                    // 加载assembly对应的dll，会自动为它hook。一旦Aot泛型函数的native函数不存在，用解释器版本代码
-                    HomologousImageMode mode = HomologousImageMode.SuperSet;
-                    LoadImageErrorCode err = (LoadImageErrorCode)HybridCLR.RuntimeApi.LoadMetadataForAOTAssembly(dllBytes,mode); 
-                    Log.Warning($"LoadMetadataForAOTAssembly:{assetName}. mode:{mode} ret:{err}");
+                // 加载assembly对应的dll，会自动为它hook。一旦Aot泛型函数的native函数不存在，用解释器版本代码
+                HomologousImageMode mode = HomologousImageMode.SuperSet;
+                LoadImageErrorCode err = (LoadImageErrorCode)HybridCLR.RuntimeApi.LoadMetadataForAOTAssembly(dllBytes,mode); 
+                Log.Warning($"LoadMetadataForAOTAssembly:{assetName}. mode:{mode} ret:{err}");
 #endif
-                }
             }
             catch (Exception e)
             {
