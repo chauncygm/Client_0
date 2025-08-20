@@ -827,11 +827,24 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: ENABLE_LOG
-    Standalone: ENABLE_LOG
-    WebGL: ENABLE_LOG
-    Windows Store Apps: ENABLE_LOG
-    iPhone: ENABLE_LOG
+    Android: ENABLE_LOG;DOTWEEN;TextMeshPro
+    EmbeddedLinux: DOTWEEN;TextMeshPro
+    GameCoreScarlett: DOTWEEN;TextMeshPro
+    GameCoreXboxOne: DOTWEEN;TextMeshPro
+    Kepler: DOTWEEN;TextMeshPro
+    LinuxHeadlessSimulation: DOTWEEN;TextMeshPro
+    Nintendo Switch: DOTWEEN;TextMeshPro
+    PS4: DOTWEEN;TextMeshPro
+    PS5: DOTWEEN;TextMeshPro
+    QNX: DOTWEEN;TextMeshPro
+    ReservedCFE: DOTWEEN;TextMeshPro
+    Standalone: ENABLE_LOG;DOTWEEN;TextMeshPro
+    VisionOS: DOTWEEN;TextMeshPro
+    WebGL: ENABLE_LOG;DOTWEEN;TextMeshPro
+    Windows Store Apps: ENABLE_LOG;DOTWEEN
+    XboxOne: DOTWEEN;TextMeshPro
+    iPhone: ENABLE_LOG;DOTWEEN;TextMeshPro
+    tvOS: DOTWEEN;TextMeshPro
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
