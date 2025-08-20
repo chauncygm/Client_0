@@ -7,14 +7,11 @@ namespace GameMain
 {
     public class ProcedureCreateDownloader : ProcedureBase
     {
-        public override bool UseNativeDialog { get; }
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             Log.Info("创建补丁下载器");
-            
-            UILoadMgr.Show(UIDefine.UILoadUpdate,$"创建补丁下载器...");
-            
+            UILoadMgr.Show(UIDefine.UILoadUpdate,"创建补丁下载器...");
             CreateDownloader(procedureOwner).Forget();
         }
 
@@ -49,7 +46,7 @@ namespace GameMain
             }
         }
 
-        void StartDownFile(ProcedureOwner procedureOwner)
+        private void StartDownFile(ProcedureOwner procedureOwner)
         {
             ChangeState<ProcedureDownloadFile>(procedureOwner);
         }

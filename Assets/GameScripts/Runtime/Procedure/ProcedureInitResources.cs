@@ -5,21 +5,15 @@ namespace GameMain
 {
     public class ProcedureInitResources : ProcedureBase
     {
-        private bool m_InitResourcesComplete = false;
+        private bool _initResourcesComplete;
 
-        public override bool UseNativeDialog
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public override bool UseNativeDialog => true;
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
 
-            m_InitResourcesComplete = false;
+            _initResourcesComplete = false;
             
             UILoadMgr.Show(UIDefine.UILoadUpdate,"初始化资源中...");
 
@@ -31,18 +25,16 @@ namespace GameMain
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
 
-            if (!m_InitResourcesComplete)
+            if (_initResourcesComplete)
             {
-                // 初始化资源未完成则继续等待
-                return;
+                ChangeState<ProcedurePreload>(procedureOwner);
             }
 
-            ChangeState<ProcedurePreload>(procedureOwner);
         }
 
         private void OnInitResourcesComplete()
         {
-            m_InitResourcesComplete = true;
+            _initResourcesComplete = true;
             Log.Info("Init resources complete.");
         }
     }

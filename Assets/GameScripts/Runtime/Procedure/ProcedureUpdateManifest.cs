@@ -11,14 +11,11 @@ namespace GameMain
     /// </summary>
     public class ProcedureUpdateManifest: ProcedureBase
     {
-        public override bool UseNativeDialog { get; }
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             Log.Info("更新资源清单！！！");
-            
             UILoadMgr.Show(UIDefine.UILoadUpdate,$"更新清单文件...");
-            
             UpdateManifest(procedureOwner).Forget();
         }
 

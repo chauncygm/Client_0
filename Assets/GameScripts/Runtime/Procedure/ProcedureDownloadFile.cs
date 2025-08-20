@@ -8,9 +8,8 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 
 namespace GameMain
 {
-    public class ProcedureDownloadFile:ProcedureBase
+    public class ProcedureDownloadFile : ProcedureBase
     {
-        public override bool UseNativeDialog { get; }
         
         private ProcedureOwner _procedureOwner;
 
@@ -19,7 +18,7 @@ namespace GameMain
         {
             get
             {
-                float interval = Time.deltaTime;
+                var interval = Time.deltaTime;
                 var sizeDiff = GameModule.Resource.Downloader.CurrentDownloadBytes - _lastUpdateDownloadedSize;
                 _lastUpdateDownloadedSize = GameModule.Resource.Downloader.CurrentDownloadBytes;
                 var speed = (float)Math.Floor(sizeDiff / interval);

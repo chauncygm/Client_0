@@ -5,14 +5,12 @@ namespace GameMain
 {
     public class ProcedureDownloadOver:ProcedureBase
     {
-        public override bool UseNativeDialog { get; }
 
         private bool _needClearCache;
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             Log.Info("下载完成!!!");
-            
             UILoadMgr.Show(UIDefine.UILoadUpdate,$"下载完成...");
         }
 

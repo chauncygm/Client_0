@@ -11,7 +11,6 @@ namespace GameMain
     /// </summary>
     public class ProcedureInitPackage : ProcedureBase
     {
-        public override bool UseNativeDialog { get; }
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {

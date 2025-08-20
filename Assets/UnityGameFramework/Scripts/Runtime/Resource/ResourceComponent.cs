@@ -381,18 +381,9 @@ namespace UnityGameFramework.Runtime
         /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
         public ResourceDownloaderOperation CreateResourceDownloader(string customPackageName = "")
         {
-            if (string.IsNullOrEmpty(customPackageName))
-            {
-                var package = YooAssets.GetPackage(PackageName);
-                Downloader = package.CreateResourceDownloader(DownloadingMaxNum, FailedTryAgain);
-                return Downloader;
-            }
-            else
-            {
-                var package = YooAssets.GetPackage(customPackageName);
-                Downloader = package.CreateResourceDownloader(DownloadingMaxNum, FailedTryAgain);
-                return Downloader;
-            }
+            var package = YooAssets.GetPackage(string.IsNullOrEmpty(customPackageName) ? PackageName : customPackageName);
+            Downloader = package.CreateResourceDownloader(DownloadingMaxNum, FailedTryAgain);
+            return Downloader;
         }
         
         /// <summary>

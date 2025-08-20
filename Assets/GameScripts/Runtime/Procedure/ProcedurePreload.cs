@@ -16,9 +16,9 @@ namespace GameMain
     /// </summary>
     public class ProcedurePreload : ProcedureBase
     {
-        private float _progress = 0f;
+        private float _progress;
 
-        private readonly Dictionary<string, bool> _loadedFlag = new Dictionary<string, bool>();
+        private readonly Dictionary<string, bool> _loadedFlag = new();
 
         public override bool UseNativeDialog => true;
 

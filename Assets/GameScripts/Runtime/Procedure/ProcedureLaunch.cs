@@ -32,23 +32,23 @@ namespace GameMain
             ChangeState<ProcedureSplash>(procedureOwner);
         }
 
-        private void InitLanguageSettings()
+        private static void InitLanguageSettings()
         {
-            bool isEditorMode = Application.platform == RuntimePlatform.WindowsEditor || 
-                                Application.platform == RuntimePlatform.OSXEditor || 
-                                Application.platform == RuntimePlatform.LinuxEditor;
+            var isEditorMode = Application.platform == RuntimePlatform.WindowsEditor || 
+                               Application.platform == RuntimePlatform.OSXEditor || 
+                               Application.platform == RuntimePlatform.LinuxEditor;
             if (isEditorMode && GameModule.Base.EditorLanguage != Language.Unspecified)
             {
                 // 编辑器资源模式直接使用 Inspector 上设置的语言
                 return;
             }
 
-            Language language = GameModule.Localization.Language;
+            var language = GameModule.Localization.Language;
             if (GameModule.Setting.HasSetting(Constant.Setting.Language))
             {
                 try
                 {
-                    string languageString = GameModule.Setting.GetString(Constant.Setting.Language);
+                    var languageString = GameModule.Setting.GetString(Constant.Setting.Language);
                     language = (Language)Enum.Parse(typeof(Language), languageString);
                 }
                 catch(Exception exception)
@@ -73,7 +73,7 @@ namespace GameMain
             Log.Info("Init language settings complete, current language is '{0}'.", language.ToString());
         }
 
-        private void InitSoundSettings()
+        private static void InitSoundSettings()
         {
             GameModule.Sound.Mute("Music", GameModule.Setting.GetBool(Constant.Setting.MusicMuted, false));
             GameModule.Sound.SetVolume("Music", GameModule.Setting.GetFloat(Constant.Setting.MusicVolume, 0.5f));

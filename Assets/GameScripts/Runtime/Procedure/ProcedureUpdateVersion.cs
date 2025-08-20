@@ -22,7 +22,7 @@ namespace GameMain
 
             base.OnEnter(procedureOwner);
 
-            UILoadMgr.Show(UIDefine.UILoadUpdate, $"更新静态版本文件...");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, "更新静态版本文件...");
 
             //检查设备是否能够访问互联网
             if (Application.internetReachability == NetworkReachability.NotReachable)
@@ -57,8 +57,8 @@ namespace GameMain
                 if (operation.Status == EOperationStatus.Succeed)
                 {
                     //线上最新版本operation.PackageVersion
+                    Log.Debug($"Updated package Version : from {GameModule.Resource.PackageVersion} to {operation.PackageVersion}");
                     GameModule.Resource.PackageVersion = operation.PackageVersion;
-                    // Log.Debug($"Updated package Version : from {GameModule.Resource.GetPackageVersion()} to {operation.PackageVersion}");
                     ChangeState<ProcedureUpdateManifest>(_procedureOwner);
                 }
                 else

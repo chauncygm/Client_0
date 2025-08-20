@@ -227,8 +227,8 @@ namespace GameFramework.Resource
             // 联机运行模式
             if (playMode == EPlayMode.HostPlayMode)
             {
-                string defaultHostServer = HostServerURL;
-                string fallbackHostServer = FallbackHostServerURL;
+                var defaultHostServer = HostServerURL;
+                var fallbackHostServer = FallbackHostServerURL;
                 var createParameters = new HostPlayModeParameters();
                 var remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
                 createParameters.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
