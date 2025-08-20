@@ -5,6 +5,9 @@
 [Tt]emp/
 [Ll]ogs/
 [Oo]bj/
+[Bb]undles
+Assets/Plugins
+StreamingAssets
 UserSettings/
 UIElementsSchema/
 *_Build/
