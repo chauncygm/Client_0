@@ -10,7 +10,6 @@ namespace GameMain.Scripts.Procedure {
         protected override void OnInit(ProcedureOwner procedureOwner)
         {
             base.OnInit(procedureOwner);
-            GameEntry.Init();
             YooAssets.Initialize();
         }
 

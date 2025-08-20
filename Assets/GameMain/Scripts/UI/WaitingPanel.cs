@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityGameFramework.Runtime;
 
 namespace GameMain.Scripts.UI
 {
-    public class WaitingPanel : UIFormLogic
+    public class WaitingPanel : MonoBehaviour
     {
         
         [SerializeField] private Image loading;
@@ -16,21 +15,18 @@ namespace GameMain.Scripts.UI
         private float _currentAngle;     // 当前旋转角度
 
 
-        protected override void OnInit(object userData)
+        private void Awake()
         {
-            base.OnInit(userData);
             // 获取 Canvas 的 Rect
             _canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
             // 计算屏幕中心的世界坐标
             var centerLocal = _canvasRect.rect.center;
             _screenCenter = _canvasRect.TransformPoint(centerLocal); // 转换为世界坐标
         }
-        
-        
-        protected override void OnUpdate(float elapseSeconds, float realElapseSeconds)
+
+
+        private void Update()
         {
-            base.OnUpdate(elapseSeconds, realElapseSeconds);
-            
             if (!loading)
                 return;
             

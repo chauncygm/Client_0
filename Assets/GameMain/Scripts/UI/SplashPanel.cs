@@ -5,12 +5,11 @@ using UnityGameFramework.Runtime;
 
 namespace GameMain.Scripts.UI
 {
-    public class SplashPanel : UIFormLogic
+    public class SplashPanel : MonoBehaviour
     {
 
-        protected override void OnOpen(object userData)
+        protected void OnOpen(object userData)
         {
-            base.OnOpen(userData);
             var rawImage = GetComponentInChildren<RawImage>(true);
             rawImage.color = new Color(1, 1, 1, 0);
             
@@ -21,7 +20,6 @@ namespace GameMain.Scripts.UI
             sequence.OnComplete(() =>
             {
                 Debug.Log($"Close Splash : {rawImage.name}");
-                Base.GameEntry.UI.CloseUIForm(UIForm);
             });
         }
 

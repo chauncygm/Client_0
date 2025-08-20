@@ -7,14 +7,13 @@ using UnityGameFramework.Runtime;
 
 namespace GameMain.Scripts.UI
 {
-    public class MainPanel : UIFormLogic
+    public class MainPanel
     {
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text lvText;
 
-        protected override void OnOpen(object userData)
+        protected void OnOpen(object userData)
         {
-            base.OnOpen(userData);
             var playerData = Player.Self.Data;
             nameText.text = playerData.Name;
             lvText.text = $"Lv.{playerData.LevelExp.Level}";
@@ -22,9 +21,8 @@ namespace GameMain.Scripts.UI
             Base.GameEntry.Event.Subscribe(PlayerInfoChangeEventArgs.EventId, OnPlayerInfoChangeEvent);
         }
 
-        protected override void OnClose(bool isShutdown, object userData)
+        protected void OnClose(bool isShutdown, object userData)
         {
-            base.OnClose(isShutdown, userData);
             Base.GameEntry.Event.Unsubscribe(PlayerInfoChangeEventArgs.EventId, OnPlayerInfoChangeEvent);
         }
 

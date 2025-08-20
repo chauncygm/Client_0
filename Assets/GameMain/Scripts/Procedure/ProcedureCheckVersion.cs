@@ -20,14 +20,12 @@ namespace GameMain.Scripts.Procedure
             var go = Resources.Load<GameObject>("PatchWindow");
             Object.Instantiate(go);
 
-            Debug.Log(Boot.Instance.playMode);
-            Boot.Instance.StartCoroutine(InitPackage());
         }
 
         private IEnumerator InitPackage()
         {
             var packageName = "DefaultPackage";
-            var playMode = Boot.Instance.playMode;
+            var playMode = EPlayMode.EditorSimulateMode;
             var package = YooAssets.TryGetPackage(packageName);
             if (package == null)
             {
