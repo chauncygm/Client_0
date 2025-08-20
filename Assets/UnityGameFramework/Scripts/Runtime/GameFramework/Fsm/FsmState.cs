@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityGameFramework.Runtime;
 
 namespace GameFramework.Fsm
 {
@@ -70,7 +71,7 @@ namespace GameFramework.Fsm
             {
                 throw new GameFrameworkException("FSM is invalid.");
             }
-
+            Log.Info($"切换状态: {typeof(TState)}");
             fsmImplement.ChangeState<TState>();
         }
 

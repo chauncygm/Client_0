@@ -371,10 +371,10 @@ namespace GameFramework.Sound
                 {
                     m_SoundHelper.ReleaseSoundAsset(m_SoundAsset);
                     m_SoundAsset = null;
+                    Time = Constant.DefaultTime;
                 }
 
                 m_SetSoundAssetTime = DateTime.MinValue;
-                Time = Constant.DefaultTime;
                 MuteInSoundGroup = Constant.DefaultMute;
                 Loop = Constant.DefaultLoop;
                 Priority = Constant.DefaultPriority;

@@ -27,8 +27,8 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         internal static readonly float DefaultWindowScale = 1f;
 
-        private static readonly TextEditor s_TextEditor = new TextEditor();
-        private IDebuggerManager m_DebuggerManager = null;
+        private static TextEditor s_TextEditor;
+        private IDebuggerManager m_DebuggerManager;
         private Rect m_DragRect = new Rect(0f, 0f, float.MaxValue, 25f);
         private Rect m_IconRect = DefaultIconRect;
         private Rect m_WindowRect = DefaultWindowRect;
@@ -179,6 +179,7 @@ namespace UnityGameFramework.Runtime
 
         private void Start()
         {
+            s_TextEditor = new TextEditor();
             RegisterDebuggerWindow("Console", m_ConsoleWindow);
             RegisterDebuggerWindow("Information/System", m_SystemInformationWindow);
             RegisterDebuggerWindow("Information/Environment", m_EnvironmentInformationWindow);

@@ -181,7 +181,7 @@ namespace GameFramework.Resource
         public const string RootFolderName = "package";
     }
 
-#if UNITY_EDITOR
+#if !UNITY_EDITOR
     public sealed class StreamingAssetsHelper
     {
         public static void Init()
@@ -249,14 +249,7 @@ public sealed class StreamingAssetsHelper
         if (package.Elements.TryGetValue(fileName, out var element) == false)
             return false;
 
-        if (GameQueryServices.CompareFileCRC)
-        {
             return element.FileCRC32 == fileCRC32;
-        }
-        else
-        {
-            return true;
-        }
     }
 }
 #endif
