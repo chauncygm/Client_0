@@ -16,7 +16,7 @@ namespace GameLogic
             {
                 if (_instance == null)
                 {
-                    _instance = FindObjectOfType<PoolManager>();
+                    _instance = FindFirstObjectByType<PoolManager>();
                 }
 
                 if (_instance == null)
