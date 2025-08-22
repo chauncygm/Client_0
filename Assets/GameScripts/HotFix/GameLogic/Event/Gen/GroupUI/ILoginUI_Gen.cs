@@ -26,14 +26,14 @@ namespace GameLogic
 			_dispatcher = dispatcher;
 		}
 
-        public void OnRoleLogin()
+        public void OnRoleLogin(System.Int64 uid)
         {
-            _dispatcher.Send(ILoginUI_Event.OnRoleLogin);
+            _dispatcher.Send(ILoginUI_Event.OnRoleLogin,uid);
         }
 
-        public void OnRoleLoginOut(System.Int32 a1,System.Boolean b2)
+        public void OnRoleLoginOut()
         {
-            _dispatcher.Send(ILoginUI_Event.OnRoleLoginOut,a1,b2);
+            _dispatcher.Send(ILoginUI_Event.OnRoleLoginOut);
         }
 
 	}

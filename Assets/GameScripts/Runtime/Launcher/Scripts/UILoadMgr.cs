@@ -10,8 +10,8 @@ namespace GameMain
     public static class UILoadMgr
     {
         private static Transform _uiRoot;
-        private static readonly Dictionary<string, string> _uiList = new Dictionary<string, string>();
-        private static readonly Dictionary<string, UIBase> _uiMap = new Dictionary<string, UIBase>();
+        private static readonly Dictionary<string, string> _uiList = new();
+        private static readonly Dictionary<string, UIBase> _uiMap = new();
 
         /// <summary>
         /// 初始化根节点。
@@ -25,11 +25,6 @@ namespace GameMain
                 return;
             }
 
-            RegisterUI();
-        }
-
-        public static void RegisterUI()
-        {
             UIDefine.RegisterUI(_uiList);
         }
 

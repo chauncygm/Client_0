@@ -29,7 +29,7 @@ public partial class GameApp
     /// </summary>
     private void RegisterAllSystem()
     {
-        
+        AddLogicSys(UISystem.Instance);
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ public partial class GameApp
     /// </summary>
     /// <param name="logicSys">ILogicSys</param>
     /// <returns></returns>
-    public bool AddLogicSys(ILogicSys logicSys)
+    private bool AddLogicSys(ILogicSys logicSys)
     {
         if (m_ListLogicMgr.Contains(logicSys))
         {

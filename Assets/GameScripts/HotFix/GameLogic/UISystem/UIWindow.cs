@@ -12,7 +12,7 @@ namespace GameLogic
     {
         #region Propreties
 
-        private System.Action<UIWindow> _prepareCallback;
+        private Action<UIWindow> _prepareCallback;
 
         private bool _isCreate = false;
 
@@ -61,7 +61,7 @@ namespace GameLogic
         /// <summary>
         /// 是否为全屏窗口。
         /// </summary>
-        public virtual bool FullScreen { private set; get; } = false;
+        public virtual bool FullScreen { private set; get; }
 
         /// <summary>
         /// 是内部资源无需AB加载。
@@ -438,7 +438,7 @@ namespace GameLogic
 
         protected virtual void Close()
         {
-            UISystem.Instance.CloseUI(this.GetType());
+            UISystem.Instance.CloseUI(GetType());
         }
 
         internal void CancelHideToCloseTimer()

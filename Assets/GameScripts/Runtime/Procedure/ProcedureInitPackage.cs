@@ -50,20 +50,23 @@ namespace GameMain
 
         private void OnInitSuccess(ProcedureOwner procedureOwner)
         {
-            // 编辑器模式。
-            if (GameModule.Resource.PlayMode == EPlayMode.EditorSimulateMode)
-            {
-                Log.Info("Editor resource mode detected.");
-                ChangeState<ProcedurePreload>(procedureOwner);
-            }
-            // 单机模式。
-            else if (GameModule.Resource.PlayMode == EPlayMode.OfflinePlayMode)
-            {
-                Log.Info("Package resource mode detected.");
-                ChangeState<ProcedureInitResources>(procedureOwner);
-            }
+            // // 编辑器模式。
+            // if (GameModule.Resource.PlayMode == EPlayMode.EditorSimulateMode)
+            // {
+            //     Log.Info("Editor resource mode detected.");
+            //     ChangeState<ProcedurePreload>(procedureOwner);
+            // }
+            // // 单机模式。
+            // else if (GameModule.Resource.PlayMode == EPlayMode.OfflinePlayMode)
+            // {
+            //     Log.Info("Package resource mode detected.");
+            //     ChangeState<ProcedureInitResources>(procedureOwner);
+            // }
             // 可更新模式。
-            else if (GameModule.Resource.PlayMode == EPlayMode.HostPlayMode ||
+            // else 
+            if (GameModule.Resource.PlayMode == EPlayMode.EditorSimulateMode ||
+                GameModule.Resource.PlayMode == EPlayMode.OfflinePlayMode ||
+                GameModule.Resource.PlayMode == EPlayMode.HostPlayMode ||
                      GameModule.Resource.PlayMode == EPlayMode.WebPlayMode)
             {
                 // 打开启动UI。

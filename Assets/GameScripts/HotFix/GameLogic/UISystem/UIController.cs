@@ -12,21 +12,21 @@ namespace GameLogic
 
     public class UIController
     {
-        private static readonly List<IUiController> m_ListController = new List<IUiController>();
+        private static readonly List<IUiController> m_ListController = new();
 
         public static void RegisterAllController()
         {
             var targetType = typeof(IUiController);
-            List<IUiController> result = new List<IUiController>();
+            var result = new List<IUiController>();
             var allTypes = Assembly.GetCallingAssembly().GetTypes();
             foreach (var t in allTypes)
             {
-                Type[] tfs = t.GetInterfaces();
+                var tfs = t.GetInterfaces();
                 foreach (var tf in tfs)
                 {
                     if (tf.FullName == targetType.FullName)
                     {
-                        IUiController a = Activator.CreateInstance(t) as IUiController;
+                        var a = Activator.CreateInstance(t) as IUiController;
                         result.Add(a);
                     }
                 }

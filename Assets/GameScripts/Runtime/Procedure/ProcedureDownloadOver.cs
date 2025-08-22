@@ -6,7 +6,7 @@ namespace GameMain
     public class ProcedureDownloadOver:ProcedureBase
     {
 
-        private bool _needClearCache;
+        private bool _needClearCache = true;
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {

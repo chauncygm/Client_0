@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using GameLogic;
 using GameFramework;
+using GameFramework.Procedure;
 using UnityGameFramework.Runtime;
 
 public partial class GameApp: Singleton<GameApp>
@@ -17,6 +18,7 @@ public partial class GameApp: Singleton<GameApp>
         s_HotfixAssembly = (List<Assembly>)objects[0];
         Log.Warning("======= 看到此条日志代表你成功运行了热更新代码 =======");
         Log.Warning("======= Entrance GameApp =======");
+        Log.Warning($"");
         Instance.InitSystem();
         Instance.Start();
         Utility.Unity.AddUpdateListener(Instance.Update);
@@ -34,7 +36,8 @@ public partial class GameApp: Singleton<GameApp>
     /// </summary>
     private void StartGameLogic()
     {
-        
+        var gameProcedure = GameModule.Procedure.CurrentProcedure as GameMain.ProcedureBase;
+        gameProcedure?.ChangeProcedure<ProcedureLogin>();
     }
 
     /// <summary>
@@ -84,7 +87,7 @@ public partial class GameApp: Singleton<GameApp>
         TProfiler.BeginFirstSample("Update");
         var listLogic = m_ListLogicMgr;
         var logicCnt = listLogic.Count;
-        for (int i = 0; i < logicCnt; i++)
+        for (var i = 0; i < logicCnt; i++)
         {
             var logic = listLogic[i];
             TProfiler.BeginSample(logic.GetType().FullName);
@@ -99,7 +102,7 @@ public partial class GameApp: Singleton<GameApp>
         TProfiler.BeginFirstSample("FixedUpdate");
         var listLogic = m_ListLogicMgr;
         var logicCnt = listLogic.Count;
-        for (int i = 0; i < logicCnt; i++)
+        for (var i = 0; i < logicCnt; i++)
         {
             var logic = listLogic[i];
             TProfiler.BeginSample(logic.GetType().FullName);
@@ -114,7 +117,7 @@ public partial class GameApp: Singleton<GameApp>
         TProfiler.BeginFirstSample("LateUpdate");
         var listLogic = m_ListLogicMgr;
         var logicCnt = listLogic.Count;
-        for (int i = 0; i < logicCnt; i++)
+        for (var i = 0; i < logicCnt; i++)
         {
             var logic = listLogic[i];
             TProfiler.BeginSample(logic.GetType().FullName);
@@ -128,7 +131,7 @@ public partial class GameApp: Singleton<GameApp>
     {
         var listLogic = m_ListLogicMgr;
         var logicCnt = listLogic.Count;
-        for (int i = 0; i < logicCnt; i++)
+        for (var i = 0; i < logicCnt; i++)
         {
             var logic = listLogic[i];
             logic.OnDestroy();
@@ -140,7 +143,7 @@ public partial class GameApp: Singleton<GameApp>
 #if UNITY_EDITOR
         var listLogic = m_ListLogicMgr;
         var logicCnt = listLogic.Count;
-        for (int i = 0; i < logicCnt; i++)
+        for (var i = 0; i < logicCnt; i++)
         {
             var logic = listLogic[i];
             logic.OnDrawGizmos();
@@ -152,7 +155,7 @@ public partial class GameApp: Singleton<GameApp>
     {
         var listLogic = m_ListLogicMgr;
         var logicCnt = listLogic.Count;
-        for (int i = 0; i < logicCnt; i++)
+        for (var i = 0; i < logicCnt; i++)
         {
             var logic = listLogic[i];
             logic.OnApplicationPause(isPause);

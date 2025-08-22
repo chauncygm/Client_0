@@ -8,28 +8,27 @@ namespace GameLogic
     {
         public static void Register(EventMgr mgr)
         {
-            var disp = mgr.Dispatcher;
+            var dispatcher = mgr.Dispatcher;
 
-            HashSet<Type> types = CodeTypes.Instance.GetTypes(typeof(EventInterfaceImpAttribute));
+            var types = CodeTypes.Instance.GetTypes(typeof(EventInterfaceImpAttribute));
 
-            foreach (Type type in types)
+            foreach (var type in types)
             {
-                object[] attrs = type.GetCustomAttributes(typeof(EventInterfaceImpAttribute), false);
+                var attrs = type.GetCustomAttributes(typeof(EventInterfaceImpAttribute), false);
                 if (attrs.Length == 0)
                 {
                     continue;
                 }
 
-                EventInterfaceImpAttribute httpHandlerAttribute = (EventInterfaceImpAttribute)attrs[0];
+                var httpHandlerAttribute = (EventInterfaceImpAttribute)attrs[0];
 
                 if (httpHandlerAttribute.EventGroup != EEventGroup.GroupLogic)
                 {
                     continue;
                 }
 
-                object obj = Activator.CreateInstance(type, disp);
-
-                mgr.RegWrapInterface(obj.GetType().GetInterfaces()[0]?.FullName, obj);
+                var obj = Activator.CreateInstance(type, dispatcher);
+                mgr.RegWrapInterface(obj.GetType().GetInterfaces()[0].FullName, obj);
             }
         }
     }

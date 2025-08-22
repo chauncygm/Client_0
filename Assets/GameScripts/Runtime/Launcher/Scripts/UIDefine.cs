@@ -7,6 +7,7 @@ namespace GameMain
     {
         public static readonly string UILoadUpdate = "UILoadUpdate";
         public static readonly string UILoadTip = "UILoadTip";
+        public static readonly string UISplash = "UISplash";
 
         /// <summary>
         /// 注册ui
@@ -28,6 +29,11 @@ namespace GameMain
             if (!list.ContainsKey(UILoadTip))
             {
                 list.Add(UILoadTip, $"AssetLoad/{UILoadTip}");
+            }
+
+            if (!list.ContainsKey(UISplash))
+            {
+                list.Add(UISplash, $"AssetLoad/{UISplash}");
             }
         }
     }
