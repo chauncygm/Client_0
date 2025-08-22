@@ -7,7 +7,7 @@ namespace GameLogic
     /// <summary>
     /// 错误日志捕获UI。
     /// </summary>
-    [Window(UILayer.System, fromResources: true)]
+    [Window(UILayer.System, "Assets/Res/Prefab/UI/ErrorLogUI")]
     class ErrorLogUI : UIWindow
     {
         private readonly Stack<string> _errorTextString = new Stack<string>();
