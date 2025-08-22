@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityGameFramework.Runtime;
 
-namespace GameMain
+namespace GameBase
 {
 	public class EventTriggerListener : EventTrigger
 	{
@@ -51,7 +51,7 @@ namespace GameMain
 			return true;
 		}
 
-		public override void OnPointerClick(PointerEventData event_data)
+		public override void OnPointerClick(PointerEventData eventData)
 		{
 			if (!_IsValidTrigger())
 			{
@@ -65,45 +65,45 @@ namespace GameMain
 			OnClick?.Invoke(gameObject);
 		}
 
-		public override void OnPointerDown(PointerEventData event_data)
+		public override void OnPointerDown(PointerEventData eventData)
 		{
 			if (!this._IsValidTrigger())
 			{
 				return;
 			}
-			OnDown?.Invoke(gameObject, event_data);
+			OnDown?.Invoke(gameObject, eventData);
 		}
 
-		public override void OnPointerEnter(PointerEventData event_data)
+		public override void OnPointerEnter(PointerEventData eventData)
 		{
 			if (!_IsValidTrigger())
 			{
 				return;
 			}
-			OnEnter?.Invoke(gameObject, event_data);
+			OnEnter?.Invoke(gameObject, eventData);
 		}
 
-		public override void OnPointerExit(PointerEventData event_data)
-		{
-			if (!_IsValidTrigger())
-			{
-				return;
-			}
-
-			OnExit?.Invoke(gameObject, event_data);
-		}
-
-		public override void OnPointerUp(PointerEventData event_data)
+		public override void OnPointerExit(PointerEventData eventData)
 		{
 			if (!_IsValidTrigger())
 			{
 				return;
 			}
 
-			OnUp?.Invoke(gameObject, event_data);
+			OnExit?.Invoke(gameObject, eventData);
 		}
 
-		public override void OnSelect(BaseEventData event_data)
+		public override void OnPointerUp(PointerEventData eventData)
+		{
+			if (!_IsValidTrigger())
+			{
+				return;
+			}
+
+			OnUp?.Invoke(gameObject, eventData);
+		}
+
+		public override void OnSelect(BaseEventData eventData)
 		{
 			if (!_IsValidTrigger())
 			{
@@ -113,7 +113,7 @@ namespace GameMain
 			OnSelectEvent?.Invoke(gameObject);
 		}
 
-		public override void OnUpdateSelected(BaseEventData event_data)
+		public override void OnUpdateSelected(BaseEventData eventData)
 		{
 			if (!_IsValidTrigger())
 			{
@@ -123,44 +123,44 @@ namespace GameMain
 			OnUpdateSelect?.Invoke(gameObject);
 		}
 
-		public override void OnBeginDrag(PointerEventData event_data)
+		public override void OnBeginDrag(PointerEventData eventData)
 		{
 			if (!_IsValidTrigger())
 			{
 				return;
 			}
 
-			OnDragBegin?.Invoke(gameObject, event_data);
+			OnDragBegin?.Invoke(gameObject, eventData);
 		}
 
-		public override void OnDrag(PointerEventData event_data)
+		public override void OnDrag(PointerEventData eventData)
 		{
 			if (!_IsValidTrigger())
 			{
 				return;
 			}
 
-			OnDragEvent?.Invoke(gameObject, event_data);
+			OnDragEvent?.Invoke(gameObject, eventData);
 		}
 
-		public override void OnEndDrag(PointerEventData event_data)
+		public override void OnEndDrag(PointerEventData eventData)
 		{
 			if (!_IsValidTrigger())
 			{
 				return;
 			}
 
-			OnDragEnd?.Invoke(gameObject, event_data);
+			OnDragEnd?.Invoke(gameObject, eventData);
 		}
 
-		public override void OnDrop(PointerEventData event_data)
+		public override void OnDrop(PointerEventData eventData)
 		{
 			if (!_IsValidTrigger())
 			{
 				return;
 			}
 
-			OnDropEvent?.Invoke(gameObject, event_data);
+			OnDropEvent?.Invoke(gameObject, eventData);
 		}
 
 		private void OnDestroy()

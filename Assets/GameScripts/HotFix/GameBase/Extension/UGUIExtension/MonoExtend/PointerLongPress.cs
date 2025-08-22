@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace GameMain
+namespace GameBase
 {
     public class PointerLongPress : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IPointerClickHandler
     {
@@ -12,11 +12,11 @@ namespace GameMain
         public float maxValue = 25;            //最大值
         public float callIntervalTime = 0.05f; //调用间隔时间,时间为0只触发一次长按点击回调
 
-        private bool _isPointerDown = false;
-        private bool _longPressTriggered = false;
-        private bool _isGreaterMaxValue = false;  //是否已经大于最大值
-        private float _curTime = 0;
-        private float _curCallTime = 0;
+        private bool _isPointerDown;
+        private bool _longPressTriggered;
+        private bool _isGreaterMaxValue;  //是否已经大于最大值
+        private float _curTime;
+        private float _curCallTime;
 
         private OnLongPressEvent _onLongPress;
         private UnityEvent _onClick;

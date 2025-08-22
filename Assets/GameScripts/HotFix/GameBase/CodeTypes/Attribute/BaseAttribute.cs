@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameLogic
+namespace GameBase
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class BaseAttribute: Attribute

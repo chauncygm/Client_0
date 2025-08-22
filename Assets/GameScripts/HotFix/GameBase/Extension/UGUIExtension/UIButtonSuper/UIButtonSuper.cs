@@ -93,7 +93,7 @@ public delegate void ButtonEndDragCallback(PointerEventData eventData);
 
 public class UIButtonSuper : Button, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public List<ButtonSoundCell> m_ButtonUISounds = new List<ButtonSoundCell>() { new ButtonSoundCell() };
+    public List<ButtonSoundCell> m_ButtonUISounds = new() { new ButtonSoundCell() };
     [Tooltip("是否可以点击")] public bool m_CanClick = true;
     [Tooltip("是否可以双击")] public bool m_CanDoubleClick = false;
     [Tooltip("双击间隔时长")] public float m_DoubleClickIntervalTime = 0.1f;
@@ -116,18 +116,12 @@ public class UIButtonSuper : Button, IBeginDragHandler, IDragHandler, IEndDragHa
 
     private int fingerId = int.MinValue;
 
-    public bool IsDraging
-    {
-        get { return fingerId != int.MinValue; }
-    } //摇杆拖拽状态
+    public bool IsDraging => fingerId != int.MinValue; //摇杆拖拽状态
 
-    public int FingerId
-    {
-        get { return fingerId; }
-    }
+    public int FingerId => fingerId;
 
-    private float clickIntervalTime = 0;
-    private int clickTimes = 0;
+    private float clickIntervalTime;
+    private int clickTimes;
 
     void Update()
     {
@@ -188,26 +182,17 @@ public class UIButtonSuper : Button, IBeginDragHandler, IDragHandler, IEndDragHa
     /// <summary>
     /// 是否按钮按下
     /// </summary>
-    public bool IsDown
-    {
-        get { return isDown; }
-    }
+    public bool IsDown => isDown;
 
     /// <summary>
     /// 是否按钮长按
     /// </summary>
-    public bool IsPress
-    {
-        get { return isPress; }
-    }
+    public bool IsPress => isPress;
 
     /// <summary>
     /// 是否按钮按下后离开按钮位置
     /// </summary>
-    public bool IsDownExit
-    {
-        get { return isDownExit; }
-    }
+    public bool IsDownExit => isDownExit;
 
     public ButtonSoundCell GetButtonSound(ButtonSoundType buttonSoundType)
     {

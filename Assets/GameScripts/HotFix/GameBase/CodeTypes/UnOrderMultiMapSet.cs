@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GameLogic
+namespace GameBase
 {
     public class UnOrderMultiMapSet<TKey, TValue>: Dictionary<TKey, HashSet<TValue>>
     {
@@ -8,7 +8,7 @@ namespace GameLogic
         {
             get
             {
-                if (!this.TryGetValue(t, out HashSet<TValue> set))
+                if (!TryGetValue(t, out HashSet<TValue> set))
                 {
                     set = new HashSet<TValue>();
                 }
@@ -23,7 +23,7 @@ namespace GameLogic
         
         public void Add(TKey t, TValue k)
         {
-            this.TryGetValue(t, out var set);
+            TryGetValue(t, out var set);
             if (set == null)
             {
                 set = new HashSet<TValue>();
@@ -34,7 +34,7 @@ namespace GameLogic
 
         public bool Remove(TKey t, TValue k)
         {
-            this.TryGetValue(t, out var set);
+            TryGetValue(t, out var set);
             if (set == null)
             {
                 return false;
@@ -45,7 +45,7 @@ namespace GameLogic
             }
             if (set.Count == 0)
             {
-                this.Remove(t);
+                Remove(t);
             }
             return true;
         }

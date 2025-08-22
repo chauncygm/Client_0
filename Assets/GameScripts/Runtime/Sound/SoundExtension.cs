@@ -7,7 +7,7 @@ namespace GameMain
     public static class SoundExtension
     {
         private const float FadeVolumeDuration = 1f;
-        private static int? s_MusicSerialId = null;
+        private static int? s_MusicSerialId;
 
         public static int? PlayMusic(this SoundComponent soundComponent, string assetName, object userData = null)
         {

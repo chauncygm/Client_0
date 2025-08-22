@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using GameBase;
 using UnityGameFramework.Runtime;
 
 namespace GameLogic

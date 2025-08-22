@@ -1,4 +1,5 @@
 ﻿using System;
+using GameBase;
 using UnityGameFramework.Runtime;
 
 namespace GameLogic

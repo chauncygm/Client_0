@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace GameLogic
+namespace GameBase
 {
     public class CodeTypes
     {
         private static CodeTypes s_Instance;
         public static CodeTypes Instance => s_Instance ??= new CodeTypes();
 
-        private readonly Dictionary<string, Type> m_AllTypes = new();
-        private readonly UnOrderMultiMapSet<Type, Type> m_Types = new();
+        private readonly Dictionary<string, Type> _allTypes = new();
+        private readonly UnOrderMultiMapSet<Type, Type> _types = new();
         
         public void Init(Assembly[] assemblies)
         {
-            Dictionary<string, Type> addTypes = GetAssemblyTypes(assemblies);
-            foreach ((string fullName, Type type) in addTypes)
+            var addTypes = GetAssemblyTypes(assemblies);
+            foreach (var (fullName, type) in addTypes)
             {
-                m_AllTypes[fullName] = type;
+                _allTypes[fullName] = type;
                 
                 if (type.IsAbstract)
                 {
@@ -25,42 +25,36 @@ namespace GameLogic
                 }
                 
                 // 记录所有的有BaseAttribute标记的的类型
-                object[] objects = type.GetCustomAttributes(typeof(BaseAttribute), true);
+                var objects = type.GetCustomAttributes(typeof(BaseAttribute), true);
 
                 foreach (object o in objects)
                 {
-                    m_Types.Add(o.GetType(), type);
+                    _types.Add(o.GetType(), type);
                 }
             }
         }
 
         public HashSet<Type> GetTypes(Type systemAttributeType)
         {
-            if (!m_Types.ContainsKey(systemAttributeType))
-            {
-                return new HashSet<Type>();
-            }
-
-            return m_Types[systemAttributeType];
+            return !_types.ContainsKey(systemAttributeType) ? new HashSet<Type>() : _types[systemAttributeType];
         }
 
         public Dictionary<string, Type> GetTypes()
         {
-            return m_AllTypes;
+            return _allTypes;
         }
 
         public Type GetType(string typeName)
         {
-            return m_AllTypes[typeName];
+            return _allTypes[typeName];
         }
-        
-        public static Dictionary<string, Type> GetAssemblyTypes(params Assembly[] args)
-        {
-            Dictionary<string, Type> types = new Dictionary<string, Type>();
 
-            foreach (Assembly ass in args)
+        private static Dictionary<string, Type> GetAssemblyTypes(params Assembly[] args)
+        {
+            var types = new Dictionary<string, Type>();
+            foreach (var ass in args)
             {
-                foreach (Type type in ass.GetTypes())
+                foreach (var type in ass.GetTypes())
                 {
                     if (type.FullName != null)
                     {
@@ -68,7 +62,6 @@ namespace GameLogic
                     }
                 }
             }
-
             return types;
         }
     }

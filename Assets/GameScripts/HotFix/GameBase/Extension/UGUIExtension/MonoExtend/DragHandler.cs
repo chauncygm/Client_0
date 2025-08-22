@@ -2,14 +2,14 @@
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace GameMain
+namespace GameBase
 {
     public class DragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
         private OnDragEvent _onDrag;
         private OnDragEvent _onBeginDrag;
         private OnDragEvent _onEndDrag;
-        private bool _isOnDrag = false;
+        private bool _isOnDrag;
         private RectTransform _rect;
 
         private void Start()
