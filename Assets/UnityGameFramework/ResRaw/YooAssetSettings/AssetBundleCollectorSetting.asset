@@ -69,11 +69,11 @@ MonoBehaviour:
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Assets/GameMain/Prefab/UI
+      - CollectPath: Assets/Res/Prefab/UI
         CollectorGUID: dce503afad3165944af3c7087f050af6
         CollectorType: 0
         AddressRuleName: AddressByFolderAndFileName
-        PackRuleName: PackGroup
+        PackRuleName: PackDirectory
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 

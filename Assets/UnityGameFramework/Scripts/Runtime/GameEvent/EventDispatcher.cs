@@ -11,7 +11,7 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 事件Table。
         /// </summary>
-        private static readonly Dictionary<int, EventDelegateData> s_EventTable = new Dictionary<int, EventDelegateData>();
+        private static readonly Dictionary<int, EventDelegateData> SEventTable = new();
 
         #region 事件管理接口
 
@@ -23,10 +23,10 @@ namespace UnityGameFramework.Runtime
         /// <returns>是否添加成功。</returns>
         public bool AddEventListener(int eventType, Delegate handler)
         {
-            if (!s_EventTable.TryGetValue(eventType, out var data))
+            if (!SEventTable.TryGetValue(eventType, out var data))
             {
                 data = new EventDelegateData(eventType);
-                s_EventTable.Add(eventType, data);
+                SEventTable.Add(eventType, data);
             }
 
             return data.AddHandler(handler);
@@ -39,7 +39,7 @@ namespace UnityGameFramework.Runtime
         /// <param name="handler">事件处理委托。</param>
         public void RemoveEventListener(int eventType, Delegate handler)
         {
-            if (s_EventTable.TryGetValue(eventType, out var data))
+            if (SEventTable.TryGetValue(eventType, out var data))
             {
                 data.RmvHandler(handler);
             }
@@ -55,7 +55,7 @@ namespace UnityGameFramework.Runtime
         /// <param name="eventType">事件类型。</param>
         public void Send(int eventType)
         {
-            if (s_EventTable.TryGetValue(eventType, out var d))
+            if (SEventTable.TryGetValue(eventType, out var d))
             {
                 d.Callback();
             }
@@ -69,7 +69,7 @@ namespace UnityGameFramework.Runtime
         /// <typeparam name="TArg1">事件参数1类型。</typeparam>
         public void Send<TArg1>(int eventType, TArg1 arg1)
         {
-            if (s_EventTable.TryGetValue(eventType, out var d))
+            if (SEventTable.TryGetValue(eventType, out var d))
             {
                 d.Callback(arg1);
             }
@@ -85,7 +85,7 @@ namespace UnityGameFramework.Runtime
         /// <typeparam name="TArg2">事件参数2类型。</typeparam>
         public void Send<TArg1, TArg2>(int eventType, TArg1 arg1, TArg2 arg2)
         {
-            if (s_EventTable.TryGetValue(eventType, out var d))
+            if (SEventTable.TryGetValue(eventType, out var d))
             {
                 d.Callback(arg1, arg2);
             }
@@ -103,7 +103,7 @@ namespace UnityGameFramework.Runtime
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         public void Send<TArg1, TArg2, TArg3>(int eventType, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         {
-            if (s_EventTable.TryGetValue(eventType, out var d))
+            if (SEventTable.TryGetValue(eventType, out var d))
             {
                 d.Callback(arg1, arg2, arg3);
             }
@@ -123,7 +123,7 @@ namespace UnityGameFramework.Runtime
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         public void Send<TArg1, TArg2, TArg3, TArg4>(int eventType, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
         {
-            if (s_EventTable.TryGetValue(eventType, out var d))
+            if (SEventTable.TryGetValue(eventType, out var d))
             {
                 d.Callback(arg1, arg2, arg3, arg4);
             }
@@ -145,7 +145,7 @@ namespace UnityGameFramework.Runtime
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         public void Send<TArg1, TArg2, TArg3, TArg4, TArg5>(int eventType, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
         {
-            if (s_EventTable.TryGetValue(eventType, out var d))
+            if (SEventTable.TryGetValue(eventType, out var d))
             {
                 d.Callback(arg1, arg2, arg3, arg4, arg5);
             }
@@ -169,7 +169,7 @@ namespace UnityGameFramework.Runtime
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         public void Send<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int eventType, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
         {
-            if (s_EventTable.TryGetValue(eventType, out var d))
+            if (SEventTable.TryGetValue(eventType, out var d))
             {
                 d.Callback(arg1, arg2, arg3, arg4, arg5, arg6);
             }

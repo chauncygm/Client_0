@@ -345,7 +345,7 @@ namespace UnityGameFramework.Runtime
         /// <param name="timeout">超时时间。</param>
         /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
         /// <returns>请求远端包裹的最新版本操作句柄。</returns>
-        public RequestPackageVersionOperation UpdatePackageVersionAsync(bool appendTimeTicks = false, int timeout = 60,
+        public RequestPackageVersionOperation RequestPackageVersionAsync(bool appendTimeTicks = false, int timeout = 60,
             string customPackageName = "")
         {
             var package = string.IsNullOrEmpty(customPackageName)

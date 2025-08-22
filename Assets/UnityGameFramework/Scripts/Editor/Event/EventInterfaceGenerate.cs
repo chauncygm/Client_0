@@ -244,7 +244,7 @@ public static class EventInterfaceGenerate
 
 public static class EventInterfaceGenerateTag
 {
-    public static bool HadGenerate = false;
+    public static bool HadGenerate;
     
     public static IEnumerator Reset()
     {

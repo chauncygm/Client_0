@@ -18,7 +18,7 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 总事件实体数据。
         /// </summary>
-        private readonly Dictionary<string, EventEntryData> m_EventEntryMap = new Dictionary<string, EventEntryData>();
+        private readonly Dictionary<string, EventEntryData> m_EventEntryMap = new();
 
         /// <summary>
         /// 事件管理器获取接口。
@@ -27,7 +27,7 @@ namespace UnityGameFramework.Runtime
         /// <returns>接口实例。</returns>
         public T GetInterface<T>()
         {
-            string typeName = typeof(T).FullName;
+            var typeName = typeof(T).FullName;
             if (typeName != null && m_EventEntryMap.TryGetValue(typeName, out var entry))
             {
                 return (T)entry.InterfaceWrap;
@@ -70,6 +70,6 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 分发注册器。
         /// </summary>
-        public EventDispatcher Dispatcher { get; } = new EventDispatcher();
+        public EventDispatcher Dispatcher { get; } = new();
     }
 }

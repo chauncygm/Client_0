@@ -29,8 +29,14 @@ MonoBehaviour:
     MacOSAppUrl: http://127.0.0.1
     IOSAppUrl: http://127.0.0.1
     AndroidAppUrl: http://127.0.0.1
-    m_CurUseServerChannel: 
-    m_ServerChannelInfos: []
+    m_CurUseServerChannel: Default
+    m_ServerChannelInfos:
+    - ChannelName: Default
+      CurUseServerName: "\u5185\u7F51\u670D"
+      ServerIpAndPorts:
+      - ServerName: "\u5185\u7F51\u670D"
+        Ip: 127.0.0.1
+        Port: 10001
     namespace: GameLogic
     m_PreLoadTags:
     - PRELOAD
@@ -45,7 +51,7 @@ MonoBehaviour:
     - uiElementRegex: m_rect
       componentName: RectTransform
     - uiElementRegex: m_text
-      componentName: Text
+      componentName: TMP_Text
     - uiElementRegex: m_richText
       componentName: RichTextItem
     - uiElementRegex: m_btn
@@ -59,7 +65,7 @@ MonoBehaviour:
     - uiElementRegex: m_scroll
       componentName: ScrollRect
     - uiElementRegex: m_input
-      componentName: InputField
+      componentName: TMP_InputField
     - uiElementRegex: m_grid
       componentName: GridLayoutGroup
     - uiElementRegex: m_hlay
@@ -81,14 +87,7 @@ MonoBehaviour:
     - GameBase.dll
     - GameProto.dll
     - GameLogic.dll
-    AOTMetaAssemblies:
-    - mscorlib.dll
-    - System.dll
-    - System.Core.dll
-    - UnityEngine.CoreModule.dll
-    - YooAsset.dll
-    - UniTask.dll
-    - UnityGameFramework.Runtime.dll
+    AOTMetaAssemblies: []
     LogicMainDllName: GameLogic.dll
     AssemblyTextAssetExtension: .bytes
     AssemblyTextAssetPath: AssetRaw/DLL
