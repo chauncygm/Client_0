@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using GameMain.Scripts.Message;
 using Google.Protobuf;
 using UnityEngine;
@@ -29,6 +31,12 @@ namespace GameLogic
                 Level = msg.PlayerData.Level,
                 Exp = msg.PlayerData.Exp
             };
+            var playerDataResources = msg.PlayerData.Resources;
+            var dataResources = new Dictionary<int, int>();
+            playerDataResources?.ToList().ForEach(x => dataResources[x.Key] = x.Value);
+            player.Data.Resources = dataResources;
+
+            
             Debug.Log($"登录完成 {msg.Uid}");
             
             GameEvent.EventMgr.GetInterface<IActorLogicEvent>().OnMainPlayerLoginSuccess();
@@ -42,6 +50,51 @@ namespace GameLogic
             player.Session.LastHeartBeatTime = msg.Time;
         }
 
+        [MessageHandler]
+        public static void OnResGm(ResGm msg)
+        {
+            if (msg.Status == CStatus.Success)
+            {
+                Debug.Log($"GM执行成功，{msg.Data}");
+            }
+            else
+            {
+                Debug.LogWarning($"GM执行失败，{msg.Message}");
+            }
+        }
+        
+        
+
+        [MessageHandler]
+        public static void OnSyncResourceChange(SyncResourceChange msg)
+        {
+            var player = Player.Self;
+            var dataResources = player.Data.Resources;
+            foreach (var resourceChange in msg.Changes)
+            {
+                var lastNum = dataResources.GetValueOrDefault(resourceChange.ResourceId, 0);
+                if (lastNum + resourceChange.ChangeNum != resourceChange.CurrentNum)
+                {
+                    Debug.Log($"资源变化错误，资源id:{resourceChange.ResourceId}，变化数量:{resourceChange.ChangeNum}，当前数量:{resourceChange.CurrentNum}，上次数量:{lastNum}");
+                }
+                dataResources[resourceChange.ResourceId] = resourceChange.CurrentNum;
+                GameEvent.EventMgr.GetInterface<IBagLogicEvent>().OnResourceChange(resourceChange.ResourceId, resourceChange.CurrentNum);
+            }
+        }
+
+
+        [MessageHandler]
+        public static void OnPlayerLevelChange(SyncLevelExpChange msg)
+        {
+            var player = Player.Self;
+            player.Data.LevelExp = new LevelExpInfo
+            {
+                Level = msg.Level,
+                Exp = msg.Exp
+            };
+            GameEvent.EventMgr.GetInterface<IActorLogicEvent>().OnMainPlayerLevelChange();
+        }
+
         public static bool SendHeartBeat()
         {
             if (!Player.Self.Data.Online)
@@ -50,6 +103,16 @@ namespace GameLogic
             }
             SendMsg(new ReqHeartbeat());
             return true;
+        }
+
+        public static void SendGM(string cmd, string param)
+        {
+            var reqGm = new ReqGm
+            {
+                Cmd = cmd,
+                Params = { param.Split(" ") }
+            };
+            SendMsg(reqGm);
         }
 
         public static void SendMsg(IMessage message)

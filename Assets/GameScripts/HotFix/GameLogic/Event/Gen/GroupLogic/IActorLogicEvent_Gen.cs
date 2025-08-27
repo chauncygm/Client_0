@@ -15,7 +15,6 @@ namespace GameLogic
 	{
 		public static readonly int OnMainPlayerNameChange = StringId.StringToHash("IActorLogicEvent_Event.OnMainPlayerNameChange");
 		public static readonly int OnMainPlayerLevelChange = StringId.StringToHash("IActorLogicEvent_Event.OnMainPlayerLevelChange");
-		public static readonly int OnMainPlayerLevelDataChange = StringId.StringToHash("IActorLogicEvent_Event.OnMainPlayerLevelDataChange");
 		public static readonly int OnMainPlayerLoginSuccess = StringId.StringToHash("IActorLogicEvent_Event.OnMainPlayerLoginSuccess");
 	}
 
@@ -36,11 +35,6 @@ namespace GameLogic
         public void OnMainPlayerLevelChange()
         {
             _dispatcher.Send(IActorLogicEvent_Event.OnMainPlayerLevelChange);
-        }
-
-        public void OnMainPlayerLevelDataChange()
-        {
-            _dispatcher.Send(IActorLogicEvent_Event.OnMainPlayerLevelDataChange);
         }
 
         public void OnMainPlayerLoginSuccess()

@@ -33,7 +33,7 @@ namespace GameMain
 
         private async UniTaskVoid StartGame()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            await UniTask.Yield();
             UILoadMgr.HideAll();
         }
     }

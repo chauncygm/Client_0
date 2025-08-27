@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using GameFramework;
 using UnityEngine;
@@ -12,35 +13,31 @@ namespace GameLogic
     /// </summary>
     public class UIBase
     {
+
         /// <summary>
         /// 所属UI父节点。
         /// </summary>
-        protected UIBase parent = null;
-
-        /// <summary>
-        /// UI父节点。
-        /// </summary>
-        public UIBase Parent => parent;
+        public UIBase Parent { protected set; get; }
 
         /// <summary>
         /// 自定义数据集。
         /// </summary>
-        protected System.Object[] userDatas;
+        public object[] UserDatas { get; set; }
 
         /// <summary>
         /// 窗口的实例资源对象。
         /// </summary>
-        public virtual GameObject gameObject { protected set; get; }
+        public virtual GameObject GameObject { protected set; get; }
 
         /// <summary>
         /// 窗口位置组件。
         /// </summary>
-        public virtual Transform transform { protected set; get; }
+        public virtual Transform Transform { protected set; get; }
 
         /// <summary>
         /// 窗口矩阵位置组件。
         /// </summary>
-        public virtual RectTransform rectTransform { protected set; get; }
+        public virtual RectTransform RectTransform { protected set; get; }
 
         /// <summary>
         /// UI类型。
@@ -55,17 +52,17 @@ namespace GameLogic
         /// <summary>
         /// UI子组件列表。
         /// </summary>
-        public List<UIWidget> ListChild = new List<UIWidget>();
+        public readonly List<UIWidget> ListChild = new();
 
         /// <summary>
         /// 存在Update更新的UI子组件列表。
         /// </summary>
-        protected List<UIWidget> m_listUpdateChild = null;
+        protected List<UIWidget> ListUpdateChild = null;
 
         /// <summary>
         /// 是否持有Update行为。
         /// </summary>
-        protected bool m_updateListValid = false;
+        protected bool UpdateListValid;
 
         /// <summary>
         /// 代码自动生成绑定。
@@ -143,18 +140,15 @@ namespace GameLogic
 
         internal void SetUpdateDirty()
         {
-            m_updateListValid = false;
-            if (Parent != null)
-            {
-                Parent.SetUpdateDirty();
-            }
+            UpdateListValid = false;
+            Parent?.SetUpdateDirty();
         }
 
         #region FindChildComponent
 
         public Transform FindChild(string path)
         {
-            return DUnityUtil.FindChild(rectTransform, path);
+            return DUnityUtil.FindChild(RectTransform, path);
         }
 
         public Transform FindChild(Transform trans, string path)
@@ -164,7 +158,7 @@ namespace GameLogic
 
         public T FindChildComponent<T>(string path) where T : Component
         {
-            return DUnityUtil.FindChildComponent<T>(rectTransform, path);
+            return DUnityUtil.FindChildComponent<T>(RectTransform, path);
         }
 
         public T FindChildComponent<T>(Transform trans, string path) where T : Component
@@ -280,12 +274,7 @@ namespace GameLogic
         public T CreateWidget<T>(GameObject goRoot, bool visible = true) where T : UIWidget, new()
         {
             var widget = new T();
-            if (widget.Create(this, goRoot, visible))
-            {
-                return widget;
-            }
-
-            return null;
+            return widget.Create(this, goRoot, visible) ? widget : null;
         }
 
         /// <summary>
@@ -298,7 +287,7 @@ namespace GameLogic
         /// <returns>UIWidget实例。</returns>
         public T CreateWidgetByPath<T>(Transform parentTrans, string assetLocation, bool visible = true) where T : UIWidget, new()
         {
-            GameObject goInst = GameModule.Resource.LoadGameObject(assetLocation, parent: parentTrans);
+            var goInst = GameModule.Resource.LoadGameObject(assetLocation, parent: parentTrans);
             return CreateWidget<T>(goInst, visible);
         }
 
@@ -312,7 +301,7 @@ namespace GameLogic
         /// <returns>UIWidget实例。</returns>
         public async UniTask<T> CreateWidgetByPathAsync<T>(Transform parentTrans, string assetLocation, bool visible = true) where T : UIWidget, new()
         {
-            GameObject goInst = await GameModule.Resource.LoadGameObjectAsync(assetLocation, parentTrans, gameObject.GetCancellationTokenOnDestroy());
+            var goInst = await GameModule.Resource.LoadGameObjectAsync(assetLocation, parentTrans, GameObject.GetCancellationTokenOnDestroy());
             return CreateWidget<T>(goInst, visible);
         }
 
@@ -424,16 +413,13 @@ namespace GameLogic
         private async UniTaskVoid AsyncAdjustIconNumInternal<T>(List<T> listIcon, int tarNum, Transform parentTrans, int maxNumPerFrame,
             Action<T, int> updateAction, GameObject prefab, string assetPath) where T : UIWidget, new()
         {
-            if (listIcon == null)
-            {
-                listIcon = new List<T>();
-            }
+            listIcon ??= new List<T>();
 
-            int createCnt = 0;
+            var createCnt = 0;
 
-            for (int i = 0; i < tarNum; i++)
+            for (var i = 0; i < tarNum; i++)
             {
-                T tmpT = null;
+                T tmpT;
                 if (i < listIcon.Count)
                 {
                     tmpT = listIcon[i];
@@ -452,18 +438,13 @@ namespace GameLogic
                     listIcon.Add(tmpT);
                 }
 
-                int index = i;
-                if (updateAction != null)
-                {
-                    updateAction(tmpT, index);
-                }
+                updateAction?.Invoke(tmpT, i);
 
                 createCnt++;
-                if (createCnt >= maxNumPerFrame)
-                {
-                    createCnt = 0;
-                    await UniTask.Yield();
-                }
+                if (createCnt < maxNumPerFrame) continue;
+                
+                createCnt = 0;
+                await UniTask.Yield();
             }
 
             if (listIcon.Count > tarNum)
@@ -474,26 +455,17 @@ namespace GameLogic
 
         private void RemoveUnUseItem<T>(List<T> listIcon, int tarNum) where T : UIWidget
         {
-            var removeIcon = new List<T>();
-            for (int iconIdx = 0; iconIdx < listIcon.Count; iconIdx++)
-            {
-                var icon = listIcon[iconIdx];
-                if (iconIdx >= tarNum)
-                {
-                    removeIcon.Add(icon);
-                }
-            }
+            var removeIcon = listIcon.Where((icon, iconIdx) => iconIdx >= tarNum).ToList();
 
-            for (var index = 0; index < removeIcon.Count; index++)
+            foreach (var icon in removeIcon)
             {
-                var icon = removeIcon[index];
                 listIcon.Remove(icon);
                 icon.OnDestroy();
                 icon.OnDestroyWidget();
                 ListChild.Remove(icon);
-                if (icon.gameObject != null)
+                if (icon.GameObject != null)
                 {
-                    UnityEngine.Object.Destroy(icon.gameObject);
+                    UnityEngine.Object.Destroy(icon.GameObject);
                 }
             }
         }

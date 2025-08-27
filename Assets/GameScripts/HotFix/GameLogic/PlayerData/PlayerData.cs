@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace GameLogic
 {
     public class PlayerData
@@ -26,5 +28,10 @@ namespace GameLogic
         /// 经验等级
         /// </summary>
         public LevelExpInfo LevelExp { get; set;}
+        
+        /// <summary>
+        /// 资源
+        /// </summary>
+        public Dictionary<int, int> Resources { get; set; }
     }
 }

@@ -60,10 +60,6 @@ public static class EventInterfaceGenerate
     [MenuItem("Game Framework/EventInterface/Generate EventInterface", false, 302)]
     public static void Generate()
     {
-        if (EventInterfaceGenerateTag.HadGenerate)
-        {
-            return;
-        }
 
         EventInterfaceGenerateTag.HadGenerate = true;
 

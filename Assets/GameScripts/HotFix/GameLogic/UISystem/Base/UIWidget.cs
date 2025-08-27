@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
@@ -9,17 +10,17 @@ namespace GameLogic
         /// <summary>
         /// 窗口组件的实例资源对象。
         /// </summary>
-        public override GameObject gameObject { protected set; get; }
+        public override GameObject GameObject { protected set; get; }
 
         /// <summary>
         /// 窗口组件矩阵位置组件。
         /// </summary>
-        public override RectTransform rectTransform { protected set; get; }
+        public override RectTransform RectTransform { protected set; get; }
         
         /// <summary>
         /// 窗口位置组件。
         /// </summary>
-        public override Transform transform { protected set; get; }
+        public override Transform Transform { protected set; get; }
 
         /// <summary>
         /// 窗口组件名称。
@@ -39,7 +40,7 @@ namespace GameLogic
         {
             get
             {
-                var parentUI = base.parent;
+                var parentUI = Parent;
                 while (parentUI != null)
                 {
                     if (parentUI.Type == UIType.Window)
@@ -59,11 +60,11 @@ namespace GameLogic
         /// </summary>
         public bool Visible
         {
-            get => gameObject.activeSelf;
+            get => GameObject.activeSelf;
 
             set
             {
-                gameObject.SetActive(value);
+                GameObject.SetActive(value);
                 OnSetVisible(value);
             }
         }
@@ -76,17 +77,17 @@ namespace GameLogic
             }
 
             List<UIWidget> listNextUpdateChild = null;
-            if (ListChild != null && ListChild.Count > 0)
+            if (ListChild is { Count: > 0 })
             {
-                listNextUpdateChild = m_listUpdateChild;
-                var updateListValid = m_updateListValid;
-                List<UIWidget> listChild = null;
+                listNextUpdateChild = ListUpdateChild;
+                var updateListValid = UpdateListValid;
+                List<UIWidget> listChild;
                 if (!updateListValid)
                 {
                     if (listNextUpdateChild == null)
                     {
                         listNextUpdateChild = new List<UIWidget>();
-                        m_listUpdateChild = listNextUpdateChild;
+                        ListUpdateChild = listNextUpdateChild;
                     }
                     else
                     {
@@ -100,15 +101,8 @@ namespace GameLogic
                     listChild = listNextUpdateChild;
                 }
 
-                for (int i = 0; i < listChild.Count; i++)
+                foreach (var uiWidget in listChild.Where(uiWidget => uiWidget != null))
                 {
-                    var uiWidget = listChild[i];
-                    
-                    if (uiWidget == null)
-                    {
-                        continue;
-                    }
-
                     TProfiler.BeginSample(uiWidget.name);
                     var needValid = uiWidget.InternalUpdate();
                     TProfiler.EndSample();
@@ -121,12 +115,12 @@ namespace GameLogic
 
                 if (!updateListValid)
                 {
-                    m_updateListValid = true;
+                    UpdateListValid = true;
                 }
             }
 
             TProfiler.BeginSample("OnUpdate");
-            bool needUpdate = false;
+            bool needUpdate;
             if (listNextUpdateChild is not { Count: > 0 })
             {
                 HasOverrideUpdate = true;
@@ -167,7 +161,7 @@ namespace GameLogic
         /// <returns></returns>
         public bool CreateByPath(string resPath, UIBase parentUI, Transform parentTrans = null, bool visible = true)
         {
-            GameObject goInst = GameModule.Resource.LoadGameObject(resPath, parent: parentTrans);
+            var goInst = GameModule.Resource.LoadGameObject(resPath, parent: parentTrans);
             if (goInst == null)
             {
                 return false;
@@ -196,7 +190,7 @@ namespace GameLogic
         {
             if (parentTrans == null)
             {
-                parentTrans = parentUI.rectTransform;
+                parentTrans = parentUI.RectTransform;
             }
 
             return CreateImp(parentUI, Object.Instantiate(goPrefab, parentTrans), true, visible);
@@ -210,7 +204,7 @@ namespace GameLogic
             }
 
             RestChildCanvas(parentUI);
-            parent = parentUI;
+            Parent = parentUI;
             Parent.ListChild.Add(this);
             Parent.SetUpdateDirty();
             ScriptGenerator();
@@ -222,13 +216,13 @@ namespace GameLogic
 
             if (!visible)
             {
-                gameObject.SetActive(false);
+                GameObject.SetActive(false);
             }
             else
             {
-                if (!gameObject.activeSelf)
+                if (!GameObject.activeSelf)
                 {
-                    gameObject.SetActive(true);
+                    GameObject.SetActive(true);
                 }
             }
 
@@ -243,34 +237,32 @@ namespace GameLogic
             }
 
             name = GetType().Name;
-            transform = go.GetComponent<Transform>();
-            rectTransform = transform as RectTransform;
-            gameObject = go;
-            Log.Assert(rectTransform != null, $"{go.name} ui base element need to be RectTransform");
+            Transform = go.GetComponent<Transform>();
+            RectTransform = Transform as RectTransform;
+            GameObject = go;
+            Log.Assert(RectTransform != null, $"{go.name} ui base element need to be RectTransform");
             return true;
         }
 
         protected void RestChildCanvas(UIBase parentUI)
         {
-            if (parentUI == null || parentUI.gameObject == null)
+            if (parentUI == null || parentUI.GameObject == null)
             {
                 return;
             }
 
-            Canvas parentCanvas = parentUI.gameObject.GetComponentInParent<Canvas>();
+            var parentCanvas = parentUI.GameObject.GetComponentInParent<Canvas>();
             if (parentCanvas == null)
             {
                 return;
             }
 
-            if (gameObject != null)
+            if (GameObject == null) return;
+            
+            var listCanvas = GameObject.GetComponentsInChildren<Canvas>(true);
+            foreach (var childCanvas in listCanvas)
             {
-                var listCanvas = gameObject.GetComponentsInChildren<Canvas>(true);
-                for (var index = 0; index < listCanvas.Length; index++)
-                {
-                    var childCanvas = listCanvas[index];
-                    childCanvas.sortingOrder = parentCanvas.sortingOrder + childCanvas.sortingOrder % UISystem.WINDOW_DEEP;
-                }
+                childCanvas.sortingOrder = parentCanvas.sortingOrder + childCanvas.sortingOrder % UISystem.WindowDeep;
             }
         }
 
@@ -294,9 +286,9 @@ namespace GameLogic
                 uiChild.OnDestroyWidget();
             }
 
-            if (gameObject != null)
+            if (GameObject != null)
             {
-                Object.Destroy(gameObject);
+                Object.Destroy(GameObject);
             }
         }
 
@@ -305,12 +297,11 @@ namespace GameLogic
         /// </summary>
         public void Destroy()
         {
-            if (parent != null)
-            {
-                parent.ListChild.Remove(this);
-                OnDestroy();
-                OnDestroyWidget();
-            }
+            if (Parent == null) return;
+            
+            Parent.ListChild.Remove(this);
+            OnDestroy();
+            OnDestroyWidget();
         }
 
         #endregion

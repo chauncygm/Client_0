@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GameBase;
 using GameFramework;
 using UnityEngine;
@@ -10,16 +11,16 @@ namespace GameLogic
     /// <summary>
     /// UI系统。
     /// </summary>
-    public sealed partial class UISystem : BaseLogicSys<UISystem>
+    public sealed class UISystem : BaseLogicSys<UISystem>
     {
-        private bool m_EnableErrorLog = true;
+        private bool _mEnableErrorLog = true;
 
-        private readonly List<UIWindow> _stack = new List<UIWindow>(128);
+        private readonly List<UIWindow> _stack = new(128);
 
-        internal const int LAYER_DEEP = 2000;
-        internal const int WINDOW_DEEP = 100;
-        internal const int WINDOW_HIDE_LAYER = 2; // Ignore Raycast
-        internal const int WINDOW_SHOW_LAYER = 5; // UI
+        internal const int LayerDeep = 2000;
+        internal const int WindowDeep = 100;
+        internal const int WindowHideLayer = 2; // Ignore Raycast
+        internal const int WindowShowLayer = 5; // UI
 
         /// <summary>
         /// UI根节点。
@@ -52,26 +53,15 @@ namespace GameLogic
 
             UICanvasTransform.gameObject.layer = LayerMask.NameToLayer("UI");
 
-            switch (GameModule.Debugger.ActiveWindowType)
+            _mEnableErrorLog = GameModule.Debugger.ActiveWindowType switch
             {
-                case DebuggerActiveWindowType.AlwaysOpen:
-                    m_EnableErrorLog = true;
-                    break;
+                DebuggerActiveWindowType.AlwaysOpen => true,
+                DebuggerActiveWindowType.OnlyOpenWhenDevelopment => Debug.isDebugBuild,
+                DebuggerActiveWindowType.OnlyOpenInEditor => Application.isEditor,
+                _ => false
+            };
 
-                case DebuggerActiveWindowType.OnlyOpenWhenDevelopment:
-                    m_EnableErrorLog = Debug.isDebugBuild;
-                    break;
-
-                case DebuggerActiveWindowType.OnlyOpenInEditor:
-                    m_EnableErrorLog = Application.isEditor;
-                    break;
-
-                default:
-                    m_EnableErrorLog = false;
-                    break;
-            }
-
-            if (m_EnableErrorLog)
+            if (_mEnableErrorLog)
             {
                 _errorLogger = new ErrorLogger();
             }
@@ -102,7 +92,7 @@ namespace GameLogic
                 return null;
             }
 
-            UIWindow topWindow = _stack[^1];
+            var topWindow = _stack[^1];
             return topWindow;
         }
 
@@ -112,17 +102,9 @@ namespace GameLogic
         public UIWindow GetTopWindow(int layer)
         {
             UIWindow lastOne = null;
-            for (int i = 0; i < _stack.Count; i++)
+            foreach (var window in _stack.Where(window => window.WindowLayer == layer))
             {
-                if (_stack[i].WindowLayer == layer)
-                {
-                    lastOne = _stack[i];
-                }
-            }
-
-            if (lastOne == null)
-            {
-                return null;
+                lastOne = window;
             }
 
             return lastOne;
@@ -141,14 +123,7 @@ namespace GameLogic
         /// </summary>
         public bool IsAnyLoading()
         {
-            for (int i = 0; i < _stack.Count; i++)
-            {
-                var window = _stack[i];
-                if (window.IsLoadDone == false)
-                    return true;
-            }
-
-            return false;
+            return _stack.Any(window => !window.IsLoadDone);
         }
 
         /// <summary>
@@ -216,19 +191,19 @@ namespace GameLogic
 
         private void ShowUIImp(Type type, bool isAsync, params System.Object[] userDatas)
         {
-            string windowName = type.FullName;
+            var windowName = type.FullName;
 
             // 如果窗口已经存在
             if (IsContains(windowName))
             {
-                UIWindow window = GetWindow(windowName);
+                var window = GetWindow(windowName);
                 Pop(window); //弹出窗口
                 Push(window); //重新压入
                 window.TryInvoke(OnWindowPrepare, userDatas);
             }
             else
             {
-                UIWindow window = CreateInstance(type);
+                var window = CreateInstance(type);
                 Push(window); //首次压入
                 window.InternalLoad(window.AssetName, OnWindowPrepare, isAsync, userDatas).Forget();
             }
@@ -244,8 +219,8 @@ namespace GameLogic
 
         public void CloseUI(Type type)
         {
-            string windowName = type.FullName;
-            UIWindow window = GetWindow(windowName);
+            var windowName = type.FullName;
+            var window = GetWindow(windowName);
             if (window == null)
                 return;
 
@@ -262,8 +237,8 @@ namespace GameLogic
 
         public void HideUI(Type type)
         {
-            string windowName = type.FullName;
-            UIWindow window = GetWindow(windowName);
+            var windowName = type.FullName;
+            var window = GetWindow(windowName);
             if (window == null)
             {
                 return;
@@ -287,9 +262,8 @@ namespace GameLogic
         /// </summary>
         public void CloseAll()
         {
-            for (int i = 0; i < _stack.Count; i++)
+            foreach (var window in _stack)
             {
-                UIWindow window = _stack[i];
                 window.InternalDestroy();
             }
 
@@ -301,9 +275,9 @@ namespace GameLogic
         /// </summary>
         public void CloseAllWithOut(UIWindow withOut)
         {
-            for (int i = _stack.Count - 1; i >= 0; i--)
+            for (var i = _stack.Count - 1; i >= 0; i--)
             {
-                UIWindow window = _stack[i];
+                var window = _stack[i];
                 if (window == withOut)
                 {
                     continue;
@@ -319,9 +293,9 @@ namespace GameLogic
         /// </summary>
         public void CloseAllWithOut<T>() where T : UIWindow
         {
-            for (int i = _stack.Count - 1; i >= 0; i--)
+            for (var i = _stack.Count - 1; i >= 0; i--)
             {
-                UIWindow window = _stack[i];
+                var window = _stack[i];
                 if (window.GetType() == typeof(T))
                 {
                     continue;
@@ -342,24 +316,21 @@ namespace GameLogic
 
         private void OnSortWindowDepth(int layer)
         {
-            int depth = layer * LAYER_DEEP;
-            for (int i = 0; i < _stack.Count; i++)
+            var depth = layer * LayerDeep;
+            foreach (var window in _stack.Where(window => window.WindowLayer == layer))
             {
-                if (_stack[i].WindowLayer == layer)
-                {
-                    _stack[i].Depth = depth;
-                    depth += WINDOW_DEEP;
-                }
+                window.Depth = depth;
+                depth += WindowDeep;
             }
         }
 
         private void OnSetWindowVisible()
         {
-            bool isHideNext = false;
-            for (int i = _stack.Count - 1; i >= 0; i--)
+            var isHideNext = false;
+            for (var i = _stack.Count - 1; i >= 0; i--)
             {
-                UIWindow window = _stack[i];
-                if (isHideNext == false)
+                var window = _stack[i];
+                if (!isHideNext)
                 {
                     window.Visible = true;
                     if (window.IsPrepare && window.FullScreen)
@@ -376,15 +347,15 @@ namespace GameLogic
 
         private UIWindow CreateInstance(Type type)
         {
-            UIWindow window = Activator.CreateInstance(type) as UIWindow;
-            WindowAttribute attribute = Attribute.GetCustomAttribute(type, typeof(WindowAttribute)) as WindowAttribute;
+            var window = Activator.CreateInstance(type) as UIWindow;
+            var attribute = Attribute.GetCustomAttribute(type, typeof(WindowAttribute)) as WindowAttribute;
 
             if (window == null)
                 throw new GameFrameworkException($"Window {type.FullName} create instance failed.");
 
             if (attribute != null)
             {
-                string assetName = string.IsNullOrEmpty(attribute.Location) ? type.Name : attribute.Location;
+                var assetName = string.IsNullOrEmpty(attribute.Location) ? type.Name : attribute.Location;
                 window.Init(type.FullName, attribute.WindowLayer, attribute.FullScreen, assetName, attribute.FromResources, attribute.HideTimeToClose);
             }
             else
@@ -397,30 +368,12 @@ namespace GameLogic
 
         private UIWindow GetWindow(string windowName)
         {
-            for (int i = 0; i < _stack.Count; i++)
-            {
-                UIWindow window = _stack[i];
-                if (window.WindowName == windowName)
-                {
-                    return window;
-                }
-            }
-
-            return null;
+            return _stack.FirstOrDefault(window => window.WindowName == windowName);
         }
 
         private bool IsContains(string windowName)
         {
-            for (int i = 0; i < _stack.Count; i++)
-            {
-                UIWindow window = _stack[i];
-                if (window.WindowName == windowName)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return _stack.Any(window => window.WindowName == windowName);
         }
 
         private void Push(UIWindow window)
@@ -430,8 +383,8 @@ namespace GameLogic
                 throw new GameFrameworkException($"Window {window.WindowName} is exist.");
 
             // 获取插入到所属层级的位置
-            int insertIndex = -1;
-            for (int i = 0; i < _stack.Count; i++)
+            var insertIndex = -1;
+            for (var i = 0; i < _stack.Count; i++)
             {
                 if (window.WindowLayer == _stack[i].WindowLayer)
                 {
@@ -442,7 +395,7 @@ namespace GameLogic
             // 如果没有所属层级，找到相邻层级
             if (insertIndex == -1)
             {
-                for (int i = 0; i < _stack.Count; i++)
+                for (var i = 0; i < _stack.Count; i++)
                 {
                     if (window.WindowLayer > _stack[i].WindowLayer)
                     {
@@ -474,15 +427,9 @@ namespace GameLogic
                 return;
             }
 
-            int count = _stack.Count;
-            for (int i = 0; i < _stack.Count; i++)
+            var count = _stack.Count;
+            foreach (var window in _stack.TakeWhile(_ => _stack.Count == count))
             {
-                if (_stack.Count != count)
-                {
-                    break;
-                }
-
-                var window = _stack[i];
                 window.InternalUpdate();
             }
         }

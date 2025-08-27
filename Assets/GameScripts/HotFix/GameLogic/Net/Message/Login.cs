@@ -24,19 +24,21 @@ namespace GameMain.Scripts.Message {
     static LoginReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgtsb2dpbi5wcm90byJpCgpQbGF5ZXJEYXRhEhAKCHBsYXllcklkGAEgASgD",
-            "EgwKBG5hbWUYAiABKAkSDAoEaGVhZBgDIAEoBRIRCgloZWFkRnJhbWUYBCAB",
-            "KAUSDQoFbGV2ZWwYBSABKAUSCwoDZXhwGAYgASgFIhcKCFJlcUxvZ2luEgsK",
-            "A3VpZBgBIAEoAyIdCgxSZXFSZWNvbm5lY3QSDQoFdG9rZW4YASABKAkiCwoJ",
-            "UmVxTG9nb3V0Ig4KDFJlcUhlYXJ0YmVhdCIcCgxSZXNIZWFydGJlYXQSDAoE",
-            "dGltZRgBIAEoAyJMCg1TeW5jTG9naW5EYXRhEgsKA3VpZBgBIAEoAxIfCgpw",
-            "bGF5ZXJEYXRhGAIgASgLMgsuUGxheWVyRGF0YRINCgV0b2tlbhgDIAEoCUI7",
-            "ChJjbi5jaGF1bmN5Lm1lc3NhZ2VCCExvZ2luTXNnUAGqAhhHYW1lTWFpbi5T",
-            "Y3JpcHRzLk1lc3NhZ2ViBnByb3RvMw=="));
+            "Cgtsb2dpbi5wcm90byLKAQoKUGxheWVyRGF0YRIQCghwbGF5ZXJJZBgBIAEo",
+            "AxIMCgRuYW1lGAIgASgJEgwKBGhlYWQYAyABKAUSEQoJaGVhZEZyYW1lGAQg",
+            "ASgFEg0KBWxldmVsGAUgASgFEgsKA2V4cBgGIAEoBRItCglyZXNvdXJjZXMY",
+            "ByADKAsyGi5QbGF5ZXJEYXRhLlJlc291cmNlc0VudHJ5GjAKDlJlc291cmNl",
+            "c0VudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoBToCOAEiFwoIUmVx",
+            "TG9naW4SCwoDdWlkGAEgASgDIh0KDFJlcVJlY29ubmVjdBINCgV0b2tlbhgB",
+            "IAEoCSILCglSZXFMb2dvdXQiDgoMUmVxSGVhcnRiZWF0IhwKDFJlc0hlYXJ0",
+            "YmVhdBIMCgR0aW1lGAEgASgDIkwKDVN5bmNMb2dpbkRhdGESCwoDdWlkGAEg",
+            "ASgDEh8KCnBsYXllckRhdGEYAiABKAsyCy5QbGF5ZXJEYXRhEg0KBXRva2Vu",
+            "GAMgASgJQjsKEmNuLmNoYXVuY3kubWVzc2FnZUIITG9naW5Nc2dQAaoCGEdh",
+            "bWVNYWluLlNjcmlwdHMuTWVzc2FnZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.PlayerData), global::GameMain.Scripts.Message.PlayerData.Parser, new[]{ "PlayerId", "Name", "Head", "HeadFrame", "Level", "Exp" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.PlayerData), global::GameMain.Scripts.Message.PlayerData.Parser, new[]{ "PlayerId", "Name", "Head", "HeadFrame", "Level", "Exp", "Resources" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.ReqLogin), global::GameMain.Scripts.Message.ReqLogin.Parser, new[]{ "Uid" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.ReqReconnect), global::GameMain.Scripts.Message.ReqReconnect.Parser, new[]{ "Token" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.ReqLogout), global::GameMain.Scripts.Message.ReqLogout.Parser, null, null, null, null, null),
@@ -93,6 +95,7 @@ namespace GameMain.Scripts.Message {
       headFrame_ = other.headFrame_;
       level_ = other.level_;
       exp_ = other.exp_;
+      resources_ = other.resources_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -174,6 +177,17 @@ namespace GameMain.Scripts.Message {
       }
     }
 
+    /// <summary>Field number for the "resources" field.</summary>
+    public const int ResourcesFieldNumber = 7;
+    private static readonly pbc::MapField<int, int>.Codec _map_resources_codec
+        = new pbc::MapField<int, int>.Codec(pb::FieldCodec.ForInt32(8, 0), pb::FieldCodec.ForInt32(16, 0), 58);
+    private readonly pbc::MapField<int, int> resources_ = new pbc::MapField<int, int>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::MapField<int, int> Resources {
+      get { return resources_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -195,6 +209,7 @@ namespace GameMain.Scripts.Message {
       if (HeadFrame != other.HeadFrame) return false;
       if (Level != other.Level) return false;
       if (Exp != other.Exp) return false;
+      if (!Resources.Equals(other.Resources)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -208,6 +223,7 @@ namespace GameMain.Scripts.Message {
       if (HeadFrame != 0) hash ^= HeadFrame.GetHashCode();
       if (Level != 0) hash ^= Level.GetHashCode();
       if (Exp != 0) hash ^= Exp.GetHashCode();
+      hash ^= Resources.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -250,6 +266,7 @@ namespace GameMain.Scripts.Message {
         output.WriteRawTag(48);
         output.WriteInt32(Exp);
       }
+      resources_.WriteTo(output, _map_resources_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -284,6 +301,7 @@ namespace GameMain.Scripts.Message {
         output.WriteRawTag(48);
         output.WriteInt32(Exp);
       }
+      resources_.WriteTo(ref output, _map_resources_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -312,6 +330,7 @@ namespace GameMain.Scripts.Message {
       if (Exp != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
       }
+      size += resources_.CalculateSize(_map_resources_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -342,6 +361,7 @@ namespace GameMain.Scripts.Message {
       if (other.Exp != 0) {
         Exp = other.Exp;
       }
+      resources_.MergeFrom(other.resources_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -385,6 +405,10 @@ namespace GameMain.Scripts.Message {
             Exp = input.ReadInt32();
             break;
           }
+          case 58: {
+            resources_.AddEntriesFrom(input, _map_resources_codec);
+            break;
+          }
         }
       }
     #endif
@@ -426,6 +450,10 @@ namespace GameMain.Scripts.Message {
           }
           case 48: {
             Exp = input.ReadInt32();
+            break;
+          }
+          case 58: {
+            resources_.AddEntriesFrom(ref input, _map_resources_codec);
             break;
           }
         }

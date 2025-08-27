@@ -37,6 +37,9 @@ namespace GameLogic
         /// </summary>
         public readonly bool FromResources;
 
+        /// <summary>
+        /// 隐藏窗口关闭的时间(秒)
+        /// </summary>
         public readonly int HideTimeToClose;
 
         public WindowAttribute(int windowLayer, string location = "", bool fullScreen = false, int hideTimeToClose = 10)

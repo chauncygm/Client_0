@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ namespace GameLogic
 
         private Action<UIWindow> _prepareCallback;
 
-        private bool _isCreate = false;
+        private bool _isCreate;
 
         private GameObject _panel;
 
@@ -31,17 +32,17 @@ namespace GameLogic
         /// <summary>
         /// 窗口位置组件。
         /// </summary>
-        public override Transform transform => _panel.transform;
+        public override Transform Transform => _panel.transform;
         
         /// <summary>
         /// 窗口矩阵位置组件。
         /// </summary>
-        public override RectTransform rectTransform => _panel.transform as RectTransform;
+        public override RectTransform RectTransform => _panel.transform as RectTransform;
 
         /// <summary>
         /// 窗口的实例资源对象。
         /// </summary>
-        public override GameObject gameObject => _panel;
+        public override GameObject GameObject => _panel;
 
         /// <summary>
         /// 窗口名称。
@@ -66,7 +67,7 @@ namespace GameLogic
         /// <summary>
         /// 是内部资源无需AB加载。
         /// </summary>
-        public bool FromResources { private set; get; }
+        public bool FromResources { private get; set; }
         
         /// <summary>
         /// 隐藏窗口关闭时间。
@@ -78,72 +79,40 @@ namespace GameLogic
         /// <summary>
         /// 自定义数据。
         /// </summary>
-        public System.Object UserData
-        {
-            get
-            {
-                if (userDatas != null && userDatas.Length >= 1)
-                {
-                    return userDatas[0];
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 自定义数据集。
-        /// </summary>
-        public System.Object[] UserDatas => userDatas;
+        protected object UserData => UserDatas is { Length: >= 1 } ? UserDatas[0] : null;
 
         /// <summary>
         /// 窗口深度值。
         /// </summary>
         public int Depth
         {
-            get
-            {
-                if (_canvas != null)
-                {
-                    return _canvas.sortingOrder;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
+            get => _canvas != null ? _canvas.sortingOrder : 0;
 
             set
             {
-                if (_canvas != null)
+                if (!_canvas) return;
+                
+                if (_canvas.sortingOrder == value)
                 {
-                    if (_canvas.sortingOrder == value)
-                    {
-                        return;
-                    }
+                    return;
+                }
 
-                    // 设置父类
-                    _canvas.sortingOrder = value;
+                // 设置父类
+                _canvas.sortingOrder = value;
 
-                    // 设置子类
-                    int depth = value;
-                    for (int i = 0; i < _childCanvas.Length; i++)
-                    {
-                        var canvas = _childCanvas[i];
-                        if (canvas != _canvas)
-                        {
-                            depth += 5; //注意递增值
-                            canvas.sortingOrder = depth;
-                        }
-                    }
+                // 设置子类
+                var depth = value;
+                foreach (var canvas in _childCanvas)
+                {
+                    if (canvas == _canvas) continue;
+                    depth += 5; //注意递增值
+                    canvas.sortingOrder = depth;
+                }
 
-                    // 虚函数
-                    if (_isCreate)
-                    {
-                        OnSortDepth(value);
-                    }
+                // 虚函数
+                if (_isCreate)
+                {
+                    OnSortDepth(value);
                 }
             }
         }
@@ -155,39 +124,35 @@ namespace GameLogic
         {
             get
             {
-                if (_canvas != null)
+                if (_canvas)
                 {
-                    return _canvas.gameObject.layer == UISystem.WINDOW_SHOW_LAYER;
+                    return _canvas.gameObject.layer == UISystem.WindowShowLayer;
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
 
             set
             {
-                if (_canvas != null)
+                if (!_canvas) return;
+                
+                var setLayer = value ? UISystem.WindowShowLayer : UISystem.WindowHideLayer;
+                if (_canvas.gameObject.layer == setLayer)
+                    return;
+
+                // 显示设置
+                _canvas.gameObject.layer = setLayer;
+                foreach (var canvas in _childCanvas)
                 {
-                    int setLayer = value ? UISystem.WINDOW_SHOW_LAYER : UISystem.WINDOW_HIDE_LAYER;
-                    if (_canvas.gameObject.layer == setLayer)
-                        return;
+                    canvas.gameObject.layer = setLayer;
+                }
 
-                    // 显示设置
-                    _canvas.gameObject.layer = setLayer;
-                    for (int i = 0; i < _childCanvas.Length; i++)
-                    {
-                        _childCanvas[i].gameObject.layer = setLayer;
-                    }
+                // 交互设置
+                Interactable = value;
 
-                    // 交互设置
-                    Interactable = value;
-
-                    // 虚函数
-                    if (_isCreate)
-                    {
-                        OnSetVisible(value);
-                    }
+                // 虚函数
+                if (_isCreate)
+                {
+                    OnSetVisible(value);
                 }
             }
         }
@@ -197,27 +162,16 @@ namespace GameLogic
         /// </summary>
         private bool Interactable
         {
-            get
-            {
-                if (_raycaster != null)
-                {
-                    return _raycaster.enabled;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            get => _raycaster != null && _raycaster.enabled;
 
             set
             {
-                if (_raycaster != null)
+                if (!_raycaster) return;
+                
+                _raycaster.enabled = value;
+                foreach (var raycaster in _childRaycaster)
                 {
-                    _raycaster.enabled = value;
-                    for (int i = 0; i < _childRaycaster.Length; i++)
-                    {
-                        _childRaycaster[i].enabled = value;
-                    }
+                    raycaster.enabled = value;
                 }
             }
         }
@@ -225,7 +179,7 @@ namespace GameLogic
         /// <summary>
         /// 是否加载完毕。
         /// </summary>
-        internal bool IsLoadDone = false;
+        internal bool IsLoadDone;
 
         #endregion
 
@@ -239,9 +193,9 @@ namespace GameLogic
             HideTimeToClose = hideTimeToClose;
         }
 
-        internal void TryInvoke(System.Action<UIWindow> prepareCallback, System.Object[] userDatas)
+        internal void TryInvoke(Action<UIWindow> prepareCallback, object[] userDatas)
         {
-            base.userDatas = userDatas;
+            UserDatas = userDatas;
             if (IsPrepare)
             {
                 prepareCallback?.Invoke(this);
@@ -253,10 +207,10 @@ namespace GameLogic
             CancelHideToCloseTimer();
         }
 
-        internal async UniTaskVoid InternalLoad(string location, Action<UIWindow> prepareCallback, bool isAsync, System.Object[] userDatas)
+        internal async UniTaskVoid InternalLoad(string location, Action<UIWindow> prepareCallback, bool isAsync, object[] userDatas)
         {
             _prepareCallback = prepareCallback;
-            this.userDatas = userDatas;
+            UserDatas = userDatas;
             if (!FromResources)
             {
                 if (isAsync)
@@ -272,21 +226,20 @@ namespace GameLogic
             }
             else
             {
-                GameObject panel = Object.Instantiate(Resources.Load<GameObject>(location), UISystem.Instance.UICanvasTransform);
+                var panel = Object.Instantiate(Resources.Load<GameObject>(location), UISystem.Instance.UICanvasTransform);
                 Handle_Completed(panel);
             }
         }
 
         internal void InternalCreate()
         {
-            if (_isCreate == false)
-            {
-                _isCreate = true;
-                ScriptGenerator();
-                BindMemberProperty();
-                RegisterEvent();
-                OnCreate();
-            }
+            if (_isCreate) return;
+            
+            _isCreate = true;
+            ScriptGenerator();
+            BindMemberProperty();
+            RegisterEvent();
+            OnCreate();
         }
 
         internal void InternalRefresh()
@@ -302,17 +255,17 @@ namespace GameLogic
             }
 
             List<UIWidget> listNextUpdateChild = null;
-            if (ListChild != null && ListChild.Count > 0)
+            if (ListChild is { Count: > 0 })
             {
-                listNextUpdateChild = m_listUpdateChild;
-                var updateListValid = m_updateListValid;
-                List<UIWidget> listChild = null;
+                listNextUpdateChild = ListUpdateChild;
+                var updateListValid = UpdateListValid;
+                List<UIWidget> listChild;
                 if (!updateListValid)
                 {
                     if (listNextUpdateChild == null)
                     {
                         listNextUpdateChild = new List<UIWidget>();
-                        m_listUpdateChild = listNextUpdateChild;
+                        ListUpdateChild = listNextUpdateChild;
                     }
                     else
                     {
@@ -326,15 +279,8 @@ namespace GameLogic
                     listChild = listNextUpdateChild;
                 }
 
-                for (int i = 0; i < listChild.Count; i++)
+                foreach (var uiWidget in listChild.Where(uiWidget => uiWidget != null))
                 {
-                    var uiWidget = listChild[i];
-
-                    if (uiWidget == null)
-                    {
-                        continue;
-                    }
-
                     TProfiler.BeginSample(uiWidget.name);
                     var needValid = uiWidget.InternalUpdate();
                     TProfiler.EndSample();
@@ -347,13 +293,13 @@ namespace GameLogic
 
                 if (!updateListValid)
                 {
-                    m_updateListValid = true;
+                    UpdateListValid = true;
                 }
             }
 
             TProfiler.BeginSample("OnUpdate");
 
-            bool needUpdate = false;
+            bool needUpdate;
             if (listNextUpdateChild == null || listNextUpdateChild.Count <= 0)
             {
                 HasOverrideUpdate = true;
@@ -377,9 +323,8 @@ namespace GameLogic
 
             RemoveAllUIEvent();
 
-            for (int i = 0; i < ListChild.Count; i++)
+            foreach (var uiChild in ListChild)
             {
-                var uiChild = ListChild[i];
                 uiChild.CallDestroy();
                 uiChild.OnDestroyWidget();
             }
@@ -404,7 +349,7 @@ namespace GameLogic
         /// <param name="panel">面板资源实例。</param>
         private void Handle_Completed(GameObject panel)
         {
-            if (panel == null)
+            if (!panel)
             {
                 return;
             }
@@ -417,7 +362,7 @@ namespace GameLogic
 
             // 获取组件
             _canvas = _panel.GetComponent<Canvas>();
-            if (_canvas == null)
+            if (!_canvas)
             {
                 throw new Exception($"Not found {nameof(Canvas)} in panel {WindowName}");
             }
@@ -443,11 +388,10 @@ namespace GameLogic
 
         internal void CancelHideToCloseTimer()
         {
-            if (HideTimerId > 0)
-            {
-                GameModule.Timer.CancelTimer(HideTimerId);
-                HideTimerId = 0;
-            }
+            if (HideTimerId <= 0) return;
+            
+            GameModule.Timer.CancelTimer(HideTimerId);
+            HideTimerId = 0;
         }
     }
 }

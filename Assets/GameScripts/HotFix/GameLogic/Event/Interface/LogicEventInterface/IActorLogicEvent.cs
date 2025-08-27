@@ -10,8 +10,6 @@ namespace GameLogic
 
         void OnMainPlayerLevelChange();
 
-        void OnMainPlayerLevelDataChange();
-
         void OnMainPlayerLoginSuccess();
     }
 }
