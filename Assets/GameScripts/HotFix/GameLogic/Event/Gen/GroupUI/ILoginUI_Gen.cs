@@ -14,6 +14,7 @@ namespace GameLogic
 	public partial class ILoginUI_Event
 	{
 		public static readonly int OnRoleLogin = StringId.StringToHash("ILoginUI_Event.OnRoleLogin");
+		public static readonly int OnSelectServer = StringId.StringToHash("ILoginUI_Event.OnSelectServer");
 		public static readonly int OnRoleLoginOut = StringId.StringToHash("ILoginUI_Event.OnRoleLoginOut");
 	}
 
@@ -29,6 +30,11 @@ namespace GameLogic
         public void OnRoleLogin(System.Int64 uid)
         {
             _dispatcher.Send(ILoginUI_Event.OnRoleLogin,uid);
+        }
+
+        public void OnSelectServer(System.String serverName)
+        {
+            _dispatcher.Send(ILoginUI_Event.OnSelectServer,serverName);
         }
 
         public void OnRoleLoginOut()
