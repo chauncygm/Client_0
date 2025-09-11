@@ -55,7 +55,7 @@ namespace GameLogic
 
         private void OnSelectServer(string serverName)
         {
-            m_btnServer.GetComponent<TMP_Text>().text = serverName;
+            m_btnServer.GetComponentInChildren<TMP_Text>().text = serverName;
             m_tfServerList.gameObject.SetActive(false);
         }
     }

@@ -93,7 +93,7 @@ public static class SettingsUtils
         }
     }
 
-    private static ServerIpAndPort FindServerIpAndPort(string channelName = "")
+    public static ServerIpAndPort GetServerIpAndPort(string channelName = "")
     {
         if (string.IsNullOrEmpty(channelName))
         {
@@ -119,7 +119,7 @@ public static class SettingsUtils
 
     public static string GetServerIp(string channelName = "")
     {
-        ServerIpAndPort serverIpAndPort = FindServerIpAndPort(channelName);
+        ServerIpAndPort serverIpAndPort = GetServerIpAndPort(channelName);
         if (serverIpAndPort != null)
         {
             return serverIpAndPort.Ip;
@@ -130,7 +130,7 @@ public static class SettingsUtils
 
     public static int GetServerPort(string channelName = "")
     {
-        ServerIpAndPort serverIpAndPort = FindServerIpAndPort(channelName);
+        ServerIpAndPort serverIpAndPort = GetServerIpAndPort(channelName);
         if (serverIpAndPort != null)
         {
             return serverIpAndPort.Port;

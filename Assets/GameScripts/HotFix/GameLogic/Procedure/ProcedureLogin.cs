@@ -17,8 +17,6 @@ namespace GameLogic
 {
     public class ProcedureLogin : ProcedureBase
     {
-        private const string ServerIp = "127.0.0.1";
-        private const int ServerPort = 10001;
         
         private ClientNetWorkChannelHelper _mNetworkChannelHelper;
         private INetworkChannel _networkChannel;
@@ -70,7 +68,8 @@ namespace GameLogic
 
             Debug.Log("开始登录...");
             player.Session.Uid = uid;
-            _networkChannel.Connect(IPAddress.Parse(ServerIp), ServerPort);
+            var serverInfo = SettingsUtils.GetServerIpAndPort();
+            _networkChannel.Connect(IPAddress.Parse(serverInfo.Ip), serverInfo.Port);
         }
 
         private static void OnNetworkConnected(object sender, GameFrameworkEventArgs e)
