@@ -40,6 +40,12 @@ namespace GameLogic
             var text = m_inputAccount.text;
             if (long.TryParse(text, out var uid))
             {
+                if (SettingsUtils.GetServerIpAndPort() == null)
+                {
+                    Debug.Log("未选择服务器！");
+                    return;
+                }
+
                 GameEvent.EventMgr.GetInterface<ILoginUI>().OnRoleLogin(uid);
             }
             await UniTask.Yield();
@@ -50,6 +56,9 @@ namespace GameLogic
         {
             base.OnCreate();
             m_tfServerList.gameObject.SetActive(false);
+            var serverIpAndPort = SettingsUtils.GetServerIpAndPort();
+            var serverName = serverIpAndPort?.ServerName ?? "选择服务器";
+            m_btnServer.GetComponentInChildren<TMP_Text>().text = serverName;
             AddUIEvent<string>(ILoginUI_Event.OnSelectServer, OnSelectServer);
         }
 

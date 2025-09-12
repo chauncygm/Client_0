@@ -12,15 +12,14 @@ public class PackEffectTexture : IPackRule
 
     PackRuleResult IPackRule.GetPackRuleResult(PackRuleData data)
     {
-        string assetPath = data.AssetPath;
-        if (assetPath.StartsWith(PackDirectory) == false)
+        var assetPath = data.AssetPath;
+        if (!assetPath.StartsWith(PackDirectory))
             throw new Exception($"Only support folder : {PackDirectory}");
     
-        string assetName = Path.GetFileName(assetPath).ToLower();
-        string firstChar = assetName.Substring(0, 1);
-        string bundleName = $"{PackDirectory}effect_texture_{firstChar}";
-        var packRuleResult = new PackRuleResult(bundleName, DefaultPackRule.AssetBundleFileExtension);
-        return packRuleResult;
+        var assetName = Path.GetFileName(assetPath).ToLower();
+        var firstChar = assetName.Substring(0, 1);
+        var bundleName = $"{PackDirectory}effect_texture_{firstChar}";
+        return new PackRuleResult(bundleName, DefaultPackRule.AssetBundleFileExtension);
     }
 }
 
@@ -29,22 +28,23 @@ public class PackVideo : IPackRule
 {
     public PackRuleResult GetPackRuleResult(PackRuleData data)
     {
-        string bundleName = RemoveExtension(data.AssetPath);
-        string fileExtension = Path.GetExtension(data.AssetPath);
-        fileExtension = fileExtension.Remove(0, 1);
-        PackRuleResult result = new PackRuleResult(bundleName, fileExtension);
-        return result;
+        var bundleName = RemoveExtension(data.AssetPath);
+        var fileExtension = Path.GetExtension(data.AssetPath).Remove(0, 1);
+        return new PackRuleResult(bundleName, fileExtension);
     }
 
-    private string RemoveExtension(string str)
+    /// <summary>
+    /// 移除文件扩展名
+    /// "assets/config/test.unity3d" --> "assets/config/test"
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    private static string RemoveExtension(string str)
     {
         if (string.IsNullOrEmpty(str))
             return str;
 
-        int index = str.LastIndexOf(".");
-        if (index == -1)
-            return str;
-        else
-            return str.Remove(index); //"assets/config/test.unity3d" --> "assets/config/test"
+        var index = str.LastIndexOf(".", StringComparison.Ordinal);
+        return index == -1 ? str : str.Remove(index);
     }
 }

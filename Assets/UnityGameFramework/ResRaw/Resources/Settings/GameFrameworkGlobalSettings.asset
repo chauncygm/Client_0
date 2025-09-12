@@ -32,7 +32,7 @@ MonoBehaviour:
     m_CurUseServerChannel: Default
     m_ServerChannelInfos:
     - ChannelName: Default
-      CurUseServerName: "\u5185\u7F51\u670D"
+      CurUseServerName: 
       ServerIpAndPorts:
       - ServerName: "\u5185\u7F51\u670D"
         Ip: 127.0.0.1

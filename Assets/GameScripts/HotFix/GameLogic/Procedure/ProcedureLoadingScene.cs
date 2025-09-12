@@ -4,7 +4,7 @@ using GameFramework.Procedure;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-namespace GameMain.Scripts.Procedure
+namespace GameLogic
 {
     public class ProcedureLoadingScene : ProcedureBase
     {
