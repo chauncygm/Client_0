@@ -14,12 +14,10 @@ namespace GameBase
         {
             get
             {
-                if (null == _instance)
-                {
-                    _instance = new T();
-                    Log.Assert(_instance != null);
-                }
-
+                if (null != _instance) return _instance;
+                
+                _instance = new T();
+                Log.Assert(_instance != null);
                 return _instance;
             }
         }

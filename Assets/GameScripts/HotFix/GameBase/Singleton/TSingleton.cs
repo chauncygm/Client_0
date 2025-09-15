@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityGameFramework.Runtime;
@@ -28,60 +29,45 @@ namespace GameBase
         {
             get
             {
+                if (_root != null) return _root;
+                
+                _root = GameObject.Find("[SingletonMgr]");
                 if (_root == null)
                 {
-                    _root = GameObject.Find("[SingletonMgr]");
-
-                    if (_root == null)
+                    _root = new GameObject("[SingletonMgr]")
                     {
-                        _root = new GameObject("[SingletonMgr]")
+                        transform =
                         {
-                            transform =
-                            {
-                                position = Vector3.zero
-                            }
-                        };
-                    }
-                    UnityEngine.Object.DontDestroyOnLoad(_root);
+                            position = Vector3.zero
+                        }
+                    };
                 }
+                Object.DontDestroyOnLoad(_root);
                 return _root;
             }
         }
 
         public static void Retain(ISingleton go)
         {
-            if (_singletonList == null)
-            {
-                _singletonList = new List<ISingleton>();
-            }
-
+            _singletonList ??= new List<ISingleton>();
             _singletonList.Add(go);
         }
 
         public static void Retain(GameObject go)
         {
-            if (_gameObjects == null)
-            {
-                _gameObjects = new Dictionary<string, GameObject>();
-            }
+            _gameObjects ??= new Dictionary<string, GameObject>();
 
-            if (!_gameObjects.ContainsKey(go.name))
+            if (!_gameObjects.TryAdd(go.name, go)) return;
+            if (Application.isPlaying)
             {
-                _gameObjects.Add(go.name, go);
-                if (Application.isPlaying)
-                {
-                    UnityEngine.Object.DontDestroyOnLoad(go);
-                }
+                Object.DontDestroyOnLoad(go);
             }
         }
 
         public static void Release(GameObject go)
         {
-            if (_gameObjects != null && _gameObjects.ContainsKey(go.name))
-            {
-                _gameObjects.Remove(go.name);
-                UnityEngine.Object.Destroy(go);
-            }
+            if (_gameObjects == null || !_gameObjects.Remove(go.name)) return;
+            Object.Destroy(go);
         }
 
         public static void Release(ISingleton go)
@@ -106,9 +92,9 @@ namespace GameBase
 
             if (_singletonList != null)
             {
-                for (int i = 0; i < _singletonList.Count; ++i)
+                foreach (var t in _singletonList)
                 {
-                    _singletonList[i].Release();
+                    t.Release();
                 }
 
                 _singletonList.Clear();
@@ -120,35 +106,19 @@ namespace GameBase
         public static GameObject GetGameObject(string name)
         {
             GameObject go = null;
-            if (_gameObjects != null)
-            {
-                _gameObjects.TryGetValue(name, out go);
-            }
+            _gameObjects?.TryGetValue(name, out go);
 
             return go;
         }
 
         internal static bool ContainsKey(string name)
         {
-            if (_gameObjects != null)
-            {
-                return _gameObjects.ContainsKey(name);
-            }
-
-            return false;
+            return _gameObjects != null && _gameObjects.ContainsKey(name);
         }
 
         internal static ISingleton GetSingleton(string name)
         {
-            for (int i = 0; i < _singletonList.Count; ++i)
-            {
-                if (_singletonList[i].ToString() == name)
-                {
-                    return _singletonList[i];
-                }
-            }
-
-            return null;
+            return _singletonList.FirstOrDefault(t => t.ToString() == name);
         }
 
         /// <summary>
@@ -174,15 +144,13 @@ namespace GameBase
         {
             get
             {
-                if (null == _instance)
-                {
-                    _instance = new T();
-                    _instance.Init();
+                if (null != _instance) return _instance;
+                _instance = new T();
+                _instance.Init();
 #if UNITY_EDITOR
-                    Log.Info($"TSingleton Instance:{typeof(T).Name}");
+                Log.Info($"TSingleton Instance:{typeof(T).Name}");
 #endif
-                    SingletonMgr.Retain(_instance);
-                }
+                SingletonMgr.Retain(_instance);
 
                 return _instance;
             }

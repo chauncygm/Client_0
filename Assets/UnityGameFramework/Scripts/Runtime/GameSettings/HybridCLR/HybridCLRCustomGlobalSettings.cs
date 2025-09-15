@@ -21,14 +21,14 @@ public class HybridCLRCustomGlobalSettings
     }
 
     [Header("Auto sync with [HybridCLRGlobalSettings]")]
-    public List<string> HotUpdateAssemblies = new List<string>()
+    public List<string> HotUpdateAssemblies = new()
     {
         "GameBase.dll",
         "GameProto.dll",
         "GameLogic.dll",
     };
 
-    [Header("Need manual setting!")] public List<string> AOTMetaAssemblies= new List<string>()
+    [Header("Need manual setting!")] public List<string> AOTMetaAssemblies= new()
     {
         "mscorlib.dll",
         "System.dll",

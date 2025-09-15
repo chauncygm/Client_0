@@ -15,41 +15,44 @@ namespace GameBase
         {
             get
             {
-                if (_instance == null)
+                if (_instance != null) return _instance;
+                
+                var ins = FindAnyObjectByType<T>();
+                if (ins != null)
                 {
-                    var ins = UnityEngine.Object.FindObjectOfType<T>();
-                    if (ins != null)
-                    {
-                        var obj = ins.gameObject;
-                        obj.name = typeof(T).Name;
-                        _instance = ins;
-                        SingletonMgr.Retain(obj);
-                        return Instance;
-                    }
+                    var obj = ins.gameObject;
+                    obj.name = typeof(T).Name;
+                    _instance = ins;
+                    SingletonMgr.Retain(obj);
+                    return Instance;
+                }
 
-                    System.Type thisType = typeof(T);
-                    string instName = thisType.Name;
-                    GameObject go = SingletonMgr.GetGameObject(instName);
+                var instName = typeof(T).Name;
+                var go = SingletonMgr.GetGameObject(instName);
+                if (go == null)
+                {
+                    go = GameObject.Find($"{instName}");
                     if (go == null)
                     {
-                        go = GameObject.Find($"{instName}");
-                        if (go == null)
+                        go = new GameObject(instName)
                         {
-                            go = new GameObject(instName);
-                            go.transform.position = Vector3.zero;
-                        }
+                            transform =
+                            {
+                                position = Vector3.zero
+                            }
+                        };
                     }
+                }
 
-                    _instance = go.GetComponent<T>();
-                    if (_instance == null)
-                    {
-                        _instance = go.AddComponent<T>();
-                    }
+                _instance = go.GetComponent<T>();
+                if (_instance == null)
+                {
+                    _instance = go.AddComponent<T>();
+                }
 
-                    if (_instance == null)
-                    {
-                        Log.Error($"Can't create UnitySingleton<{typeof(T)}>");
-                    }
+                if (_instance == null)
+                {
+                    Log.Error($"Can't create UnitySingleton<{typeof(T)}>");
                 }
 
                 return _instance;
