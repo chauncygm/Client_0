@@ -1,0 +1,130 @@
+{
+    "1": {
+        "id": 1,
+        "chapter": 0,
+        "type": 0,
+        "desc": "",
+        "groupType": 0,
+        "sourceType": 0,
+        "goalList": [
+        ],
+        "condition": 0,
+        "reward": [
+        ],
+        "limitTime": 0,
+        "rewardLimitTime": 0,
+        "visible": 0
+    },
+    "2": {
+        "id": 2,
+        "chapter": 0,
+        "type": 0,
+        "desc": "",
+        "groupType": 0,
+        "sourceType": 0,
+        "goalList": [
+        ],
+        "condition": 0,
+        "reward": [
+        ],
+        "limitTime": 0,
+        "rewardLimitTime": 0,
+        "visible": 0
+    },
+    "3": {
+        "id": 3,
+        "chapter": 0,
+        "type": 0,
+        "desc": "",
+        "groupType": 0,
+        "sourceType": 0,
+        "goalList": [
+        ],
+        "condition": 0,
+        "reward": [
+        ],
+        "limitTime": 0,
+        "rewardLimitTime": 0,
+        "visible": 0
+    },
+    "4": {
+        "id": 4,
+        "chapter": 0,
+        "type": 0,
+        "desc": "",
+        "groupType": 0,
+        "sourceType": 0,
+        "goalList": [
+        ],
+        "condition": 0,
+        "reward": [
+        ],
+        "limitTime": 0,
+        "rewardLimitTime": 0,
+        "visible": 0
+    },
+    "5": {
+        "id": 5,
+        "chapter": 0,
+        "type": 0,
+        "desc": "",
+        "groupType": 0,
+        "sourceType": 0,
+        "goalList": [
+        ],
+        "condition": 0,
+        "reward": [
+        ],
+        "limitTime": 0,
+        "rewardLimitTime": 0,
+        "visible": 0
+    },
+    "6": {
+        "id": 6,
+        "chapter": 0,
+        "type": 0,
+        "desc": "",
+        "groupType": 0,
+        "sourceType": 0,
+        "goalList": [
+        ],
+        "condition": 0,
+        "reward": [
+        ],
+        "limitTime": 0,
+        "rewardLimitTime": 0,
+        "visible": 0
+    },
+    "1001": {
+        "id": 1001,
+        "chapter": 0,
+        "type": 1,
+        "desc": "",
+        "groupType": 0,
+        "sourceType": 0,
+        "goalList": [
+        ],
+        "condition": 0,
+        "reward": [
+        ],
+        "limitTime": 0,
+        "rewardLimitTime": 0,
+        "visible": 0
+    },
+    "1002": {
+        "id": 1002,
+        "chapter": 0,
+        "type": 1,
+        "desc": "",
+        "groupType": 0,
+        "sourceType": 0,
+        "goalList": [
+        ],
+        "condition": 0,
+        "reward": [
+        ],
+        "limitTime": 0,
+        "rewardLimitTime": 0,
+        "visible": 0
+    }
+}
