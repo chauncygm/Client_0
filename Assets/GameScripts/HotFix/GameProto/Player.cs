@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace GameMain.Scripts.Message {
+namespace GameProto {
 
   /// <summary>Holder for reflection information generated from player.proto</summary>
   public static partial class PlayerReflection {
@@ -28,14 +28,14 @@ namespace GameMain.Scripts.Message {
             "ZBgBIAEoBRIRCgljaGFuZ2VOdW0YAiABKAUSEgoKY3VycmVudE51bRgDIAEo",
             "BSI2ChJTeW5jUmVzb3VyY2VDaGFuZ2USIAoHY2hhbmdlcxgBIAMoCzIPLlJl",
             "c291cmNlQ2hhbmdlIjAKElN5bmNMZXZlbEV4cENoYW5nZRINCgVsZXZlbBgB",
-            "IAEoBRILCgNleHAYAiABKAVCPAoSY24uY2hhdW5jeS5tZXNzYWdlQglQbGF5",
-            "ZXJNc2dQAaoCGEdhbWVNYWluLlNjcmlwdHMuTWVzc2FnZWIGcHJvdG8z"));
+            "IAEoBRILCgNleHAYAiABKAVCLQoSY24uY2hhdW5jeS5tZXNzYWdlQglQbGF5",
+            "ZXJNc2dQAaoCCUdhbWVQcm90b2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.ResourceChange), global::GameMain.Scripts.Message.ResourceChange.Parser, new[]{ "ResourceId", "ChangeNum", "CurrentNum" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.SyncResourceChange), global::GameMain.Scripts.Message.SyncResourceChange.Parser, new[]{ "Changes" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.SyncLevelExpChange), global::GameMain.Scripts.Message.SyncLevelExpChange.Parser, new[]{ "Level", "Exp" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.ResourceChange), global::GameProto.ResourceChange.Parser, new[]{ "ResourceId", "ChangeNum", "CurrentNum" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.SyncResourceChange), global::GameProto.SyncResourceChange.Parser, new[]{ "Changes" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.SyncLevelExpChange), global::GameProto.SyncLevelExpChange.Parser, new[]{ "Level", "Exp" }, null, null, null, null)
           }));
     }
     #endregion
@@ -60,7 +60,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.PlayerReflection.Descriptor.MessageTypes[0]; }
+      get { return global::GameProto.PlayerReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -335,7 +335,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.PlayerReflection.Descriptor.MessageTypes[1]; }
+      get { return global::GameProto.PlayerReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -367,12 +367,12 @@ namespace GameMain.Scripts.Message {
 
     /// <summary>Field number for the "changes" field.</summary>
     public const int ChangesFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::GameMain.Scripts.Message.ResourceChange> _repeated_changes_codec
-        = pb::FieldCodec.ForMessage(10, global::GameMain.Scripts.Message.ResourceChange.Parser);
-    private readonly pbc::RepeatedField<global::GameMain.Scripts.Message.ResourceChange> changes_ = new pbc::RepeatedField<global::GameMain.Scripts.Message.ResourceChange>();
+    private static readonly pb::FieldCodec<global::GameProto.ResourceChange> _repeated_changes_codec
+        = pb::FieldCodec.ForMessage(10, global::GameProto.ResourceChange.Parser);
+    private readonly pbc::RepeatedField<global::GameProto.ResourceChange> changes_ = new pbc::RepeatedField<global::GameProto.ResourceChange>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::GameMain.Scripts.Message.ResourceChange> Changes {
+    public pbc::RepeatedField<global::GameProto.ResourceChange> Changes {
       get { return changes_; }
     }
 
@@ -525,7 +525,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.PlayerReflection.Descriptor.MessageTypes[2]; }
+      get { return global::GameProto.PlayerReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace GameMain.Scripts.Message {
+namespace GameProto {
 
   /// <summary>Holder for reflection information generated from login.proto</summary>
   public static partial class LoginReflection {
@@ -33,18 +33,18 @@ namespace GameMain.Scripts.Message {
             "IAEoCSILCglSZXFMb2dvdXQiDgoMUmVxSGVhcnRiZWF0IhwKDFJlc0hlYXJ0",
             "YmVhdBIMCgR0aW1lGAEgASgDIkwKDVN5bmNMb2dpbkRhdGESCwoDdWlkGAEg",
             "ASgDEh8KCnBsYXllckRhdGEYAiABKAsyCy5QbGF5ZXJEYXRhEg0KBXRva2Vu",
-            "GAMgASgJQjsKEmNuLmNoYXVuY3kubWVzc2FnZUIITG9naW5Nc2dQAaoCGEdh",
-            "bWVNYWluLlNjcmlwdHMuTWVzc2FnZWIGcHJvdG8z"));
+            "GAMgASgJQiwKEmNuLmNoYXVuY3kubWVzc2FnZUIITG9naW5Nc2dQAaoCCUdh",
+            "bWVQcm90b2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.PlayerData), global::GameMain.Scripts.Message.PlayerData.Parser, new[]{ "PlayerId", "Name", "Head", "HeadFrame", "Level", "Exp", "Resources" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.ReqLogin), global::GameMain.Scripts.Message.ReqLogin.Parser, new[]{ "Uid" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.ReqReconnect), global::GameMain.Scripts.Message.ReqReconnect.Parser, new[]{ "Token" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.ReqLogout), global::GameMain.Scripts.Message.ReqLogout.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.ReqHeartbeat), global::GameMain.Scripts.Message.ReqHeartbeat.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.ResHeartbeat), global::GameMain.Scripts.Message.ResHeartbeat.Parser, new[]{ "Time" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.SyncLoginData), global::GameMain.Scripts.Message.SyncLoginData.Parser, new[]{ "Uid", "PlayerData", "Token" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.PlayerData), global::GameProto.PlayerData.Parser, new[]{ "PlayerId", "Name", "Head", "HeadFrame", "Level", "Exp", "Resources" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.ReqLogin), global::GameProto.ReqLogin.Parser, new[]{ "Uid" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.ReqReconnect), global::GameProto.ReqReconnect.Parser, new[]{ "Token" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.ReqLogout), global::GameProto.ReqLogout.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.ReqHeartbeat), global::GameProto.ReqHeartbeat.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.ResHeartbeat), global::GameProto.ResHeartbeat.Parser, new[]{ "Time" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.SyncLoginData), global::GameProto.SyncLoginData.Parser, new[]{ "Uid", "PlayerData", "Token" }, null, null, null, null)
           }));
     }
     #endregion
@@ -69,7 +69,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.LoginReflection.Descriptor.MessageTypes[0]; }
+      get { return global::GameProto.LoginReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -481,7 +481,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.LoginReflection.Descriptor.MessageTypes[1]; }
+      get { return global::GameProto.LoginReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -682,7 +682,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.LoginReflection.Descriptor.MessageTypes[2]; }
+      get { return global::GameProto.LoginReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -883,7 +883,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.LoginReflection.Descriptor.MessageTypes[3]; }
+      get { return global::GameProto.LoginReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1047,7 +1047,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.LoginReflection.Descriptor.MessageTypes[4]; }
+      get { return global::GameProto.LoginReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1211,7 +1211,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.LoginReflection.Descriptor.MessageTypes[5]; }
+      get { return global::GameProto.LoginReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1412,7 +1412,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.LoginReflection.Descriptor.MessageTypes[6]; }
+      get { return global::GameProto.LoginReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1458,10 +1458,10 @@ namespace GameMain.Scripts.Message {
 
     /// <summary>Field number for the "playerData" field.</summary>
     public const int PlayerDataFieldNumber = 2;
-    private global::GameMain.Scripts.Message.PlayerData playerData_;
+    private global::GameProto.PlayerData playerData_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::GameMain.Scripts.Message.PlayerData PlayerData {
+    public global::GameProto.PlayerData PlayerData {
       get { return playerData_; }
       set {
         playerData_ = value;
@@ -1596,7 +1596,7 @@ namespace GameMain.Scripts.Message {
       }
       if (other.playerData_ != null) {
         if (playerData_ == null) {
-          PlayerData = new global::GameMain.Scripts.Message.PlayerData();
+          PlayerData = new global::GameProto.PlayerData();
         }
         PlayerData.MergeFrom(other.PlayerData);
       }
@@ -1628,7 +1628,7 @@ namespace GameMain.Scripts.Message {
           }
           case 18: {
             if (playerData_ == null) {
-              PlayerData = new global::GameMain.Scripts.Message.PlayerData();
+              PlayerData = new global::GameProto.PlayerData();
             }
             input.ReadMessage(PlayerData);
             break;
@@ -1662,7 +1662,7 @@ namespace GameMain.Scripts.Message {
           }
           case 18: {
             if (playerData_ == null) {
-              PlayerData = new global::GameMain.Scripts.Message.PlayerData();
+              PlayerData = new global::GameProto.PlayerData();
             }
             input.ReadMessage(PlayerData);
             break;

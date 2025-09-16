@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace GameMain.Scripts.Message {
+namespace GameProto {
 
   /// <summary>Holder for reflection information generated from system.proto</summary>
   public static partial class SystemReflection {
@@ -31,15 +31,15 @@ namespace GameMain.Scripts.Message {
             "MgguQ1N0YXR1cxIPCgdtZXNzYWdlGAIgASgJEgwKBGRhdGEYAyABKAkqNwoI",
             "VGlwc1R5cGUSCAoETk9ORRAAEggKBFRJUFMQARILCgdXQVJOSU5HEAISCgoG",
             "V0lORE9XEAQqSQoHQ1N0YXR1cxILCgdTVUNDRVNTEAASDwoLUEFSQU1fRVJS",
-            "T1IQARIOCgpEQVRBX0VSUk9SEAISEAoMU0VSVkVSX0VSUk9SEANCPAoSY24u",
-            "Y2hhdW5jeS5tZXNzYWdlQglTeXN0ZW1Nc2dQAaoCGEdhbWVNYWluLlNjcmlw",
-            "dHMuTWVzc2FnZWIGcHJvdG8z"));
+            "T1IQARIOCgpEQVRBX0VSUk9SEAISEAoMU0VSVkVSX0VSUk9SEANCLQoSY24u",
+            "Y2hhdW5jeS5tZXNzYWdlQglTeXN0ZW1Nc2dQAaoCCUdhbWVQcm90b2IGcHJv",
+            "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::GameMain.Scripts.Message.TipsType), typeof(global::GameMain.Scripts.Message.CStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.SystemTips), global::GameMain.Scripts.Message.SystemTips.Parser, new[]{ "Type", "Code", "Params", "Message" }, new[]{ "Message" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.ReqGm), global::GameMain.Scripts.Message.ReqGm.Parser, new[]{ "Cmd", "Params" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameMain.Scripts.Message.ResGm), global::GameMain.Scripts.Message.ResGm.Parser, new[]{ "Status", "Message", "Data" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::GameProto.TipsType), typeof(global::GameProto.CStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.SystemTips), global::GameProto.SystemTips.Parser, new[]{ "Type", "Code", "Params", "Message" }, new[]{ "Message" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.ReqGm), global::GameProto.ReqGm.Parser, new[]{ "Cmd", "Params" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameProto.ResGm), global::GameProto.ResGm.Parser, new[]{ "Status", "Message", "Data" }, null, null, null, null)
           }));
     }
     #endregion
@@ -102,7 +102,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.SystemReflection.Descriptor.MessageTypes[0]; }
+      get { return global::GameProto.SystemReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -137,13 +137,13 @@ namespace GameMain.Scripts.Message {
 
     /// <summary>Field number for the "type" field.</summary>
     public const int TypeFieldNumber = 1;
-    private global::GameMain.Scripts.Message.TipsType type_ = global::GameMain.Scripts.Message.TipsType.None;
+    private global::GameProto.TipsType type_ = global::GameProto.TipsType.None;
     /// <summary>
     /// 提示类型
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::GameMain.Scripts.Message.TipsType Type {
+    public global::GameProto.TipsType Type {
       get { return type_; }
       set {
         type_ = value;
@@ -234,7 +234,7 @@ namespace GameMain.Scripts.Message {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Type != global::GameMain.Scripts.Message.TipsType.None) hash ^= Type.GetHashCode();
+      if (Type != global::GameProto.TipsType.None) hash ^= Type.GetHashCode();
       if (Code != 0) hash ^= Code.GetHashCode();
       hash ^= params_.GetHashCode();
       if (HasMessage) hash ^= Message.GetHashCode();
@@ -256,7 +256,7 @@ namespace GameMain.Scripts.Message {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Type != global::GameMain.Scripts.Message.TipsType.None) {
+      if (Type != global::GameProto.TipsType.None) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Type);
       }
@@ -279,7 +279,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Type != global::GameMain.Scripts.Message.TipsType.None) {
+      if (Type != global::GameProto.TipsType.None) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Type);
       }
@@ -302,7 +302,7 @@ namespace GameMain.Scripts.Message {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Type != global::GameMain.Scripts.Message.TipsType.None) {
+      if (Type != global::GameProto.TipsType.None) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
       }
       if (Code != 0) {
@@ -324,7 +324,7 @@ namespace GameMain.Scripts.Message {
       if (other == null) {
         return;
       }
-      if (other.Type != global::GameMain.Scripts.Message.TipsType.None) {
+      if (other.Type != global::GameProto.TipsType.None) {
         Type = other.Type;
       }
       if (other.Code != 0) {
@@ -354,7 +354,7 @@ namespace GameMain.Scripts.Message {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Type = (global::GameMain.Scripts.Message.TipsType) input.ReadEnum();
+            Type = (global::GameProto.TipsType) input.ReadEnum();
             break;
           }
           case 16: {
@@ -390,7 +390,7 @@ namespace GameMain.Scripts.Message {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Type = (global::GameMain.Scripts.Message.TipsType) input.ReadEnum();
+            Type = (global::GameProto.TipsType) input.ReadEnum();
             break;
           }
           case 16: {
@@ -428,7 +428,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.SystemReflection.Descriptor.MessageTypes[1]; }
+      get { return global::GameProto.SystemReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -658,7 +658,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameMain.Scripts.Message.SystemReflection.Descriptor.MessageTypes[2]; }
+      get { return global::GameProto.SystemReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -692,13 +692,13 @@ namespace GameMain.Scripts.Message {
 
     /// <summary>Field number for the "status" field.</summary>
     public const int StatusFieldNumber = 1;
-    private global::GameMain.Scripts.Message.CStatus status_ = global::GameMain.Scripts.Message.CStatus.Success;
+    private global::GameProto.CStatus status_ = global::GameProto.CStatus.Success;
     /// <summary>
     /// 状态
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::GameMain.Scripts.Message.CStatus Status {
+    public global::GameProto.CStatus Status {
       get { return status_; }
       set {
         status_ = value;
@@ -760,7 +760,7 @@ namespace GameMain.Scripts.Message {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Status != global::GameMain.Scripts.Message.CStatus.Success) hash ^= Status.GetHashCode();
+      if (Status != global::GameProto.CStatus.Success) hash ^= Status.GetHashCode();
       if (Message.Length != 0) hash ^= Message.GetHashCode();
       if (Data.Length != 0) hash ^= Data.GetHashCode();
       if (_unknownFields != null) {
@@ -781,7 +781,7 @@ namespace GameMain.Scripts.Message {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Status != global::GameMain.Scripts.Message.CStatus.Success) {
+      if (Status != global::GameProto.CStatus.Success) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Status);
       }
@@ -803,7 +803,7 @@ namespace GameMain.Scripts.Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Status != global::GameMain.Scripts.Message.CStatus.Success) {
+      if (Status != global::GameProto.CStatus.Success) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Status);
       }
@@ -825,7 +825,7 @@ namespace GameMain.Scripts.Message {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Status != global::GameMain.Scripts.Message.CStatus.Success) {
+      if (Status != global::GameProto.CStatus.Success) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Status);
       }
       if (Message.Length != 0) {
@@ -846,7 +846,7 @@ namespace GameMain.Scripts.Message {
       if (other == null) {
         return;
       }
-      if (other.Status != global::GameMain.Scripts.Message.CStatus.Success) {
+      if (other.Status != global::GameProto.CStatus.Success) {
         Status = other.Status;
       }
       if (other.Message.Length != 0) {
@@ -875,7 +875,7 @@ namespace GameMain.Scripts.Message {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Status = (global::GameMain.Scripts.Message.CStatus) input.ReadEnum();
+            Status = (global::GameProto.CStatus) input.ReadEnum();
             break;
           }
           case 18: {
@@ -906,7 +906,7 @@ namespace GameMain.Scripts.Message {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Status = (global::GameMain.Scripts.Message.CStatus) input.ReadEnum();
+            Status = (global::GameProto.CStatus) input.ReadEnum();
             break;
           }
           case 18: {

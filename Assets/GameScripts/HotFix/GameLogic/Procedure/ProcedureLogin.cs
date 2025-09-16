@@ -3,7 +3,7 @@ using GameFramework;
 using GameFramework.Fsm;
 using GameFramework.Network;
 using GameFramework.Procedure;
-using GameMain.Scripts.Message;
+using GameProto;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 using NetworkClosedEventArgs = UnityGameFramework.Runtime.NetworkClosedEventArgs;
@@ -24,7 +24,7 @@ namespace GameLogic
         {
             base.OnInit(procedureOwner);
             _mNetworkChannelHelper = new ClientNetWorkChannelHelper();
-            _mNetworkChannelHelper.RegisterProto("GameMain.Scripts.Message");
+            _mNetworkChannelHelper.RegisterProto("GameProto");
         }
 
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)

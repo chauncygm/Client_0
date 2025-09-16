@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GameMain.Scripts.Message;
+using GameProto;
 using Google.Protobuf;
 using UnityEngine;
 using UnityGameFramework.Runtime;
