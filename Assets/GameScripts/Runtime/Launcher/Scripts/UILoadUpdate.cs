@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using GameFramework;
+﻿using GameFramework;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;

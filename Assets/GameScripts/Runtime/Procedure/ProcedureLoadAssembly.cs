@@ -55,45 +55,35 @@ namespace GameMain
             else
             {
                 m_LoadMetadataAssemblyComplete = true;
-            }
-
-            if (!SettingsUtils.HybridCLRCustomGlobalSettings.Enable || GameModule.Resource.PlayMode == EPlayMode.EditorSimulateMode)
+            } 
+            
+            if (SettingsUtils.HybridCLRCustomGlobalSettings.Enable && GameModule.Resource.PlayMode != EPlayMode.EditorSimulateMode)
             {
-                m_MainLogicAssembly = GetMainLogicAssembly();
+                foreach (var hotUpdateDllName in SettingsUtils.HybridCLRCustomGlobalSettings.HotUpdateAssemblies)
+                {
+                    var assetLocation = hotUpdateDllName;
+                    if (!m_EnableAddressable)
+                    {
+                        assetLocation = Utility.Path.GetRegularPath(
+                            Path.Combine(
+                                "Assets",
+                                SettingsUtils.HybridCLRCustomGlobalSettings.AssemblyTextAssetPath,
+                                $"{hotUpdateDllName}{SettingsUtils.HybridCLRCustomGlobalSettings.AssemblyTextAssetExtension}"));
+                    }
+
+                    Log.Debug($"LoadAsset: [ {assetLocation} ]");
+                    m_LoadAssetCount++;
+                    GameModule.Resource.LoadAsset<TextAsset>(assetLocation, LoadAssetSuccess);
+                }
+
+                m_LoadAssemblyWait = true;
             }
             else
             {
-                if (SettingsUtils.HybridCLRCustomGlobalSettings.Enable)
-                {
-                    foreach (string hotUpdateDllName in SettingsUtils.HybridCLRCustomGlobalSettings.HotUpdateAssemblies)
-                    {
-                        var assetLocation = hotUpdateDllName;
-                        if (!m_EnableAddressable)
-                        {
-                            assetLocation = Utility.Path.GetRegularPath(
-                                Path.Combine(
-                                    "Assets",
-                                    SettingsUtils.HybridCLRCustomGlobalSettings.AssemblyTextAssetPath,
-                                    $"{hotUpdateDllName}{SettingsUtils.HybridCLRCustomGlobalSettings.AssemblyTextAssetExtension}"));
-                        }
-
-                        Log.Debug($"LoadAsset: [ {assetLocation} ]");
-                        m_LoadAssetCount++;
-                        GameModule.Resource.LoadAsset<TextAsset>(assetLocation, LoadAssetSuccess);
-                    }
-
-                    m_LoadAssemblyWait = true;
-                }
-                else
-                {
-                    m_MainLogicAssembly = GetMainLogicAssembly();
-                }
+                m_MainLogicAssembly = GetMainLogicAssembly();
             }
 
-            if (m_LoadAssetCount == 0)
-            {
-                m_LoadAssemblyComplete = true;
-            }
+            m_LoadAssemblyComplete = m_LoadAssetCount == 0;
         }
 
         protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -112,6 +102,7 @@ namespace GameMain
             AllAssemblyLoadComplete();
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private void AllAssemblyLoadComplete()
         {
             ChangeState<ProcedureStartGame>(m_ProcedureOwner);
@@ -170,6 +161,7 @@ namespace GameMain
             return mainLogicAssembly;
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         /// <summary>
         /// 加载代码资源成功回调。
         /// </summary>
@@ -178,9 +170,9 @@ namespace GameMain
         {
             m_LoadAssetCount--;
 
-            if (textAsset == null)
+            if (!textAsset)
             {
-                Log.Warning($"Load Assembly failed.");
+                Log.Warning("Load Assembly failed.");
                 return;
             }
 
@@ -227,7 +219,7 @@ namespace GameMain
                 return;
             }
 
-            foreach (string aotDllName in SettingsUtils.HybridCLRCustomGlobalSettings.AOTMetaAssemblies)
+            foreach (var aotDllName in SettingsUtils.HybridCLRCustomGlobalSettings.AOTMetaAssemblies)
             {
                 var assetLocation = aotDllName;
                 if (!m_EnableAddressable)
@@ -256,18 +248,18 @@ namespace GameMain
         {
             m_LoadMetadataAssetCount--;
 
-            if (null == textAsset)
+            if (!textAsset)
             {
-                Log.Debug($"LoadMetadataAssetSuccess:Load Metadata failed.");
+                Log.Debug("LoadMetadataAssetSuccess:Load Metadata failed.");
                 return;
             }
 
-            string assetName = textAsset.name;
+            var assetName = textAsset.name;
             Log.Debug($"LoadMetadataAssetSuccess, assetName: [ {assetName} ]");
 
             try
             {
-                byte[] dllBytes = textAsset.bytes;
+                var dllBytes = textAsset.bytes;
 #if ENABLE_HYBRIDCLR
                 // 加载assembly对应的dll，会自动为它hook。一旦Aot泛型函数的native函数不存在，用解释器版本代码
                 HomologousImageMode mode = HomologousImageMode.SuperSet;
@@ -283,7 +275,7 @@ namespace GameMain
             }
             finally
             {
-                m_LoadMetadataAssemblyComplete = m_LoadMetadataAssemblyWait && 0 == m_LoadMetadataAssetCount;
+                m_LoadMetadataAssemblyComplete = m_LoadMetadataAssemblyWait && m_LoadMetadataAssetCount == 0;
             }
         }
     }

@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GameMain.Scripts.UI
+namespace GameMain
 {
     public class SplashUI : UIBase
     {

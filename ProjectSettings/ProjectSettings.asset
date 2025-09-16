@@ -141,7 +141,9 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: ebad93b14c80e884fa870e373f2a133e, type: 2}
+  - {fileID: -944628639613478452, guid: 30315851068900241ade382cc0b21b28, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -827,7 +829,7 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: ENABLE_LOG;DOTWEEN;TextMeshPro
+    Android: ENABLE_LOG;DOTWEEN;TextMeshPro;ENABLE_HYBRIDCLR
     EmbeddedLinux: DOTWEEN;TextMeshPro
     GameCoreScarlett: DOTWEEN;TextMeshPro
     GameCoreXboxOne: DOTWEEN;TextMeshPro
@@ -838,16 +840,17 @@ PlayerSettings:
     PS5: DOTWEEN;TextMeshPro
     QNX: DOTWEEN;TextMeshPro
     ReservedCFE: DOTWEEN;TextMeshPro
-    Standalone: ENABLE_LOG;DOTWEEN;TextMeshPro
+    Standalone: ENABLE_LOG;DOTWEEN;TextMeshPro;ENABLE_HYBRIDCLR
     VisionOS: DOTWEEN;TextMeshPro
-    WebGL: ENABLE_LOG;DOTWEEN;TextMeshPro
-    Windows Store Apps: ENABLE_LOG;DOTWEEN
+    WebGL: ENABLE_LOG;DOTWEEN;TextMeshPro;ENABLE_HYBRIDCLR
+    Windows Store Apps: ENABLE_LOG;DOTWEEN;ENABLE_HYBRIDCLR
     XboxOne: DOTWEEN;TextMeshPro
-    iPhone: ENABLE_LOG;DOTWEEN;TextMeshPro
+    iPhone: ENABLE_LOG;DOTWEEN;TextMeshPro;ENABLE_HYBRIDCLR
     tvOS: DOTWEEN;TextMeshPro
   additionalCompilerArguments: {}
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    Standalone: 1
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   il2cppStacktraceInformation: {}
@@ -875,7 +878,7 @@ PlayerSettings:
   gcIncremental: 0
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform: {}
-  editorAssembliesCompatibilityLevel: 1
+  editorAssembliesCompatibilityLevel: 2
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Template_3D
@@ -954,7 +957,7 @@ PlayerSettings:
   hmiCpuConfiguration: 
   hmiLogStartupTiming: 0
   qnxGraphicConfPath: 
-  apiCompatibilityLevel: 6
+  apiCompatibilityLevel: 3
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0

@@ -38,7 +38,15 @@ MonoBehaviour:
       GroupDesc: 
       AssetTags: PRELOAD
       ActiveRuleName: EnableGroup
-      Collectors: []
+      Collectors:
+      - CollectPath: Assets/Res/Config
+        CollectorGUID: 3e4e1011d7939b540a8b3d2da6e8f2bd
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackSeparately
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
     - GroupName: DLL
       GroupDesc: 
       AssetTags: 

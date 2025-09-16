@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GameBase;
+using GameConfig;
 using GameLogic;
 using GameFramework;
 using UnityGameFramework.Runtime;
@@ -13,6 +14,7 @@ public partial class GameApp
         m_ListLogicMgr = new List<ILogicSys>();
         CodeTypes.Instance.Init(s_HotfixAssembly.ToArray());
         EventInterfaceHelper.Init();
+        ((CfgDefine)ConfigManager.Instance).Init();
         RegisterAllSystem();
         InitSystemSetting();
     }

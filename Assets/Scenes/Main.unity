@@ -352,11 +352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: m_AvailableProcedureTypeNames.Array.size
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[0]'
-      value: GameLogic.ProcedureCheckVersion
+      value: GameLogic.ProcedureLoadingScene
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[1]'
@@ -364,59 +364,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[2]'
-      value: GameMain.ProcedureClearCache
+      value: GameLogic.ProcedureMain
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[3]'
-      value: GameMain.ProcedureCreateDownloader
+      value: GameMain.ProcedureClearCache
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[4]'
-      value: GameMain.ProcedureDownloadFile
+      value: GameMain.ProcedureCreateDownloader
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[5]'
-      value: GameMain.ProcedureDownloadOver
+      value: GameMain.ProcedureDownloadFile
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[6]'
-      value: GameMain.ProcedureInitPackage
+      value: GameMain.ProcedureDownloadOver
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[7]'
-      value: GameMain.ProcedureInitResources
+      value: GameMain.ProcedureInitPackage
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[8]'
-      value: GameMain.ProcedureLaunch
+      value: GameMain.ProcedureInitResources
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[9]'
-      value: GameMain.ProcedureLoadAssembly
+      value: GameMain.ProcedureLaunch
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[10]'
-      value: GameMain.ProcedurePreload
+      value: GameMain.ProcedureLoadAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[11]'
-      value: GameMain.ProcedureSplash
+      value: GameMain.ProcedurePreload
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[12]'
-      value: GameMain.ProcedureStartGame
+      value: GameMain.ProcedureSplash
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[13]'
-      value: GameMain.ProcedureUpdateManifest
+      value: GameMain.ProcedureStartGame
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[14]'
-      value: GameMain.ProcedureUpdateVersion
+      value: GameMain.ProcedureUpdateManifest
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[15]'
-      value: GameMain.Scripts.Procedure.ProcedureLoadingScene
+      value: GameMain.ProcedureUpdateVersion
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: 'm_AvailableProcedureTypeNames.Array.data[16]'
