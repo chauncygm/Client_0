@@ -11,13 +11,6 @@ namespace GameConfig
         private bool _isInit;
 
         private string Version { get; set; }
-        
-        public ConfigManager()
-        {
-            
-            var textAsset = GameModule.Resource.LoadAsset<TextAsset>("version");
-            Version = Encoding.UTF8.GetString(textAsset.bytes);
-        }
 
         public void Initialization()
         {

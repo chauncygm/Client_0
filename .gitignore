@@ -6,15 +6,13 @@
 [Ll]ogs
 [Oo]bj
 [Bb]undles
-StreamingAssets
 UserSettings
 UIElementsSchema
 HybridCLRData
 yoo
 *_Build
 
-Assets/Plugins
-
+Assets/StreamingAssets
 
 *.DotSettings.user
 *.sln
