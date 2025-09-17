@@ -61,8 +61,8 @@ namespace GameMain.Scripts.test
         {
             // transform.position += animator.deltaPosition * Time.deltaTime;
             // Debug.Log("velocity: " + _rigidbody.linearVelocity);
-            var velocity = new Vector3(_animator.velocity.x, _rigidbody.linearVelocity.y, _animator.velocity.z);
-            _rigidbody.linearVelocity = velocity;
+            var velocity = new Vector3(_animator.velocity.x, _rigidbody.velocity.y, _animator.velocity.z);
+            _rigidbody.velocity = velocity;
         }
 
         public void PlayerMove(InputAction.CallbackContext callback)
