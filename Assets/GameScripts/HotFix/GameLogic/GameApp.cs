@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
+using GameConfig;
 using GameLogic;
 using GameFramework;
 using GameFramework.Procedure;
@@ -8,7 +9,7 @@ using UnityGameFramework.Runtime;
 public partial class GameApp: Singleton<GameApp>
 {
     private static List<Assembly> s_HotfixAssembly;
-    
+
     /// <summary>
     /// 热更域App主入口。
     /// </summary>
@@ -17,6 +18,7 @@ public partial class GameApp: Singleton<GameApp>
     {
         Log.Warning("======= 看到此条日志代表你成功运行了热更新代码 =======");
         Log.Warning("======= Entrance GameApp =======");
+        ConfigManager.Instance.Initialization();
         s_HotfixAssembly = (List<Assembly>)objects[0];
         Instance.InitSystem();
         Instance.Start();

@@ -1,38 +1,43 @@
-using System;
 using System.Text;
-using GameBase;
 using GameFramework;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
 namespace GameConfig
 {
-    public class ConfigManager : Singleton<ConfigManager>, CfgDefine
+    public class ConfigManager : GameBase.Singleton<ConfigManager>, CfgDefine
     {
 
-        private readonly string _version;
+        private bool _isInit;
+
+        private string Version { get; set; }
         
-        public string Version
-        {
-            get;
-            private set;
-        }
         public ConfigManager()
         {
             
-            var textAsset = GameModule.Resource.LoadAsset<TextAsset>("version.txt");
+            var textAsset = GameModule.Resource.LoadAsset<TextAsset>("version");
             Version = Encoding.UTF8.GetString(textAsset.bytes);
+        }
+
+        public void Initialization()
+        {
+            if (_isInit) return;
+            var textAsset = GameModule.Resource.LoadAsset<TextAsset>("version");
+            Version = Encoding.UTF8.GetString(textAsset.bytes);
+            Log.Info($"CONFIG version: {Version}");
+            ((CfgDefine)this).Init();
+            _isInit = true;
         }
 
         void CfgDefine.InitLoad(string tableName)
         {
-            var textAsset = GameModule.Resource.LoadAsset<TextAsset>(tableName + ".json");
+            var textAsset = GameModule.Resource.LoadAsset<TextAsset>(tableName);
             if (textAsset == null)
             {
                 throw new GameFrameworkException($"Load table {tableName}.json failed.");
             }
-            var data = Encoding.UTF8.GetString(textAsset.bytes);
-            var loadSize = ((CfgDefine)this).ReloadCfg(tableName, data);
-            Console.WriteLine($"load table {tableName}, size: {loadSize}");
+            var loadSize = ((CfgDefine)this).ReloadCfg(tableName, textAsset.text);
+            Log.Info($"load table {tableName}, size: {loadSize}");
         }
     }
 }

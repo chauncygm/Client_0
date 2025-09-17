@@ -85,6 +85,7 @@ MonoBehaviour:
   m_HybridCLRCustomGlobalSettings:
     HotUpdateAssemblies:
     - GameBase.dll
+    - GameConfig.dll
     - GameProto.dll
     - GameLogic.dll
     AOTMetaAssemblies: []
