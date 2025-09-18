@@ -5,9 +5,9 @@ namespace GameMain
 {
     public class UIDefine
     {
-        public static readonly string UILoadUpdate = "UILoadUpdate";
-        public static readonly string UILoadTip = "UILoadTip";
-        public static readonly string UISplash = "UISplash";
+        public const string UILoadUpdate = "UILoadUpdate";
+        public const string UILoadTip = "UILoadTip";
+        public const string UISplash = "UISplash";
 
         /// <summary>
         /// 注册ui

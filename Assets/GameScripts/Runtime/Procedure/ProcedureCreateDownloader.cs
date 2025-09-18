@@ -33,12 +33,12 @@ namespace GameMain
 
                 // 发现新更新文件后，挂起流程系统
                 // 注意：开发者需要在下载前检测磁盘空间不足
-                int totalDownloadCount = downloader.TotalDownloadCount;
-                long totalDownloadBytes = downloader.TotalDownloadBytes;
+                var totalDownloadCount = downloader.TotalDownloadCount;
+                var totalDownloadBytes = downloader.TotalDownloadBytes;
 
-                float sizeMb = totalDownloadBytes / 1048576f;
+                var sizeMb = totalDownloadBytes / 1048576f;
                 sizeMb = UnityEngine.Mathf.Clamp(sizeMb, 0.1f, float.MaxValue);
-                string totalSizeMb = sizeMb.ToString("f1");
+                var totalSizeMb = sizeMb.ToString("f1");
 
                 UILoadTip.ShowMessageBox($"Found update patch files, Total count {totalDownloadCount} Total size {totalSizeMb}MB", MessageShowType.TwoButton,
                     LoadStyle.StyleEnum.Style_StartUpdate_Notice

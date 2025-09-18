@@ -20,8 +20,6 @@ namespace GameMain
 
         private readonly Dictionary<string, bool> _loadedFlag = new();
 
-        public override bool UseNativeDialog => true;
-
         private readonly bool _needProLoad = true;
 
         /// <summary>
@@ -42,7 +40,7 @@ namespace GameMain
 
             _loadedFlag.Clear();
 
-            UILoadMgr.Show(UIDefine.UILoadUpdate, Utility.Text.Format(LoadText.Instance.Label_Load_Load_Progress, 0));
+            UILoadMgr.Show(UIDefine.UILoadUpdate, Utility.Text.Format(LoadText.Instance.LabelLoadLoadProgress, 0));
 
             GameEvent.Send("UILoadUpdate.RefreshVersion");
 
@@ -71,7 +69,7 @@ namespace GameMain
 
             if (_loadedFlag.Count != 0)
             {
-                UILoadMgr.Show(UIDefine.UILoadUpdate, Utility.Text.Format(LoadText.Instance.Label_Load_Load_Progress, (float)loadCount / totalCount * 100));
+                UILoadMgr.Show(UIDefine.UILoadUpdate, Utility.Text.Format(LoadText.Instance.LabelLoadLoadProgress, (float)loadCount / totalCount * 100));
             }
             else
             {
@@ -85,7 +83,7 @@ namespace GameMain
                 }
                 else
                 {
-                    UILoadMgr.Show(UIDefine.UILoadUpdate, Utility.Text.Format(LoadText.Instance.Label_Load_Load_Progress, progressStr));
+                    UILoadMgr.Show(UIDefine.UILoadUpdate, Utility.Text.Format(LoadText.Instance.LabelLoadLoadProgress, progressStr));
                 }
             }
 

@@ -12,8 +12,6 @@ namespace GameMain
     /// </summary>
     public class ProcedureUpdateVersion : ProcedureBase
     {
-        public override bool UseNativeDialog => true;
-
         private ProcedureOwner _procedureOwner;
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
@@ -28,14 +26,14 @@ namespace GameMain
             if (Application.internetReachability == NetworkReachability.NotReachable)
             {
                 Log.Warning("The device is not connected to the network");
-                UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_Net_UnReachable);
-                UILoadTip.ShowMessageBox(LoadText.Instance.Label_Net_UnReachable, MessageShowType.TwoButton,
+                UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.LabelNetUnReachable);
+                UILoadTip.ShowMessageBox(LoadText.Instance.LabelNetUnReachable, MessageShowType.TwoButton,
                     LoadStyle.StyleEnum.Style_Retry,
                     GetStaticVersion().Forget,
                     () => { ChangeState<ProcedureInitResources>(procedureOwner); });
             }
 
-            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_RequestVersionIng);
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.LabelRequestVersionIng);
 
             // 用户尝试更新静态版本。
             GetStaticVersion().Forget();

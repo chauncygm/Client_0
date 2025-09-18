@@ -7,8 +7,6 @@ namespace GameMain
     {
         private bool _initResourcesComplete;
 
-        public override bool UseNativeDialog => true;
-
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);

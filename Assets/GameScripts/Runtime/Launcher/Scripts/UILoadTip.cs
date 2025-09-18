@@ -48,6 +48,10 @@ namespace GameMain
                     _btn_package.gameObject.SetActive(true);
                     _btn_package.gameObject.SetActive(true);
                     break;
+                case MessageShowType.None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             _label_desc.text = data.ToString();

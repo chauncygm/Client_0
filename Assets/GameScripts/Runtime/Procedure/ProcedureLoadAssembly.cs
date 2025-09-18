@@ -22,7 +22,6 @@ namespace GameMain
     public class ProcedureLoadAssembly : ProcedureBase
     {
         private readonly bool m_EnableAddressable = true;
-        public override bool UseNativeDialog => true;
         private int m_LoadAssetCount;
         private int m_LoadMetadataAssetCount;
         private int m_FailureAssetCount;

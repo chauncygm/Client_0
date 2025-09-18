@@ -1,5 +1,6 @@
 ﻿using GameFramework.Localization;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
@@ -11,7 +12,12 @@ namespace GameMain
     /// </summary>
     public class ProcedureLaunch : ProcedureBase
     {
-        public override bool UseNativeDialog => true;
+        private static readonly List<Language> SupportedLanguages = new()
+        {
+            Language.English,
+            Language.ChineseSimplified,
+            Language.ChineseTraditional
+        };
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
@@ -22,13 +28,7 @@ namespace GameMain
 
             // 声音配置：根据用户配置数据，设置即将使用的声音选项
             InitSoundSettings();
-        }
 
-        protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
-        {
-            base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
-
-            // 运行一帧即切换到 Splash 展示流程
             ChangeState<ProcedureSplash>(procedureOwner);
         }
 
@@ -57,14 +57,10 @@ namespace GameMain
                 }
             }
 
-            if (language != Language.English
-                && language != Language.ChineseSimplified
-                && language != Language.ChineseTraditional
-                && language != Language.Korean)
+            if (!SupportedLanguages.Contains(language))
             {
                 // 若是暂不支持的语言，则使用英语
                 language = Language.English;
-
                 GameModule.Setting.SetString(Constant.Setting.Language, language.ToString());
                 GameModule.Setting.Save();
             }

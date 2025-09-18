@@ -9,7 +9,6 @@ namespace GameMain
     /// </summary>
     public class ProcedureClearCache:ProcedureBase
     {
-        public override bool UseNativeDialog { get; }
 
         private ProcedureOwner _procedureOwner;
         

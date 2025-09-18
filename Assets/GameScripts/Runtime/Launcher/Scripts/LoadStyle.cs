@@ -64,9 +64,9 @@ namespace GameMain
         private void Awake()
         {
             //设置按钮的默认描述
-            _label_ignore.text = LoadText.Instance.Label_Btn_Ignore;
-            _label_update.text = LoadText.Instance.Label_Btn_Update;
-            _label_package.text = LoadText.Instance.Label_Btn_Package;
+            _label_ignore.text = LoadText.Instance.LabelBtnIgnore;
+            _label_update.text = LoadText.Instance.LabelBtnUpdate;
+            _label_package.text = LoadText.Instance.LabelBtnPackage;
 
             InitConfig();
         }
@@ -145,44 +145,25 @@ namespace GameMain
         {
             foreach (var item in list)
             {
-                switch (item.Key)
+                var btn = item.Key switch
                 {
-                    case BtnEnum.BtnOK:
-                        _label_update.text = item.Value.Desc;
-                        _btn_update.gameObject.SetActive(item.Value.Show);
-                        SetButtonPos(item.Value.Align, _btn_update.transform);
-                        break;
-                    case BtnEnum.BtnIgnore:
-                        _label_ignore.text = item.Value.Desc;
-                        _btn_ignore.gameObject.SetActive(item.Value.Show);
-                        SetButtonPos(item.Value.Align, _btn_ignore.transform);
-                        break;
-                    case BtnEnum.BtnOther:
-                        _label_package.text = item.Value.Desc;
-                        _btn_package.gameObject.SetActive(item.Value.Show);
-                        SetButtonPos(item.Value.Align, _btn_package.transform);
-                        break;
-                }
+                    BtnEnum.BtnOK => _btn_update,
+                    BtnEnum.BtnIgnore => _btn_ignore,
+                    BtnEnum.BtnOther => _btn_package,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+                var text = item.Key switch
+                {
+                    BtnEnum.BtnOK => _label_update,
+                    BtnEnum.BtnIgnore => _label_package,
+                    BtnEnum.BtnOther => _label_package,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+                text.text = item.Value.Desc;
+                btn.gameObject.SetActive(item.Value.Show);
+                btn.transform.SetSiblingIndex((int)item.Value.Align);
             }
         }
 
-        /// <summary>
-        /// 设置按钮位置
-        /// </summary>
-        private void SetButtonPos(Alignment align, Transform item)
-        {
-            switch (align)
-            {
-                case Alignment.Left:
-                    item.SetSiblingIndex(0);
-                    break;
-                case Alignment.Middle:
-                    item.SetSiblingIndex(1);
-                    break;
-                case Alignment.Right:
-                    item.SetSiblingIndex(2);
-                    break;
-            }
-        }
     }
 }

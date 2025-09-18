@@ -38,16 +38,16 @@ namespace GameMain
 
         private void RefreshVersion()
         {
-            _label_appid.text = string.Format(LoadText.Instance.Label_App_id, Version.GameVersion);
-            _label_resid.text = string.Format(LoadText.Instance.Label_Res_id, GameModule.Resource.PackageVersion);
+            _label_appid.text = string.Format(LoadText.Instance.LabelAppID, Version.GameVersion);
+            _label_resid.text = string.Format(LoadText.Instance.LabelResID, GameModule.Resource.PackageVersion);
         }
 
-        public virtual void OnContinue(GameObject obj)
+        protected virtual void OnContinue(GameObject obj)
         {
             // LoadMgr.Instance.StartDownLoad();
         }
 
-        public virtual void OnStop(GameObject obj)
+        protected virtual void OnStop(GameObject obj)
         {
             // LoadMgr.Instance.StopDownLoad();
         }
@@ -55,10 +55,10 @@ namespace GameMain
         /// <summary>
         /// 清空本地缓存
         /// </summary>
-        public virtual void OnClear()
+        protected virtual void OnClear()
         {
             OnStop(null);
-            UILoadTip.ShowMessageBox(LoadText.Instance.Label_Clear_Comfirm, MessageShowType.TwoButton,
+            UILoadTip.ShowMessageBox(LoadText.Instance.LabelClearComfirm, MessageShowType.TwoButton,
                 LoadStyle.StyleEnum.Style_Clear,
                 () =>
                 {
@@ -95,7 +95,7 @@ namespace GameMain
         public virtual void Unpacked_Complete_Action(bool type, GameStatus status)
         {
             _obj_progress.gameObject.SetActive(true);
-            _label_desc.text = LoadText.Instance.Label_Load_UnpackComplete;
+            _label_desc.text = LoadText.Instance.LabelLoadUnpackComplete;
             if (status == GameStatus.AssetLoad)
             {
             }
@@ -113,14 +113,7 @@ namespace GameMain
         public virtual void Unpacked_Progress_Action(float progress, GameStatus status)
         {
             _obj_progress.gameObject.SetActive(true);
-            if (status == GameStatus.First)
-            {
-                _label_desc.text = LoadText.Instance.Label_Load_FirstUnpack;
-            }
-            else
-            {
-                _label_desc.text = LoadText.Instance.Label_Load_Unpacking;
-            }
+            _label_desc.text = status == GameStatus.First ? LoadText.Instance.LabelLoadFirstUnpack : LoadText.Instance.LabelLoadUnpacking;
 
             _obj_progress.size = progress;
         }

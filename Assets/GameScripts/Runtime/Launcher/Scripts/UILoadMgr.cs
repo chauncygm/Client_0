@@ -10,8 +10,8 @@ namespace GameMain
     public static class UILoadMgr
     {
         private static Transform _uiRoot;
-        private static readonly Dictionary<string, string> _uiList = new();
-        private static readonly Dictionary<string, UIBase> _uiMap = new();
+        private static readonly Dictionary<string, string> uiList = new();
+        private static readonly Dictionary<string, UIBase> uiMap = new();
 
         /// <summary>
         /// 初始化根节点。
@@ -25,7 +25,7 @@ namespace GameMain
                 return;
             }
 
-            UIDefine.RegisterUI(_uiList);
+            UIDefine.RegisterUI(uiList);
         }
 
         /// <summary>
@@ -40,16 +40,16 @@ namespace GameMain
                 return;
             }
 
-            if (!_uiList.ContainsKey(uiInfo))
+            if (!uiList.ContainsKey(uiInfo))
             {
                 Log.Error($"not define ui:{uiInfo}");
                 return;
             }
 
             GameObject ui = null;
-            if (!_uiMap.ContainsKey(uiInfo))
+            if (!uiMap.ContainsKey(uiInfo))
             {
-                Object obj = Resources.Load(_uiList[uiInfo]);
+                var obj = Resources.Load(uiList[uiInfo]);
                 if (obj != null)
                 {
                     ui = Object.Instantiate(obj) as GameObject;
@@ -58,22 +58,22 @@ namespace GameMain
                         ui.transform.SetParent(_uiRoot.transform);
                         ui.transform.localScale = Vector3.one;
                         ui.transform.localPosition = Vector3.zero;
-                        RectTransform rect = ui.GetComponent<RectTransform>();
+                        var rect = ui.GetComponent<RectTransform>();
                         rect.sizeDelta = Vector2.zero;
                     }
                 }
 
-                UIBase component = ui.GetComponent<UIBase>();
+                var component = ui?.GetComponent<UIBase>();
                 if (component != null)
                 {
-                    _uiMap.Add(uiInfo, component);
+                    uiMap.Add(uiInfo, component);
                 }
             }
 
-            _uiMap[uiInfo].gameObject.SetActive(true);
-            if (param != null)
+            uiMap[uiInfo].gameObject.SetActive(true);
+            if (param == null) return;
             {
-                UIBase component = _uiMap[uiInfo].GetComponent<UIBase>();
+                var component = uiMap[uiInfo].GetComponent<UIBase>();
                 if (component != null)
                 {
                     component.OnEnter(param);
@@ -92,14 +92,10 @@ namespace GameMain
                 return;
             }
 
-            if (!_uiMap.ContainsKey(uiName))
-            {
-                return;
-            }
-
-            _uiMap[uiName].gameObject.SetActive(false);
-            Object.DestroyImmediate(_uiMap[uiName].gameObject);
-            _uiMap.Remove(uiName);
+            if (!uiMap.TryGetValue(uiName, out var value)) return;
+            value.gameObject.SetActive(false);
+            Object.DestroyImmediate(uiMap[uiName].gameObject);
+            uiMap.Remove(uiName);
         }
 
         /// <summary>
@@ -109,7 +105,7 @@ namespace GameMain
         /// <returns></returns>
         public static UIBase GetActiveUI(string ui)
         {
-            return _uiMap.GetValueOrDefault(ui);
+            return uiMap.GetValueOrDefault(ui);
         }
 
         /// <summary>
@@ -117,7 +113,7 @@ namespace GameMain
         /// </summary>
         public static void HideAll()
         {
-            foreach (var item in _uiMap)
+            foreach (var item in uiMap)
             {
                 if (item.Value && item.Value.gameObject)
                 {
@@ -125,7 +121,7 @@ namespace GameMain
                 }
             }
 
-            _uiMap.Clear();
+            uiMap.Clear();
         }
     }
 }
