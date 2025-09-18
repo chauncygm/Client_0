@@ -1,14 +1,14 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace GameMain
 {
     public class SplashUI : UIBase
     {
         
-        [SerializeField]
-        public RawImage splashImage;
+        // [SerializeField]
+        // public RawImage splashImage;
         
         // public override void OnEnter(object param)
         // {
@@ -28,45 +28,66 @@ namespace GameMain
         //     
         // }
 
+        // public override void OnEnter(object param)
+        // {
+        //     base.OnEnter(param);
+        //     splashImage.color = new Color(1, 1, 1, 0);
+        //     
+        //     Debug.Log($"Splash image: {splashImage.texture}");
+        //     
+        //     // 使用协程替代DOTween序列
+        //     StartCoroutine(PlaySplashSequence((Action)param));
+        // }
+        //
+        // private System.Collections.IEnumerator PlaySplashSequence(Action onComplete)
+        // {
+        //     // 淡入效果 (2秒)
+        //     yield return StartCoroutine(FadeImage(0, 1, 2f));
+        //     
+        //     // 淡出效果 (2.5秒)
+        //     yield return StartCoroutine(FadeImage(1, 0, 2.5f));
+        //     
+        //     Debug.Log($"Close Splash : {splashImage.name}");
+        //     UILoadMgr.Hide(UIDefine.UISplash);
+        //     onComplete?.Invoke();
+        // }
+        //
+        // private System.Collections.IEnumerator FadeImage(float fromAlpha, float toAlpha, float duration)
+        // {
+        //     var elapsed = 0f;
+        //     var startColor = splashImage.color;
+        //     
+        //     while (elapsed < duration)
+        //     {
+        //         elapsed += Time.deltaTime;
+        //         var alpha = Mathf.Lerp(fromAlpha, toAlpha, elapsed / duration);
+        //         splashImage.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+        //         yield return null;
+        //     }
+        //     
+        //     // 确保最终值准确
+        //     splashImage.color = new Color(startColor.r, startColor.g, startColor.b, toAlpha);
+        // }
+        
         public override void OnEnter(object param)
         {
             base.OnEnter(param);
-            splashImage.color = new Color(1, 1, 1, 0);
-            
-            Debug.Log($"Splash image: {splashImage.texture}");
-            
-            // 使用协程替代DOTween序列
-            StartCoroutine(PlaySplashSequence((Action)param));
-        }
-        
-        private System.Collections.IEnumerator PlaySplashSequence(Action onComplete)
-        {
-            // 淡入效果 (2秒)
-            yield return StartCoroutine(FadeImage(0, 1, 2f));
-            
-            // 淡出效果 (2.5秒)
-            yield return StartCoroutine(FadeImage(1, 0, 2.5f));
-            
-            Debug.Log($"Close Splash : {splashImage.name}");
-            UILoadMgr.Hide(UIDefine.UISplash);
-            onComplete?.Invoke();
-        }
-        
-        private System.Collections.IEnumerator FadeImage(float fromAlpha, float toAlpha, float duration)
-        {
-            var elapsed = 0f;
-            var startColor = splashImage.color;
-            
-            while (elapsed < duration)
+            var anim = GetComponent<Animation>();
+            if (anim && anim.Play())
             {
-                elapsed += Time.deltaTime;
-                var alpha = Mathf.Lerp(fromAlpha, toAlpha, elapsed / duration);
-                splashImage.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
-                yield return null;
+                WaitForAnimationComplete(anim, (Action)param).Forget();
             }
-            
-            // 确保最终值准确
-            splashImage.color = new Color(startColor.r, startColor.g, startColor.b, toAlpha);
+            else
+            {
+                ((Action)param)?.Invoke();
+            }
+        }
+
+        private async UniTaskVoid WaitForAnimationComplete(Animation anim, Action onPlayComplete)
+        {
+            await UniTask.WaitForSeconds(anim.clip.length);
+            UILoadMgr.Hide(UIDefine.UISplash);
+            onPlayComplete?.Invoke();
         }
 
     }
