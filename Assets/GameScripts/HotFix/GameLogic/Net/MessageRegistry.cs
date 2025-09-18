@@ -11,15 +11,20 @@ namespace GameLogic
     public class MessageRegistry
     {
         private readonly Dictionary<int, Type> _mProtocolIdToType = new();
-        
+
         /// <summary>
         /// 注册协议
         /// </summary>
+        /// <param name="namespaceAssembly">协议所在的程序集</param>
         /// <param name="protocolNamespace">协议所在的命名空间</param>
-        public void RegisterProto(string protocolNamespace)
+        public void RegisterProto(string namespaceAssembly, string protocolNamespace)
         {
             // 获取当前程序集
-            var assembly = Assembly.GetExecutingAssembly();
+            var assembly = Assembly.Load(namespaceAssembly);
+            if (assembly == null)
+            {
+                throw new Exception($"找不到程序集: {namespaceAssembly}.dll");
+            }
 
             // 扫描指定命名空间下的所有类型
             var protocolTypes = assembly.GetTypes()

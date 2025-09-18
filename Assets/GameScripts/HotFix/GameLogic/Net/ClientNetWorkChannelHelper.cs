@@ -20,9 +20,9 @@ namespace GameLogic
         /// </summary>
         public int PacketHeaderLength => 2;
 
-        public void RegisterProto(string protocolNamespace)
+        public void RegisterProto(string namespaceAssembly, string protocolNamespace)
         {
-            _mMessageRegistry.RegisterProto(protocolNamespace);
+            _mMessageRegistry.RegisterProto(namespaceAssembly, protocolNamespace);
         }
         
         public void RegisterHandler<T>(Action<T> handler) where T : IMessage

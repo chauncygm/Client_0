@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace GameMain
 {
-    public class NewtonsoftJsonHelper : Utility.Json.IJsonHelper
+    public class JsonHelper : Utility.Json.IJsonHelper
     {
         public string ToJson(object obj)
         {

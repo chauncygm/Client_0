@@ -24,7 +24,7 @@ namespace GameLogic
         {
             base.OnInit(procedureOwner);
             _mNetworkChannelHelper = new ClientNetWorkChannelHelper();
-            _mNetworkChannelHelper.RegisterProto("GameProto");
+            _mNetworkChannelHelper.RegisterProto("GameProto", "GameProto");
         }
 
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)

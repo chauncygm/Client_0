@@ -26,9 +26,10 @@ namespace GameLogic
                 .Find(x => x.ChannelName == SettingsUtils.FrameworkGlobalSettings.CurUseServerChannel);
             
             var goInst = GameModule.Resource.LoadGameObject("Assets/Res/Prefab/UI/Login/ServerInfo");
-            foreach (var serverIpAndPort in serverChannelInfo.ServerIpAndPorts)
+            for (var i = serverChannelInfo.ServerIpAndPorts.Count - 1; i >= 0; i--)
             {
-                var serverInfo = Object.Instantiate(goInst, m_scrollArea.content);
+                var serverIpAndPort = serverChannelInfo.ServerIpAndPorts[i];
+                var serverInfo = i == 0 ? goInst : Object.Instantiate(goInst, m_scrollArea.content);
                 serverInfo.GetComponentInChildren<TMP_Text>().text = serverIpAndPort.ServerName;
                 serverInfo.GetComponent<Button>().onClick.AddListener(() => OnSelectServer(serverIpAndPort.ServerName));
             }
