@@ -756,11 +756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0fad7cbc10b815488c9e6ebfeccb210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _btn_clear: {fileID: 8386797903619165155}
-  _obj_progress: {fileID: 2835083178279248017}
-  _label_desc: {fileID: 625621492709539730}
-  _label_appid: {fileID: 1355718662626521362}
-  _label_resid: {fileID: 7408920366768410708}
+  btnClear: {fileID: 8386797903619165155}
+  objProgress: {fileID: 2835083178279248017}
+  labelDesc: {fileID: 625621492709539730}
+  labelAppId: {fileID: 1355718662626521362}
+  labelResId: {fileID: 7408920366768410708}
 --- !u!1 &9157096376857424144
 GameObject:
   m_ObjectHideFlags: 0

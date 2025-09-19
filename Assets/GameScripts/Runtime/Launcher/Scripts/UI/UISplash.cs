@@ -4,9 +4,29 @@ using UnityEngine;
 
 namespace GameMain
 {
-    public class SplashUI : UIBase
+    public class UISplash : UIBase
     {
-        
+        public override void OnEnter(object param)
+        {
+            base.OnEnter(param);
+            var anim = GetComponent<Animation>();
+            if (anim && anim.Play())
+            {
+                WaitForAnimationComplete(anim, (Action)param).Forget();
+            }
+            else
+            {
+                ((Action)param)?.Invoke();
+            }
+        }
+
+        private async UniTaskVoid WaitForAnimationComplete(Animation anim, Action onPlayComplete)
+        {
+            await UniTask.WaitForSeconds(anim.clip.length);
+            UILoadMgr.Hide(UIDefine.UISplash);
+            onPlayComplete?.Invoke();
+        }
+
         // [SerializeField]
         // public RawImage splashImage;
         
@@ -68,27 +88,5 @@ namespace GameMain
         //     // 确保最终值准确
         //     splashImage.color = new Color(startColor.r, startColor.g, startColor.b, toAlpha);
         // }
-        
-        public override void OnEnter(object param)
-        {
-            base.OnEnter(param);
-            var anim = GetComponent<Animation>();
-            if (anim && anim.Play())
-            {
-                WaitForAnimationComplete(anim, (Action)param).Forget();
-            }
-            else
-            {
-                ((Action)param)?.Invoke();
-            }
-        }
-
-        private async UniTaskVoid WaitForAnimationComplete(Animation anim, Action onPlayComplete)
-        {
-            await UniTask.WaitForSeconds(anim.clip.length);
-            UILoadMgr.Hide(UIDefine.UISplash);
-            onPlayComplete?.Invoke();
-        }
-
     }
 }

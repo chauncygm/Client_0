@@ -1,5 +1,6 @@
 ﻿using GameFramework;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
 
@@ -7,16 +8,16 @@ namespace GameMain
 {
     public class UILoadUpdate : UIBase
     {
-        [SerializeField] public Button _btn_clear;
-        [SerializeField] public Scrollbar _obj_progress;
-        [SerializeField] public Text _label_desc;
-        [SerializeField] public Text _label_appid;
-        [SerializeField] public Text _label_resid;
+        public Button btnClear;
+        public Scrollbar objProgress;
+        public Text labelDesc;
+        public Text labelAppId;
+        public Text labelResId;
 
         public virtual void Start()
         {
-            _btn_clear.onClick.AddListener(OnClear);
-            _btn_clear.gameObject.SetActive(true);
+            btnClear.onClick.AddListener(OnClear);
+            btnClear.gameObject.SetActive(true);
         }
 
         public virtual void OnEnable()
@@ -28,7 +29,7 @@ namespace GameMain
         public override void OnEnter(object param)
         {
             base.OnEnter(param);
-            _label_desc.text = param.ToString();
+            labelDesc.text = param.ToString();
             RefreshVersion();
         }
 
@@ -38,8 +39,8 @@ namespace GameMain
 
         private void RefreshVersion()
         {
-            _label_appid.text = string.Format(LoadText.Instance.LabelAppID, Version.GameVersion);
-            _label_resid.text = string.Format(LoadText.Instance.LabelResID, GameModule.Resource.PackageVersion);
+            labelAppId.text = string.Format(LoadText.Instance.LabelAppID, Version.GameVersion);
+            labelResId.text = string.Format(LoadText.Instance.LabelResID, GameModule.Resource.PackageVersion);
         }
 
         protected virtual void OnContinue(GameObject obj)
@@ -82,9 +83,9 @@ namespace GameMain
         /// <param name="progress"></param>
         public virtual void DownLoad_Progress_Action(float progress)
         {
-            _obj_progress.gameObject.SetActive(true);
+            objProgress.gameObject.SetActive(true);
 
-            _obj_progress.size = progress;
+            objProgress.size = progress;
         }
 
         /// <summary>
@@ -94,8 +95,8 @@ namespace GameMain
         /// <param name="status"></param>
         public virtual void Unpacked_Complete_Action(bool type, GameStatus status)
         {
-            _obj_progress.gameObject.SetActive(true);
-            _label_desc.text = LoadText.Instance.LabelLoadUnpackComplete;
+            objProgress.gameObject.SetActive(true);
+            labelDesc.text = LoadText.Instance.LabelLoadUnpackComplete;
             if (status == GameStatus.AssetLoad)
             {
             }
@@ -112,10 +113,10 @@ namespace GameMain
         /// <param name="status"></param>
         public virtual void Unpacked_Progress_Action(float progress, GameStatus status)
         {
-            _obj_progress.gameObject.SetActive(true);
-            _label_desc.text = status == GameStatus.First ? LoadText.Instance.LabelLoadFirstUnpack : LoadText.Instance.LabelLoadUnpacking;
+            objProgress.gameObject.SetActive(true);
+            labelDesc.text = status == GameStatus.First ? LoadText.Instance.LabelLoadFirstUnpack : LoadText.Instance.LabelLoadUnpacking;
 
-            _obj_progress.size = progress;
+            objProgress.size = progress;
         }
 
         public virtual void OnDisable()

@@ -26,7 +26,7 @@ namespace GameMain
             try
             {
                 var package = YooAssets.TryGetPackage(GameModule.Resource.PackageName);
-                if (package != null && package.InitializeStatus == EOperationStatus.Succeed)
+                if (package is { InitializeStatus: EOperationStatus.Succeed })
                 {
                     OnInitSuccess(procedureOwner);
                     return;
@@ -50,32 +50,17 @@ namespace GameMain
 
         private void OnInitSuccess(ProcedureOwner procedureOwner)
         {
-            if (GameModule.Resource.PlayMode == EPlayMode.EditorSimulateMode ||
-                GameModule.Resource.PlayMode == EPlayMode.OfflinePlayMode ||
-                GameModule.Resource.PlayMode == EPlayMode.HostPlayMode ||
-                GameModule.Resource.PlayMode == EPlayMode.WebPlayMode)
-            {
-                // 打开启动UI。
-                UILoadMgr.Show(UIDefine.UILoadUpdate);
-
-                Log.Info("Updatable resource mode detected.");
-                ChangeState<ProcedureUpdateVersion>(procedureOwner);
-            }
-            else
-            {
-                Log.Error("UnKnow resource mode detected Please check???");
-            }
+            Log.Info("Init package success.");
+            // 打开启动UI。
+            UILoadMgr.Show(UIDefine.UILoadUpdate);
+            ChangeState<ProcedureUpdateVersion>(procedureOwner);
         }
 
         private void OnInitPackageFailed(ProcedureOwner procedureOwner, string message)
         {
-            // 打开启动UI。
-            UILoadMgr.Show(UIDefine.UILoadUpdate);
-
             Log.Error($"{message}");
-
             // 打开启动UI。
-            UILoadMgr.Show(UIDefine.UILoadUpdate, $"资源初始化失败！");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, "资源初始化失败！");
 
             UILoadTip.ShowMessageBox($"资源初始化失败！点击确认重试 \n \n <color=#FF0000>原因{message}</color>", MessageShowType.TwoButton,
                 LoadStyle.StyleEnum.Style_Retry
@@ -86,8 +71,7 @@ namespace GameMain
         private void Retry(ProcedureOwner procedureOwner)
         {
             // 打开启动UI。
-            UILoadMgr.Show(UIDefine.UILoadUpdate, $"重新初始化资源中...");
-
+            UILoadMgr.Show(UIDefine.UILoadUpdate, "重新初始化资源中...");
             InitPackage(procedureOwner).Forget();
         }
     }

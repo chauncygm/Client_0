@@ -1,5 +1,6 @@
 ﻿using UnityEngine.UI;
 using System;
+using UnityEngine.Serialization;
 
 namespace GameMain
 {
@@ -13,40 +14,40 @@ namespace GameMain
 
     public class UILoadTip : UIBase
     {
-        public Button _btn_update;
-        public Button _btn_ignore;
-        public Button _btn_package;
-        public Text _label_desc;
+        public Button btnUpdate;
+        public Button btnIgnore;
+        public Button btnPackage;
+        public Text labelDesc;
 
-        public Action OnOk;
-        public Action OnCancle;
-        public MessageShowType Showtype = MessageShowType.None;
+        private Action _onOk;
+        private Action _onCancel;
+        public MessageShowType showType = MessageShowType.None;
 
         void Start()
         {
-            _btn_update.onClick.AddListener(OnGameUpdate);
-            _btn_ignore.onClick.AddListener(OnGameIgnore);
-            _btn_package.onClick.AddListener(OnInvoke);
+            btnUpdate.onClick.AddListener(OnGameUpdate);
+            btnIgnore.onClick.AddListener(OnGameIgnore);
+            btnPackage.onClick.AddListener(OnInvoke);
         }
 
         public override void OnEnter(object data)
         {
-            _btn_ignore.gameObject.SetActive(false);
-            _btn_package.gameObject.SetActive(false);
-            _btn_update.gameObject.SetActive(false);
-            switch (Showtype)
+            btnIgnore.gameObject.SetActive(false);
+            btnPackage.gameObject.SetActive(false);
+            btnUpdate.gameObject.SetActive(false);
+            switch (showType)
             {
                 case MessageShowType.OneButton:
-                    _btn_update.gameObject.SetActive(true);
+                    btnUpdate.gameObject.SetActive(true);
                     break;
                 case MessageShowType.TwoButton:
-                    _btn_update.gameObject.SetActive(true);
-                    _btn_ignore.gameObject.SetActive(true);
+                    btnUpdate.gameObject.SetActive(true);
+                    btnIgnore.gameObject.SetActive(true);
                     break;
                 case MessageShowType.ThreeButton:
-                    _btn_ignore.gameObject.SetActive(true);
-                    _btn_package.gameObject.SetActive(true);
-                    _btn_package.gameObject.SetActive(true);
+                    btnIgnore.gameObject.SetActive(true);
+                    btnPackage.gameObject.SetActive(true);
+                    btnUpdate.gameObject.SetActive(true);
                     break;
                 case MessageShowType.None:
                     break;
@@ -54,44 +55,44 @@ namespace GameMain
                     throw new ArgumentOutOfRangeException();
             }
 
-            _label_desc.text = data.ToString();
+            labelDesc.text = data.ToString();
         }
 
         private void OnGameUpdate()
         {
-            if (OnOk == null)
+            if (_onOk == null)
             {
-                _label_desc.text = "<color=#BA3026>该按钮不应该存在</color>";
+                labelDesc.text = "<color=#BA3026>该按钮不应该存在</color>";
             }
             else
             {
-                OnOk();
+                _onOk();
                 _OnClose();
             }
         }
 
         private void OnGameIgnore()
         {
-            if (OnCancle == null)
+            if (_onCancel == null)
             {
-                _label_desc.text = "<color=#BA3026>该按钮不应该存在</color>";
+                labelDesc.text = "<color=#BA3026>该按钮不应该存在</color>";
             }
             else
             {
-                OnCancle();
+                _onCancel();
                 _OnClose();
             }
         }
 
         private void OnInvoke()
         {
-            if (OnOk == null)
+            if (_onOk == null)
             {
-                _label_desc.text = "<color=#BA3026>该按钮不应该存在</color>";
+                labelDesc.text = "<color=#BA3026>该按钮不应该存在</color>";
             }
             else
             {
-                OnOk();
+                _onOk();
                 _OnClose();
             }
         }
@@ -105,12 +106,13 @@ namespace GameMain
         /// 显示提示框，目前最多支持三个按钮
         /// </summary>
         /// <param name="desc">描述</param>
-        /// <param name="showtype">类型（MessageShowType）</param>
+        /// <param name="showType">类型（MessageShowType）</param>
         /// <param name="style">StyleEnum</param>
         /// <param name="onOk">点击事件</param>
         /// <param name="onCancel">取消事件</param>
         /// <param name="onPackage">更新事件</param>
-        public static void ShowMessageBox(string desc, MessageShowType showtype = MessageShowType.OneButton,
+        public static void ShowMessageBox(string desc, 
+            MessageShowType showType = MessageShowType.OneButton,
             LoadStyle.StyleEnum style = LoadStyle.StyleEnum.Style_Default,
             Action onOk = null,
             Action onCancel = null,
@@ -118,10 +120,10 @@ namespace GameMain
         {
             UILoadMgr.Show(UIDefine.UILoadTip, desc);
             var ui = UILoadMgr.GetActiveUI(UIDefine.UILoadTip) as UILoadTip;
-            if (ui == null) return;
-            ui.OnOk = onOk;
-            ui.OnCancle = onCancel;
-            ui.Showtype = showtype;
+            if (!ui) return;
+            ui._onOk = onOk;
+            ui._onCancel = onCancel;
+            ui.showType = showType;
             ui.OnEnter(desc);
 
             var loadStyleUI = ui.GetComponent<LoadStyle>();

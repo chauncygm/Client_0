@@ -10,8 +10,8 @@ namespace GameMain
     public static class UILoadMgr
     {
         private static Transform _uiRoot;
-        private static readonly Dictionary<string, string> uiList = new();
-        private static readonly Dictionary<string, UIBase> uiMap = new();
+        private static readonly Dictionary<string, string> UIList = new();
+        private static readonly Dictionary<string, UIBase> UIMap = new();
 
         /// <summary>
         /// 初始化根节点。
@@ -24,8 +24,9 @@ namespace GameMain
                 Log.Error("Failed to Find UIRoot. Please check the resource path");
                 return;
             }
-
-            UIDefine.RegisterUI(uiList);
+            UIList.Add(UIDefine.UILoadUpdate, $"AssetLoad/{UIDefine.UILoadUpdate}");
+            UIList.Add(UIDefine.UILoadTip, $"AssetLoad/{UIDefine.UILoadTip}");
+            UIList.Add(UIDefine.UISplash, $"AssetLoad/{UIDefine.UISplash}");
         }
 
         /// <summary>
@@ -40,20 +41,20 @@ namespace GameMain
                 return;
             }
 
-            if (!uiList.ContainsKey(uiInfo))
+            if (!UIList.ContainsKey(uiInfo))
             {
                 Log.Error($"not define ui:{uiInfo}");
                 return;
             }
 
             GameObject ui = null;
-            if (!uiMap.ContainsKey(uiInfo))
+            if (!UIMap.ContainsKey(uiInfo))
             {
-                var obj = Resources.Load(uiList[uiInfo]);
+                var obj = Resources.Load(UIList[uiInfo]);
                 if (obj != null)
                 {
                     ui = Object.Instantiate(obj) as GameObject;
-                    if (ui != null)
+                    if (ui)
                     {
                         ui.transform.SetParent(_uiRoot.transform);
                         ui.transform.localScale = Vector3.one;
@@ -64,21 +65,16 @@ namespace GameMain
                 }
 
                 var component = ui?.GetComponent<UIBase>();
-                if (component != null)
+                if (component)
                 {
-                    uiMap.Add(uiInfo, component);
+                    UIMap.Add(uiInfo, component);
                 }
             }
 
-            uiMap[uiInfo].gameObject.SetActive(true);
+            if (!UIMap.TryGetValue(uiInfo, out var uiBase)) return;
+            uiBase.gameObject.SetActive(true);
             if (param == null) return;
-            {
-                var component = uiMap[uiInfo].GetComponent<UIBase>();
-                if (component != null)
-                {
-                    component.OnEnter(param);
-                }
-            }
+            UIMap[uiInfo].OnEnter(param);
         }
 
         /// <summary>
@@ -92,10 +88,10 @@ namespace GameMain
                 return;
             }
 
-            if (!uiMap.TryGetValue(uiName, out var value)) return;
+            if (!UIMap.TryGetValue(uiName, out var value)) return;
             value.gameObject.SetActive(false);
-            Object.DestroyImmediate(uiMap[uiName].gameObject);
-            uiMap.Remove(uiName);
+            Object.DestroyImmediate(UIMap[uiName].gameObject);
+            UIMap.Remove(uiName);
         }
 
         /// <summary>
@@ -105,7 +101,7 @@ namespace GameMain
         /// <returns></returns>
         public static UIBase GetActiveUI(string ui)
         {
-            return uiMap.GetValueOrDefault(ui);
+            return UIMap.GetValueOrDefault(ui);
         }
 
         /// <summary>
@@ -113,7 +109,7 @@ namespace GameMain
         /// </summary>
         public static void HideAll()
         {
-            foreach (var item in uiMap)
+            foreach (var item in UIMap)
             {
                 if (item.Value && item.Value.gameObject)
                 {
@@ -121,7 +117,7 @@ namespace GameMain
                 }
             }
 
-            uiMap.Clear();
+            UIMap.Clear();
         }
     }
 }

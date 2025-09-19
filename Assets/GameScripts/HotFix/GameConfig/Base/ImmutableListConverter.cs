@@ -23,14 +23,11 @@ namespace GameConfig
 
             // 获取泛型参数类型
             var elementType = objectType.GetGenericArguments()[0];
-
             // 创建对应的 List<> 类型
             var listType = typeof(List<>).MakeGenericType(elementType);
 
             // 反序列化为 List<T>
-            var list = serializer.Deserialize(reader, listType) as IList;
-
-            if (list == null)
+            if (serializer.Deserialize(reader, listType) is not IList list)
             {
                 return Activator.CreateInstance(typeof(ReadOnlyCollection<>).MakeGenericType(elementType),
                     Activator.CreateInstance(listType));

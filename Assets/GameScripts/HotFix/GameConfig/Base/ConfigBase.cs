@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using UnityGameFramework.Runtime;
 
 namespace GameConfig
 {
@@ -35,7 +36,7 @@ namespace GameConfig
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Log.Error(e);
             }
             return _dataMap.Count;
         }

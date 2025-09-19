@@ -34,9 +34,9 @@ namespace GameMain
             Style_DownZip = 7, //继续下载压缩包
         }
 
-        public enum BtnEnum
+        private enum BtnEnum
         {
-            BtnOK = 0, //确定按钮
+            BtnOk = 0, //确定按钮
             BtnIgnore = 1, //取消按钮
             BtnOther = 2, //其他按钮
         }
@@ -147,14 +147,14 @@ namespace GameMain
             {
                 var btn = item.Key switch
                 {
-                    BtnEnum.BtnOK => _btn_update,
+                    BtnEnum.BtnOk => _btn_update,
                     BtnEnum.BtnIgnore => _btn_ignore,
                     BtnEnum.BtnOther => _btn_package,
                     _ => throw new ArgumentOutOfRangeException()
                 };
                 var text = item.Key switch
                 {
-                    BtnEnum.BtnOK => _label_update,
+                    BtnEnum.BtnOk => _label_update,
                     BtnEnum.BtnIgnore => _label_package,
                     BtnEnum.BtnOther => _label_package,
                     _ => throw new ArgumentOutOfRangeException()
