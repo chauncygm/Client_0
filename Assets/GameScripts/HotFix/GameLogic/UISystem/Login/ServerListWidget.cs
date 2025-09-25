@@ -29,7 +29,8 @@ namespace GameLogic
             for (var i = serverChannelInfo.ServerIpAndPorts.Count - 1; i >= 0; i--)
             {
                 var serverIpAndPort = serverChannelInfo.ServerIpAndPorts[i];
-                var serverInfo = i == 0 ? goInst : Object.Instantiate(goInst, m_scrollArea.content);
+                var serverInfo = i == 0 ? goInst : Object.Instantiate(goInst);
+                serverInfo.transform.SetParent(m_scrollArea.content, false);
                 serverInfo.GetComponentInChildren<TMP_Text>().text = serverIpAndPort.ServerName;
                 serverInfo.GetComponent<Button>().onClick.AddListener(() => OnSelectServer(serverIpAndPort.ServerName));
             }
