@@ -45,7 +45,7 @@ namespace GameLogic
             
             Log.Info("OnInit UISystem");
             
-            UICanvasTransform = GameObject.Find("UIRoot/UICanvas").transform;
+            UICanvasTransform = GameObject.Find("UIRoot/UICanvas/SafeArea").transform;
 
             UICanvas = UICanvasTransform.GetComponent<Canvas>();
 

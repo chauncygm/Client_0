@@ -103,13 +103,13 @@ namespace GameMain
         private void AllAssemblyLoadComplete()
         {
             ChangeState<ProcedureStartGame>(m_ProcedureOwner);
-#if UNITY_EDITOR
-            m_MainLogicAssembly = GetMainLogicAssembly();
-#endif
             if (m_MainLogicAssembly == null)
             {
+#if !UNITY_EDITOR
                 Log.Fatal("Main logic assembly missing.");
                 return;
+#endif
+                m_MainLogicAssembly = GetMainLogicAssembly();
             }
 
             var appType = m_MainLogicAssembly.GetType("GameApp");

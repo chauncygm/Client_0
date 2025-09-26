@@ -16,10 +16,10 @@ public partial class GameApp: Singleton<GameApp>
     /// <param name="objects"></param>
     public static void Entrance(object[] objects)
     {
-        Log.Warning("======= 看到此条日志代表你成功运行了热更新代码 =======");
+        s_HotfixAssembly = (List<Assembly>)objects[0];
+        Log.Warning($"======= 看到此条日志代表你成功运行了热更新代码 HotfixAssembly: {s_HotfixAssembly.Count} =======");
         Log.Warning("======= Entrance GameApp =======");
         ConfigManager.Instance.Initialization();
-        s_HotfixAssembly = (List<Assembly>)objects[0];
         Instance.InitSystem();
         Instance.Start();
         Utility.Unity.AddUpdateListener(Instance.Update);
