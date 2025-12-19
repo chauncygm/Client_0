@@ -16,7 +16,7 @@ MonoBehaviour:
   ShowEditorAlias: 1
   UniqueBundleName: 1
   Packages:
-  - PackageName: DefaultPackage
+  - PackageName: GamePackage
     PackageDesc: 
     EnableAddressable: 1
     LocationToLower: 0
@@ -101,41 +101,5 @@ MonoBehaviour:
     - GroupName: Shader
       GroupDesc: 
       AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors: []
-  - PackageName: OtherPackage
-    PackageDesc: 
-    EnableAddressable: 1
-    LocationToLower: 0
-    IncludeAssetGUID: 0
-    AutoCollectShaders: 1
-    IgnoreRuleName: NormalIgnoreRule
-    Groups:
-    - GroupName: ModelGroup
-      GroupDesc: 
-      AssetTags: models
-      ActiveRuleName: EnableGroup
-      Collectors: []
-    - GroupName: SceneGroup
-      GroupDesc: 
-      AssetTags: scenes
-      ActiveRuleName: EnableGroup
-      Collectors: []
-  - PackageName: Dlc1Package
-    PackageDesc: 
-    EnableAddressable: 1
-    LocationToLower: 0
-    IncludeAssetGUID: 0
-    AutoCollectShaders: 1
-    IgnoreRuleName: NormalIgnoreRule
-    Groups:
-    - GroupName: ModelGroup
-      GroupDesc: 
-      AssetTags: models
-      ActiveRuleName: EnableGroup
-      Collectors: []
-    - GroupName: SceneGroup
-      GroupDesc: 
-      AssetTags: scenes
       ActiveRuleName: EnableGroup
       Collectors: []
