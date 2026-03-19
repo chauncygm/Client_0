@@ -26,3 +26,4 @@ Assets/StreamingAssets
 
 //启动场景设置
 !Library/LastSceneManagerSetup.txt
+.cursor
