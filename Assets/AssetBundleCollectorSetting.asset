@@ -18,25 +18,16 @@ MonoBehaviour:
   Packages:
   - PackageName: GamePackage
     PackageDesc: 
-    EnableAddressable: 1
+    EnableAddressable: 0
+    SupportExtensionless: 1
     LocationToLower: 0
     IncludeAssetGUID: 0
     AutoCollectShaders: 1
     IgnoreRuleName: NormalIgnoreRule
     Groups:
-    - GroupName: Actor
+    - GroupName: Config
       GroupDesc: 
       AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors: []
-    - GroupName: Audios
-      GroupDesc: 
-      AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors: []
-    - GroupName: Configs
-      GroupDesc: 
-      AssetTags: PRELOAD
       ActiveRuleName: EnableGroup
       Collectors:
       - CollectPath: Assets/Res/Config
@@ -53,33 +44,13 @@ MonoBehaviour:
       ActiveRuleName: EnableGroup
       Collectors:
       - CollectPath: Assets/AssetRaw/DLL
-        CollectorGUID: b4748bbc4d4c6f64ab8367864c850b6a
+        CollectorGUID: 0560228e4956be64bb23b74bf94b2d67
         CollectorType: 0
         AddressRuleName: AddressByFileName
         PackRuleName: PackDirectory
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
-    - GroupName: Effects
-      GroupDesc: 
-      AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors: []
-    - GroupName: Fonts
-      GroupDesc: 
-      AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors: []
-    - GroupName: Materials
-      GroupDesc: 
-      AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors: []
-    - GroupName: Scenes
-      GroupDesc: 
-      AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors: []
     - GroupName: UI
       GroupDesc: 
       AssetTags: 
@@ -93,13 +64,3 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
-    - GroupName: UIRaw
-      GroupDesc: 
-      AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors: []
-    - GroupName: Shader
-      GroupDesc: 
-      AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors: []

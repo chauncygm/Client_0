@@ -5,64 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/01_Helloworld/Helloworld.unity
-    guid: 58e2eda480b0c6e41a793391a9fb9a72
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/02_U3DScripting/U3DScripting.unity
-    guid: 6d9b7cd8ac592564796c9c24b3636677
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/03_UIEvent/UI.unity
-    guid: f835eeddd75e9f74d95c957aa7ca44b2
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/04_LuaObjectOrented/InvokeLua.unity
-    guid: 554d570d8b369434ba8a099ebafee542
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/05_NoGc/NoGc.unity
-    guid: fa308fa7f40ec0348addeff1475bb164
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/06_Coroutine/Coroutine.unity
-    guid: 15727d4119afc7a47b7d3284ca6990db
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/07_AsyncTest/AsyncTest.unity
-    guid: 50ee330b40bfcc54cbdfb1c7c79a02d9
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/08_Hotfix/HotfixTest.unity
-    guid: 71b8de6dc619ca64da460a7200f00b9c
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/08_Hotfix/HotfixTest2.unity
-    guid: eb945840f7055384cbf1a3fb17903afe
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/09_GenericMethod/GenericMethod.unity
-    guid: 19477d725133da049be476cb4caedf7d
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/10_SignatureLoader/SignatureLoaderTest.unity
-    guid: 7bf24e9d2076ecd4ba65687e9d238c34
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/11_RawObject/RawObject.unity
-    guid: 338b384cc2d92bf42b28fbe2f172c4ec
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Examples/12_ReImplementInLua/ReImplementInLua.unity
-    guid: c4695949a6b369345a5ecdcc82c946c1
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Tutorial/CSharpCallLua/CSCallLua.unity
-    guid: 0b0cb24da8f1e8746b57219f9cb3d794
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Tutorial/LoadLuaScript/ByFile/ByFile.unity
-    guid: 645674efb2695c04eb519c16ceed1480
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Tutorial/LoadLuaScript/ByString/ByString.unity
-    guid: d6763539a6ad6444f9367b462faec32a
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Tutorial/LoadLuaScript/Loader/CustomLoader.unity
-    guid: d51c6b9168a36a24fa5817d79e1277f0
-  - enabled: 0
-    path: Assets/Plugins/ThirdParty/XLua/Tutorial/LuaCallCSharp/LuaCallCs.unity
-    guid: d5a67740111b6144d874577073176b35
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: da107ae9236cc3142b53df7a86b196f5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sample.unity
     guid: 132fc86d55b0cfa4c95308d030ba6034
   m_configObjects:

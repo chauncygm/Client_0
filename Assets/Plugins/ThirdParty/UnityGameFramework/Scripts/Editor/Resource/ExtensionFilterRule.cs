@@ -10,5 +10,7 @@ namespace UnityGameFramework.Editor
         {
             return Path.GetExtension(data.AssetPath) == ".shader";
         }
+
+        public string FindAssetType { get; }
     }
 }

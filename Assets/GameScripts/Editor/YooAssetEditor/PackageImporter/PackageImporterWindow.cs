@@ -49,42 +49,43 @@ namespace YooAsset.Editor
 
         private void CopyPackageFiles(string manifestFilePath)
         {
-            string manifestFileName = Path.GetFileNameWithoutExtension(manifestFilePath);
             string outputDirectory = Path.GetDirectoryName(manifestFilePath);
-
-            // 加载补丁清单
-            byte[] bytesData = FileUtility.ReadAllBytes(manifestFilePath);
-            PackageManifest manifest = ManifestTools.DeserializeFromBinary(bytesData, null);
-
-            // 拷贝核心文件
+            string manifestFileName = Path.GetFileName(manifestFilePath);
+            
+            if (string.IsNullOrEmpty(outputDirectory) || !Directory.Exists(outputDirectory))
             {
-                string sourcePath = $"{outputDirectory}/{manifestFileName}.bytes";
-                string destPath = $"{AssetBundleBuilderHelper.GetStreamingAssetsRoot()}/{_packageName}/{manifestFileName}.bytes";
-                EditorTools.CopyFile(sourcePath, destPath, true);
-            }
-            {
-                string sourcePath = $"{outputDirectory}/{manifestFileName}.hash";
-                string destPath = $"{AssetBundleBuilderHelper.GetStreamingAssetsRoot()}/{_packageName}/{manifestFileName}.hash";
-                EditorTools.CopyFile(sourcePath, destPath, true);
-            }
-            {
-                string fileName = YooAssetSettingsData.GetPackageVersionFileName(manifest.PackageName);
-                string sourcePath = $"{outputDirectory}/{fileName}";
-                string destPath = $"{AssetBundleBuilderHelper.GetStreamingAssetsRoot()}/{_packageName}/{fileName}";
-                EditorTools.CopyFile(sourcePath, destPath, true);
+                Debug.LogError($"无效的目录路径: {outputDirectory}");
+                return;
             }
 
-            // 拷贝文件列表
+            string streamingAssetsRoot = AssetBundleBuilderHelper.GetStreamingAssetsRoot();
+            string targetDirectory = $"{streamingAssetsRoot}/{_packageName}";
+            
+            if (!Directory.Exists(targetDirectory))
+            {
+                Directory.CreateDirectory(targetDirectory);
+            }
+
             int fileCount = 0;
-            foreach (var packageBundle in manifest.BundleList)
+            
+            var files = Directory.GetFiles(outputDirectory);
+            foreach (var file in files)
             {
-                fileCount++;
-                string sourcePath = $"{outputDirectory}/{packageBundle.FileName}";
-                string destPath = $"{AssetBundleBuilderHelper.GetStreamingAssetsRoot()}/{_packageName}/{packageBundle.FileName}";
-                EditorTools.CopyFile(sourcePath, destPath, true);
+                string fileName = Path.GetFileName(file);
+                string extension = Path.GetExtension(fileName).ToLower();
+                
+                if (extension == ".bytes" || 
+                    extension == ".hash" || 
+                    extension == ".info" ||
+                    fileName.Contains("_") && (fileName.EndsWith(".bundle") || fileName.EndsWith(".dat")))
+                {
+                    string destPath = $"{targetDirectory}/{fileName}";
+                    EditorTools.CopyFile(file, destPath, true);
+                    fileCount++;
+                }
             }
 
-            Debug.Log($"补丁包拷贝完成，一共拷贝了{fileCount}个资源文件");
+            Debug.Log($"补丁包导入完成！共拷贝 {fileCount} 个文件到: {targetDirectory}");
             AssetDatabase.Refresh();
         }
     }

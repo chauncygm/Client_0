@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "73654e76d28386dbc7766f803e2cb7a243e331e6"
+      "hash": "4feac30cb2e105992986c737f7f54992b8300e1a"
     },
     "com.cysharp.unitask": {
       "version": "2.5.10",
@@ -15,7 +15,7 @@
       "url": "https://package.openupm.com"
     },
     "com.ivanmurzak.unity.mcp": {
-      "version": "0.56.0",
+      "version": "0.63.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -37,7 +37,7 @@
       "url": "https://package.openupm.com"
     },
     "com.tuyoogame.yooasset": {
-      "version": "2.3.14",
+      "version": "2.3.18",
       "depth": 0,
       "source": "registry",
       "dependencies": {
