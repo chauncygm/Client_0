@@ -15,7 +15,6 @@ namespace GameMain
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            GameModule.Resource.PackageName = "GamePackage";
             
             //Fire Forget立刻触发UniTask初始化Package
             InitPackage(procedureOwner).Forget();

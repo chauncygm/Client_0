@@ -18,7 +18,7 @@ MonoBehaviour:
   Packages:
   - PackageName: GamePackage
     PackageDesc: 
-    EnableAddressable: 0
+    EnableAddressable: 1
     SupportExtensionless: 1
     LocationToLower: 0
     IncludeAssetGUID: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
         CollectorGUID: 0560228e4956be64bb23b74bf94b2d67
         CollectorType: 0
         AddressRuleName: AddressByFileName
-        PackRuleName: PackDirectory
+        PackRuleName: PackSeparately
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
@@ -60,7 +60,7 @@ MonoBehaviour:
         CollectorGUID: dce503afad3165944af3c7087f050af6
         CollectorType: 0
         AddressRuleName: AddressByFileName
-        PackRuleName: PackDirectory
+        PackRuleName: PackSeparately
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 

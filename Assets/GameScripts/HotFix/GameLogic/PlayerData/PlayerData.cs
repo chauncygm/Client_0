@@ -33,5 +33,16 @@ namespace GameLogic
         /// 资源
         /// </summary>
         public Dictionary<int, int> Resources { get; set; }
+
+        public void Reset()
+        {
+            Uid = 0;
+            PlayerId = 0;
+            Name = string.Empty;
+            Online = false;
+            LevelExp.Level = 0;
+            LevelExp.Exp = 0;
+            Resources.Clear();
+        }
     }
 }

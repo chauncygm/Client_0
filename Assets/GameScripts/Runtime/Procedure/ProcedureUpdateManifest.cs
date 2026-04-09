@@ -15,7 +15,7 @@ namespace GameMain
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             Log.Info("更新资源清单！！！");
-            UILoadMgr.Show(UIDefine.UILoadUpdate,$"更新清单文件...");
+            UILoadMgr.Show(UIDefine.UILoadUpdate,"更新清单文件...");
             UpdateManifest(procedureOwner).Forget();
         }
 

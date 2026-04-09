@@ -36,18 +36,25 @@ namespace GameLogic
             playerDataResources?.ToList().ForEach(x => dataResources[x.Key] = x.Value);
             player.Data.Resources = dataResources;
 
-            
             Debug.Log($"登录完成 {msg.Uid}");
             
             GameEvent.EventMgr.GetInterface<IActorLogicEvent>().OnMainPlayerLoginSuccess();
             // GameModule.Event.Fire(LoginEventResultArgs.EventId, LoginEventResultArgs.Create(LoginResult.SUCCESS));
         }
 
+        public static void OnDisconnected(int code, string reason)
+        {
+            Debug.Log($"玩家连接已断开: code: {code}, reason: {reason}");
+            Player.Self.Session.Reset();
+            Player.Self.Data.Reset();
+            GameEvent.EventMgr.GetInterface<IActorLogicEvent>().OnMainPlayerDisconnect();
+        }
+
         [MessageHandler]
         public static void OnHeatBeat(ResHeartbeat msg)
         {
-            var player = Player.Self;
-            player.Session.LastHeartBeatTime = msg.Time;
+            var session = Player.Self.Session;
+            session.LastHeartBeatTime = msg.Time;
         }
 
         [MessageHandler]
@@ -97,7 +104,8 @@ namespace GameLogic
 
         public static bool SendHeartBeat()
         {
-            if (!Player.Self.Data.Online)
+            var playerData = Player.Self.Data;
+            if (playerData is not { Online: true })
             {
                 return false;
             }

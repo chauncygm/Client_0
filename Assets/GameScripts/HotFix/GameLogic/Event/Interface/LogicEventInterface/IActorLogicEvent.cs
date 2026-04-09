@@ -11,5 +11,7 @@ namespace GameLogic
         void OnMainPlayerLevelChange();
 
         void OnMainPlayerLoginSuccess();
+        
+        void OnMainPlayerDisconnect();
     }
 }

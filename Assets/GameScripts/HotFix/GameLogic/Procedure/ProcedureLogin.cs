@@ -29,18 +29,23 @@ namespace GameLogic
 
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
-            base.OnEnter(procedureOwner);
-            _networkChannel = GameModule.Network.CreateNetworkChannel("tcp-channel", ServiceType.Tcp, _mNetworkChannelHelper);
             
-            var eventComponent = GameModule.Event;
-            // 订阅连接成功事件
-            eventComponent.Subscribe(NetworkConnectedEventArgs.EventId, OnNetworkConnected);
-            // 订阅连接关闭事件（包括主动关闭和异常断开）
-            eventComponent.Subscribe(NetworkClosedEventArgs.EventId, OnNetworkClosed);
-            // 订阅网络错误事件
-            eventComponent.Subscribe(NetworkErrorEventArgs.EventId, OnNetworkError);
-            // 订阅用户自定义的网络错误事件
-            eventComponent.Subscribe(NetworkCustomErrorEventArgs.EventId, OnNetworkCustomError);
+            base.OnEnter(procedureOwner);
+
+            if (_networkChannel == null)
+            {
+                _networkChannel = GameModule.Network.CreateNetworkChannel("tcp-channel", ServiceType.Tcp, _mNetworkChannelHelper);
+                
+                // 订阅连接成功事件
+                GameModule.Event.Subscribe(NetworkConnectedEventArgs.EventId, OnNetworkConnected);
+                // 订阅连接关闭事件（包括主动关闭和异常断开）
+                GameModule.Event.Subscribe(NetworkClosedEventArgs.EventId, OnNetworkClosed);
+                // 订阅网络错误事件
+                GameModule.Event.Subscribe(NetworkErrorEventArgs.EventId, OnNetworkError);
+                // 订阅用户自定义的网络错误事件
+                GameModule.Event.Subscribe(NetworkCustomErrorEventArgs.EventId, OnNetworkCustomError);
+            }
+            
             
             GameEvent.AddEventListener<long>(ILoginUI_Event.OnRoleLogin, OnLoginEventArgs);
             GameEvent.AddEventListener(IActorLogicEvent_Event.OnMainPlayerLoginSuccess, OnLoginEventResult);
@@ -59,7 +64,7 @@ namespace GameLogic
         private void OnLoginEventArgs(long uid)
         {
             var player = Player.Self;
-            if (player.Session.Channel != null)
+            if (player.Session.Uid > 0 && player.Data.Online)
             {
                 Debug.Log("已登录，请勿重复登录");
                 return;
@@ -84,13 +89,14 @@ namespace GameLogic
         {
             var ne = (NetworkClosedEventArgs)e;
             Debug.Log($"[网络事件] 连接已关闭: {ne.NetworkChannel.Name}");
-            Player.Self.Session.Channel = null;
+            PlayerManager.OnDisconnected(-1, "network closed");
         }
 
         private static void OnNetworkError(object sender, GameFrameworkEventArgs e)
         {
             var ne = (NetworkErrorEventArgs)e;
             Debug.LogError($"[网络事件] 网络错误: {ne.NetworkChannel.Name}, 错误码: {ne.ErrorCode}, 异常: {ne.ErrorMessage}");
+            PlayerManager.OnDisconnected(-1, "network closed");
         }
 
         private static void OnNetworkCustomError(object sender, GameFrameworkEventArgs e)

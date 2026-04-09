@@ -26,6 +26,7 @@ public class HybridCLRCustomGlobalSettings
         "GameBase.dll",
         "GameProto.dll",
         "GameLogic.dll",
+        "GameConfig.dll",
     };
 
     [Header("Need manual setting!")] public List<string> AOTMetaAssemblies= new()

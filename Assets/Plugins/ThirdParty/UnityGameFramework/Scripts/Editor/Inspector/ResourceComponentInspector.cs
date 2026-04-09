@@ -24,6 +24,7 @@ namespace UnityGameFramework.Editor
         };
 
         private SerializedProperty m_PlayMode = null;
+        private SerializedProperty m_PackageName = null;
         private SerializedProperty m_UpdatableWhilePlaying = null;
         private SerializedProperty m_VerifyLevel = null;
         private SerializedProperty m_Milliseconds = null;
@@ -51,6 +52,13 @@ namespace UnityGameFramework.Editor
 
             EditorGUI.BeginDisabledGroup(EditorApplication.isPlayingOrWillChangePlaymode);
             {
+                
+                string defaultPackage = EditorGUILayout.DelayedTextField("PackageName", m_PackageName.stringValue);
+                if (defaultPackage != m_PackageName.stringValue)
+                {
+                    m_PackageName.stringValue = defaultPackage;
+                }
+                // EditorGUILayout.PropertyField(m_DefualtPackage);
                 if (EditorApplication.isPlaying && IsPrefabInHierarchy(t.gameObject))
                 {
                     EditorGUILayout.EnumPopup("Resource Mode", t.PlayMode);
@@ -209,9 +217,9 @@ namespace UnityGameFramework.Editor
             {
                 EditorGUILayout.LabelField("Unload Unused Assets",
                     Utility.Text.Format("{0:F2} / {1:F2}", t.LastUnloadUnusedAssetsOperationElapseSeconds, t.MaxUnloadUnusedAssetsInterval));
-                EditorGUILayout.LabelField("Read-Only Path", t?.ReadOnlyPath?.ToString());
-                EditorGUILayout.LabelField("Read-Write Path", t?.ReadWritePath?.ToString());
-                EditorGUILayout.LabelField("Applicable Game Version", t.ApplicableGameVersion ?? "<Unknwon>");
+                // EditorGUILayout.LabelField("Read-Only Path", t?.ReadOnlyPath ?? "<Unknown>");
+                // EditorGUILayout.LabelField("Read-Write Path", t?.ReadWritePath ?? "<Unknown>");
+                // EditorGUILayout.LabelField("Applicable Game Version", t.ApplicableGameVersion ?? "<Unknown>");
             }
 
             serializedObject.ApplyModifiedProperties();
@@ -229,6 +237,7 @@ namespace UnityGameFramework.Editor
         private void OnEnable()
         {
             m_PlayMode = serializedObject.FindProperty("playMode");
+            m_PackageName = serializedObject.FindProperty("PackageName");
             m_UpdatableWhilePlaying = serializedObject.FindProperty("m_UpdatableWhilePlaying");
             m_VerifyLevel = serializedObject.FindProperty("VerifyLevel");
             m_Milliseconds = serializedObject.FindProperty("Milliseconds");

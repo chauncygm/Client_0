@@ -18,5 +18,12 @@ namespace GameLogic
         /// 上次心跳的时间
         /// </summary>
         public long LastHeartBeatTime { get; set; }
+        
+        public void Reset()
+        {
+            Uid = 0;
+            Channel = null;
+            LastHeartBeatTime = 0;
+        }
     }
 }

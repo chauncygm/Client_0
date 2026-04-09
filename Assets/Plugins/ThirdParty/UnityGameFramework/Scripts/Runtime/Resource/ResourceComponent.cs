@@ -45,7 +45,7 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 资源包名称。
         /// </summary>
-        public string PackageName = "DefaultPackage";
+        [SerializeField] public string PackageName = "DefaultPackage";
 
         /// <summary>
         /// 资源系统运行模式。

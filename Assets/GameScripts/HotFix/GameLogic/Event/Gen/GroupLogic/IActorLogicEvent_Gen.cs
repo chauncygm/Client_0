@@ -16,6 +16,7 @@ namespace GameLogic
 		public static readonly int OnMainPlayerNameChange = StringId.StringToHash("IActorLogicEvent_Event.OnMainPlayerNameChange");
 		public static readonly int OnMainPlayerLevelChange = StringId.StringToHash("IActorLogicEvent_Event.OnMainPlayerLevelChange");
 		public static readonly int OnMainPlayerLoginSuccess = StringId.StringToHash("IActorLogicEvent_Event.OnMainPlayerLoginSuccess");
+		public static readonly int OnMainPlayerDisconnect = StringId.StringToHash("IActorLogicEvent_Event.OnMainPlayerDisconnect");
 	}
 
 	[EventInterfaceImp(EEventGroup.GroupLogic)]
@@ -40,6 +41,11 @@ namespace GameLogic
         public void OnMainPlayerLoginSuccess()
         {
             _dispatcher.Send(IActorLogicEvent_Event.OnMainPlayerLoginSuccess);
+        }
+
+        public void OnMainPlayerDisconnect()
+        {
+            _dispatcher.Send(IActorLogicEvent_Event.OnMainPlayerDisconnect);
         }
 
 	}
