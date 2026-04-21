@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "Client_0",
     "maps": [
         {
@@ -27,15 +28,6 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "b428522d-401d-40c4-8b89-610ee1fdc542",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "9a80de19-daaf-4383-952f-1d1014244306",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -269,17 +261,6 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6ccd7286-1114-4e9e-b18b-e7fd8728636c",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

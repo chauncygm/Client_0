@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: da107ae9236cc3142b53df7a86b196f5
   - enabled: 0
-    path: Assets/Scenes/Sample.unity
+    path: Assets/Scenes/Sample/NavMashTest/NavMashPlane.unity
     guid: 132fc86d55b0cfa4c95308d030ba6034
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ebad93b14c80e884fa870e373f2a133e,
