@@ -1,15 +1,13 @@
-
-// ********************************************************
-// 优化版自适应适配器
-// 保留原有功能优势，提升代码简洁性和可读性
-// ********************************************************
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+public enum AdaptorType
+{
+    None,
+    KeepDesign2D,
+}
 [RequireComponent(typeof(RectTransform))]
-public class ScreenAdaptorManager : MonoBehaviour
+public class ScreenAdaptor : MonoBehaviour
 {
     #region 配置参数
     [Header("适配模式")]
@@ -48,10 +46,10 @@ public class ScreenAdaptorManager : MonoBehaviour
     private Vector3 _mask2TargetPos;
     
     private Camera _mainCamera;
-    private float _cameraSize;
+    private float _orthographicSize;
     private Vector4 _safeAreaBounds;
 
-    public static ScreenAdaptorManager Instance { get; private set; }
+    public static ScreenAdaptor Instance { get; private set; }
 
     #endregion
 
@@ -64,7 +62,7 @@ public class ScreenAdaptorManager : MonoBehaviour
     private void Start()
     {
         CalculateScreenProperties();
-        StartCoroutine(ApplyUIAdaption());
+        ApplyUIAdaption();
     }
 
     private void Update()
@@ -116,7 +114,7 @@ public class ScreenAdaptorManager : MonoBehaviour
             if (!_isWideScreen)
             {
                 // 横屏非宽屏：高度固定，左右裁切
-                _cameraSize = designSceneSize.y;
+                _orthographicSize = designSceneSize.y;
                 maskScale = new Vector3(10, 50, 0);
                 mask1Pos = new Vector3(-maxSceneSize.x - 5, 0, 1);
                 mask2Pos = new Vector3(maxSceneSize.x + 5, 0, 1);
@@ -124,7 +122,7 @@ public class ScreenAdaptorManager : MonoBehaviour
             else
             {
                 // 横屏宽屏：宽度固定，上下裁切
-                _cameraSize = designSceneSize.x / _screenRatio;
+                _orthographicSize = designSceneSize.x / _screenRatio;
                 maskScale = new Vector3(50, 10, 0);
                 mask1Pos = new Vector3(0, designSceneSize.y + 5, 1);
                 mask2Pos = new Vector3(0, -designSceneSize.y - 5, 1);
@@ -135,7 +133,7 @@ public class ScreenAdaptorManager : MonoBehaviour
             if (!_isWideScreen)
             {
                 // 竖屏非宽屏：宽度固定，上下裁切
-                _cameraSize = designSceneSize.x * _screenRatio;
+                _orthographicSize = designSceneSize.x * _screenRatio;
                 maskScale = new Vector3(50, 10, 0);
                 mask1Pos = new Vector3(0, maxSceneSize.y + 5, 1);
                 mask2Pos = new Vector3(0, -maxSceneSize.y - 5, 1);
@@ -143,30 +141,30 @@ public class ScreenAdaptorManager : MonoBehaviour
             else
             {
                 // 竖屏宽屏：高度固定，左右裁切
-                _cameraSize = designSceneSize.y;
+                _orthographicSize = designSceneSize.y;
                 maskScale = new Vector3(10, 50, 0);
                 mask1Pos = new Vector3(-designSceneSize.x - 5, 0, 1);
                 mask2Pos = new Vector3(designSceneSize.x + 5, 0, 1);
             }
         }
         
-        if (!_mainCamera)
-            _mainCamera.orthographicSize = _cameraSize;
+        if (_mainCamera)
+            _mainCamera.orthographicSize = _orthographicSize;
             
-        if (!_mask1)
+        if (_mask1)
         {
             _mask1.localScale = maskScale;
             _mask1.localPosition = _mask1DefaultPos = mask1Pos;
         }
         
-        if (!_mask2)
+        if (_mask2)
         {
             _mask2.localScale = maskScale;
             _mask2.localPosition = _mask2DefaultPos = mask2Pos;
         }
     }
     
-    private IEnumerator ApplyUIAdaption()
+    private void ApplyUIAdaption()
     {
         var canvasScaler = GetComponentInParent<CanvasScaler>();
         if (canvasScaler)
@@ -190,13 +188,13 @@ public class ScreenAdaptorManager : MonoBehaviour
                     
             UpdateScreenArea(_safeAreaBounds);
             UpdateUIMask(0);
-            yield break;
+            return;
         }
         
         if (_mask1) _mask1.gameObject.SetActive(true);
         if (_mask2) _mask2.gameObject.SetActive(true);
         
-        yield return new WaitForSeconds(0.1f);
+        Canvas.ForceUpdateCanvases();
         ProcessUIAdaption();
     }
 
@@ -210,7 +208,7 @@ public class ScreenAdaptorManager : MonoBehaviour
             if (!_isWideScreen)
             {
                 // 横屏非宽屏：UI上下顶满，左右裁切
-                var halfWidth = _cameraSize * _screenRatio;
+                var halfWidth = _orthographicSize * _screenRatio;
                 var width = halfWidth * 2;
                 left = (halfWidth - maxSceneSize.x) / width * _screenSize.x;
                 bottom = 0;
@@ -234,11 +232,11 @@ public class ScreenAdaptorManager : MonoBehaviour
             else
             {
                 // 横屏宽屏：UI左右顶满，上下裁切
-                var height = _cameraSize * 2;
+                var height = _orthographicSize * 2;
                 left = 0;
-                bottom = (_cameraSize - designSceneSize.y) / height * _screenSize.y;
+                bottom = (_orthographicSize - designSceneSize.y) / height * _screenSize.y;
                 right = _screenSize.x;
-                top = (_cameraSize + designSceneSize.y) / height * _screenSize.y;
+                top = (_orthographicSize + designSceneSize.y) / height * _screenSize.y;
                 
                 left = Mathf.Max(left, _safeAreaBounds.x);
                 bottom = Mathf.Max(bottom, _safeAreaBounds.y);
@@ -253,19 +251,19 @@ public class ScreenAdaptorManager : MonoBehaviour
             if (!_isWideScreen)
             {
                 // 竖屏非宽屏：UI左右顶满，上下裁切
-                var height = _cameraSize * 2;
+                var height = _orthographicSize * 2;
                 left = 0;
-                bottom = (_cameraSize - maxSceneSize.y) / height * _screenSize.y;
+                bottom = (_orthographicSize - maxSceneSize.y) / height * _screenSize.y;
                 right = _screenSize.x;
-                top = (_cameraSize + maxSceneSize.y) / height * _screenSize.y;
+                top = (_orthographicSize + maxSceneSize.y) / height * _screenSize.y;
                 
                 bottom = Mathf.Max(bottom, _safeAreaBounds.y);
                 top = Mathf.Min(top, _safeAreaBounds.w);
                 UpdateScreenArea(new Vector4(left, bottom, right, top));
                 
-                if (maxSceneSize.y > _cameraSize)
+                if (maxSceneSize.y > _orthographicSize)
                 {
-                    var offset = (maxSceneSize.y - _cameraSize) / height * _screenSize.y;
+                    var offset = (maxSceneSize.y - _orthographicSize) / height * _screenSize.y;
                     UpdateUIMask(offset);
                 }
                 else
@@ -276,7 +274,7 @@ public class ScreenAdaptorManager : MonoBehaviour
             else
             {
                 // 竖屏宽屏：UI上下顶满，左右裁切
-                var halfWidth = _cameraSize / _screenRatio;
+                var halfWidth = _orthographicSize / _screenRatio;
                 var width = halfWidth * 2;
                 left = (halfWidth - designSceneSize.x) / width * _screenSize.x;
                 bottom = 0;
