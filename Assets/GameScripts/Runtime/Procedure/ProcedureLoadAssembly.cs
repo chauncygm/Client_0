@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 #if ENABLE_HYBRIDCLR
@@ -19,143 +19,209 @@ namespace GameMain
     /// </summary>
     public class ProcedureLoadAssembly : ProcedureBase
     {
-        private readonly bool m_EnableAddressable = true;
-        private int m_LoadAssetCount;
-        private int m_LoadMetadataAssetCount;
-        private int m_FailureAssetCount;
-        private int m_FailureMetadataAssetCount;
-        private bool m_LoadAssemblyComplete;
-        private bool m_LoadMetadataAssemblyComplete;
-        private bool m_LoadAssemblyWait;
-        private bool m_LoadMetadataAssemblyWait;
-        private Assembly m_MainLogicAssembly;
-        private List<Assembly> m_HotfixAssemblys;
-        private IFsm<IProcedureManager> m_ProcedureOwner;
+        private const string GameAppTypeName = "GameApp";
+        private const string GameAppEntryMethod = "Entrance";
+        
+        // 元数据程序集加载
+        private int _loadMetadataAssetCount;
+        private bool _loadMetadataAssemblyWait;
+        private int _failureMetadataAssetCount;
+        private bool _loadMetadataAssemblyComplete;
+        
+        // 程序集加载
+        private int _loadAssetCount;
+        private bool _loadAssemblyWait;
+        private bool _loadAssemblyComplete;
+        private int _failureAssetCount;
+
+        // 程序集及主程序集
+        private Assembly _mainLogicAssembly;
+        private List<Assembly> _hotfixAssemblies;
+        // 防止重复调用
+        private bool _assemblyLoadedAndInvoked;
 
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            m_ProcedureOwner = procedureOwner;
-            m_LoadAssemblyComplete = false;
-            m_HotfixAssemblys = new List<Assembly>();
+            
+            _loadAssemblyComplete = false;
+            _loadMetadataAssemblyComplete = false;
+            _assemblyLoadedAndInvoked = false;
+            _hotfixAssemblies = new List<Assembly>();
+            _failureAssetCount = 0;
+            _failureMetadataAssetCount = 0;
 
             //AOT Assembly加载原始metadata
             if (SettingsUtils.HybridCLRCustomGlobalSettings.Enable)
             {
 #if !UNITY_EDITOR
-                m_LoadMetadataAssemblyComplete = false;
+                _loadMetadataAssemblyComplete = false;
                 LoadMetadataForAOTAssembly();
 #else
-                m_LoadMetadataAssemblyComplete = true;
+                _loadMetadataAssemblyComplete = true;
 #endif
             }
             else
             {
-                m_LoadMetadataAssemblyComplete = true;
+                _loadMetadataAssemblyComplete = true;
             } 
             
             if (SettingsUtils.HybridCLRCustomGlobalSettings.Enable && GameModule.Resource.PlayMode != EPlayMode.EditorSimulateMode)
             {
-                foreach (var hotUpdateDllName in SettingsUtils.HybridCLRCustomGlobalSettings.HotUpdateAssemblies)
-                {
-                    var assetLocation = hotUpdateDllName;
-                    if (!m_EnableAddressable)
-                    {
-                        assetLocation = Utility.Path.GetRegularPath(
-                            Path.Combine(
-                                "Assets",
-                                SettingsUtils.HybridCLRCustomGlobalSettings.AssemblyTextAssetPath,
-                                $"{hotUpdateDllName}{SettingsUtils.HybridCLRCustomGlobalSettings.AssemblyTextAssetExtension}"));
-                    }
-
-                    Log.Debug($"LoadAsset: [ {assetLocation} ]");
-                    m_LoadAssetCount++;
-                    GameModule.Resource.LoadAsset<TextAsset>(assetLocation, LoadAssetSuccess);
-                }
-
-                m_LoadAssemblyWait = true;
+                LoadHotUpdateAssemblies();
             }
             else
             {
-                m_MainLogicAssembly = GetMainLogicAssembly();
+                _mainLogicAssembly = GetMainLogicAssembly();
+                _loadAssemblyComplete = true;
             }
-
-            m_LoadAssemblyComplete = m_LoadAssetCount == 0;
         }
 
         protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
         {
-            base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
-            if (!m_LoadAssemblyComplete)
-            {
-                return;
-            }
-
-            if (!m_LoadMetadataAssemblyComplete)
-            {
-                return;
-            }
-
-            AllAssemblyLoadComplete();
+            if (!_loadAssemblyComplete || !_loadMetadataAssemblyComplete) return;
+            
+            TryInvokeEntryMethod();
         }
 
-        // ReSharper disable Unity.PerformanceAnalysis
-        private void AllAssemblyLoadComplete()
+        /// <summary>
+        /// 尝试调用入口方法（确保只调用一次）
+        /// </summary>
+        private void TryInvokeEntryMethod()
         {
-            ChangeState<ProcedureStartGame>(m_ProcedureOwner);
-            if (m_MainLogicAssembly == null)
+            if (_assemblyLoadedAndInvoked) return;
+            
+            if (!ValidateAndPrepareAssembly())
+            {
+                Log.Error("[ProcedureLoadAssembly] Assembly validation failed, cannot proceed.");
+                return;
+            }
+            
+            _assemblyLoadedAndInvoked = true;
+            ChangeProcedure<ProcedureStartGame>();
+            InvokeGameAppEntrance();
+        }
+
+        /// <summary>
+        /// 验证程序集并准备数据
+        /// </summary>
+        private bool ValidateAndPrepareAssembly()
+        {
+            if (_mainLogicAssembly == null)
             {
 #if !UNITY_EDITOR
-                Log.Fatal("Main logic assembly missing.");
-                return;
+                Log.Fatal("[ProcedureLoadAssembly] Main logic assembly is missing!");
+                return false;
+#else
+                _mainLogicAssembly = GetMainLogicAssembly();
+                if (_mainLogicAssembly == null)
+                {
+                    Log.Fatal("[ProcedureLoadAssembly] Cannot find main logic assembly.");
+                    return false;
+                }
 #endif
-                m_MainLogicAssembly = GetMainLogicAssembly();
             }
-
-            var appType = m_MainLogicAssembly.GetType("GameApp");
-            if (appType == null)
-            {
-                Log.Fatal("Main logic type 'GameMain' missing.");
-                return;
-            }
-
-            var entryMethod = appType.GetMethod("Entrance");
-            if (entryMethod == null)
-            {
-                Log.Fatal("Main logic entry method 'Entrance' missing.");
-                return;
-            }
-
-            object[] objects = { new object[] { m_HotfixAssemblys } };
-            entryMethod.Invoke(appType, objects);
+            
+            return true;
         }
 
+        /// <summary>
+        /// 调用 GameApp.Entrance 入口方法
+        /// </summary>
+        private void InvokeGameAppEntrance()
+        {
+            var appType = _mainLogicAssembly.GetType(GameAppTypeName);
+            if (appType == null)
+            {
+                Log.Fatal($"[ProcedureLoadAssembly] Type '{GameAppTypeName}' not found in assembly.");
+                return;
+            }
+
+            var entryMethod = appType.GetMethod(GameAppEntryMethod);
+            if (entryMethod == null)
+            {
+                Log.Fatal($"[ProcedureLoadAssembly] Method '{GameAppEntryMethod}' not found in type '{GameAppTypeName}'.");
+                return;
+            }
+
+            try
+            {
+                object[] objects = { new object[] { _hotfixAssemblies } };
+                entryMethod.Invoke(null, objects);
+                Log.Info("[ProcedureLoadAssembly] GameApp.Entrance invoked successfully.");
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal($"[ProcedureLoadAssembly] Failed to invoke entrance method: {ex.Message}\n{ex.StackTrace}");
+            }
+        }
+
+        /// <summary>
+        /// 获取主逻辑程序集（优化版：使用 HashSet 加速查找）
+        /// </summary>
         private Assembly GetMainLogicAssembly()
         {
+            var hotUpdateDllSet = new HashSet<string>(SettingsUtils.HybridCLRCustomGlobalSettings.HotUpdateAssemblies);
             Assembly mainLogicAssembly = null;
+            
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                if (string.Compare(SettingsUtils.HybridCLRCustomGlobalSettings.LogicMainDllName, $"{assembly.GetName().Name}.dll",
-                        StringComparison.Ordinal) == 0)
+                var assemblyName = $"{assembly.GetName().Name}.dll";
+                
+                // 检查是否为主逻辑 DLL
+                if (mainLogicAssembly == null && 
+                    string.Equals(SettingsUtils.HybridCLRCustomGlobalSettings.LogicMainDllName, assemblyName, StringComparison.Ordinal))
                 {
                     mainLogicAssembly = assembly;
                 }
 
-                foreach (var hotUpdateDllName in SettingsUtils.HybridCLRCustomGlobalSettings.HotUpdateAssemblies)
+                // 检查是否为热更新 DLL
+                if (hotUpdateDllSet.Contains(assemblyName))
                 {
-                    if (hotUpdateDllName == $"{assembly.GetName().Name}.dll")
-                    {
-                        m_HotfixAssemblys.Add(assembly);
-                    }
+                    _hotfixAssemblies.Add(assembly);
                 }
 
-                if (mainLogicAssembly != null && m_HotfixAssemblys.Count == SettingsUtils.HybridCLRCustomGlobalSettings.HotUpdateAssemblies.Count)
+                // 提前退出条件
+                if (mainLogicAssembly != null && _hotfixAssemblies.Count == hotUpdateDllSet.Count)
                 {
                     break;
                 }
             }
 
             return mainLogicAssembly;
+        }
+
+        /// <summary>
+        /// 加载热更新程序集
+        /// </summary>
+        private void LoadHotUpdateAssemblies()
+        {
+            foreach (var hotUpdateDllName in SettingsUtils.HybridCLRCustomGlobalSettings.HotUpdateAssemblies)
+            {
+                var assetLocation = ResolveAssetLocation(hotUpdateDllName);
+                Log.Debug($"[ProcedureLoadAssembly] Loading assembly: {assetLocation}");
+                _loadAssetCount++;
+                GameModule.Resource.LoadAsset<TextAsset>(assetLocation, LoadAssetSuccess);
+            }
+            _loadAssemblyWait = true;
+
+        }
+
+        /// <summary>
+        /// 解析资源路径
+        /// </summary>
+        private string ResolveAssetLocation(string dllName)
+        {
+            if (SettingsUtils.HybridCLRCustomGlobalSettings.EnableAddressable)
+            {
+                return dllName;
+            }
+            
+            return Utility.Path.GetRegularPath(
+                Path.Combine(
+                    "Assets",
+                    SettingsUtils.HybridCLRCustomGlobalSettings.AssemblyTextAssetPath,
+                    $"{dllName}{SettingsUtils.HybridCLRCustomGlobalSettings.AssemblyTextAssetExtension}"));
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
@@ -165,76 +231,80 @@ namespace GameMain
         /// <param name="textAsset">资源操作句柄。</param>
         private void LoadAssetSuccess(TextAsset textAsset)
         {
-            m_LoadAssetCount--;
-
-            if (!textAsset)
+            if (textAsset == null)
             {
-                Log.Warning("Load Assembly failed.");
+                _failureAssetCount++;
+                Log.Error($"[ProcedureLoadAssembly] Failed to load assembly TextAsset. Remaining: {_loadAssetCount - 1}");
+                CheckAssemblyLoadComplete();
                 return;
             }
 
             var assetName = textAsset.name;
-            Log.Debug($"LoadAssetSuccess, assetName: [ {assetName} ]");
+            Log.Debug($"[ProcedureLoadAssembly] Assembly loaded: {assetName}");
 
             try
             {
                 var assembly = Assembly.Load(textAsset.bytes);
-                if (string.Compare(SettingsUtils.HybridCLRCustomGlobalSettings.LogicMainDllName, assetName, StringComparison.Ordinal) == 0)
+                
+                // 检查是否为主逻辑 DLL
+                if (string.Equals(SettingsUtils.HybridCLRCustomGlobalSettings.LogicMainDllName, assetName, StringComparison.Ordinal))
                 {
-                    m_MainLogicAssembly = assembly;
+                    _mainLogicAssembly = assembly;
+                    Log.Info($"[ProcedureLoadAssembly] Main logic assembly loaded: {assetName}");
                 }
-
-                m_HotfixAssemblys.Add(assembly);
-                Log.Debug($"Assembly [ {assembly.GetName().Name} ] loaded");
+                else
+                {
+                    _hotfixAssemblies.Add(assembly);
+                    Log.Debug($"[ProcedureLoadAssembly] Hotfix assembly loaded: {assembly.GetName().Name}");
+                }
             }
             catch (Exception e)
             {
-                m_FailureAssetCount++;
-                Log.Fatal(e);
-                throw;
+                _failureAssetCount++;
+                Log.Error($"[ProcedureLoadAssembly] Failed to load assembly '{assetName}': {e.Message}");
+                // 不抛出异常，允许其他 DLL 继续加载
             }
             finally
             {
-                m_LoadAssemblyComplete = m_LoadAssemblyWait && 0 == m_LoadAssetCount;
+                _loadAssetCount--;
+                CheckAssemblyLoadComplete();
             }
         }
 
         /// <summary>
-        /// 为Aot Assembly加载原始metadata， 这个代码放Aot或者热更新都行。
+        /// 检查程序集加载是否完成
+        /// </summary>
+        private void CheckAssemblyLoadComplete()
+        {
+            if (_loadAssemblyWait && _loadAssetCount <= 0)
+            {
+                _loadAssemblyComplete = true;
+                Log.Info($"[ProcedureLoadAssembly] All assemblies loaded. Success: {_loadAssetCount + _failureAssetCount - _failureAssetCount}, Failed: {_failureAssetCount}");
+            }
+        }
+
+        /// <summary>
+        /// 为AOT Assembly加载原始metadata。
         /// 一旦加载后，如果AOT泛型函数对应native实现不存在，则自动替换为解释模式执行。
         /// </summary>
         public void LoadMetadataForAOTAssembly()
         {
-            // 可以加载任意aot assembly的对应的dll。但要求dll必须与unity build过程中生成的裁剪后的dll一致，而不能直接使用原始dll。
-            // 我们在BuildProcessor_xxx里添加了处理代码，这些裁剪后的dll在打包时自动被复制到 {项目目录}/HybridCLRData/AssembliesPostIl2CppStrip/{Target} 目录。
-
-            // 注意，补充元数据是给AOT dll补充元数据，而不是给热更新dll补充元数据。
-            // 热更新dll不缺元数据，不需要补充，如果调用LoadMetadataForAOTAssembly会返回错误
             if (SettingsUtils.HybridCLRCustomGlobalSettings.AOTMetaAssemblies.Count == 0)
             {
-                m_LoadMetadataAssemblyComplete = true;
+                _loadMetadataAssemblyComplete = true;
+                Log.Debug("[ProcedureLoadAssembly] No AOT metadata assemblies to load.");
                 return;
             }
 
             foreach (var aotDllName in SettingsUtils.HybridCLRCustomGlobalSettings.AOTMetaAssemblies)
             {
-                var assetLocation = aotDllName;
-                if (!m_EnableAddressable)
-                {
-                    assetLocation = Utility.Path.GetRegularPath(
-                        Path.Combine(
-                            "Assets",
-                            SettingsUtils.HybridCLRCustomGlobalSettings.AssemblyTextAssetPath,
-                            $"{aotDllName}{SettingsUtils.HybridCLRCustomGlobalSettings.AssemblyTextAssetExtension}"));
-                }
-
-
-                Log.Debug($"LoadMetadataAsset: [ {assetLocation} ]");
-                m_LoadMetadataAssetCount++;
+                var assetLocation = ResolveAssetLocation(aotDllName);
+                Log.Debug($"[ProcedureLoadAssembly] Loading AOT metadata: {assetLocation}");
+                _loadMetadataAssetCount++;
                 GameModule.Resource.LoadAsset<TextAsset>(assetLocation, LoadMetadataAssetSuccess);
             }
 
-            m_LoadMetadataAssemblyWait = true;
+            _loadMetadataAssemblyWait = true;
         }
 
         /// <summary>
@@ -243,36 +313,56 @@ namespace GameMain
         /// <param name="textAsset">资源操作句柄。</param>
         private void LoadMetadataAssetSuccess(TextAsset textAsset)
         {
-            m_LoadMetadataAssetCount--;
-
-            if (!textAsset)
+            if (textAsset == null)
             {
-                Log.Debug("LoadMetadataAssetSuccess:Load Metadata failed.");
+                _failureMetadataAssetCount++;
+                Log.Error($"[ProcedureLoadAssembly] Failed to load AOT metadata TextAsset. Remaining: {_loadMetadataAssetCount - 1}");
+                CheckMetadataLoadComplete();
                 return;
             }
 
             var assetName = textAsset.name;
-            Log.Debug($"LoadMetadataAssetSuccess, assetName: [ {assetName} ]");
+            Log.Debug($"[ProcedureLoadAssembly] AOT metadata loaded: {assetName}");
 
             try
             {
                 var dllBytes = textAsset.bytes;
 #if ENABLE_HYBRIDCLR
-                // 加载assembly对应的dll，会自动为它hook。一旦Aot泛型函数的native函数不存在，用解释器版本代码
-                HomologousImageMode mode = HomologousImageMode.SuperSet;
-                LoadImageErrorCode err = (LoadImageErrorCode)HybridCLR.RuntimeApi.LoadMetadataForAOTAssembly(dllBytes,mode); 
-                Log.Warning($"LoadMetadataForAOTAssembly:{assetName}. mode:{mode} ret:{err}");
+                const HomologousImageMode mode = HomologousImageMode.SuperSet;
+                var err = RuntimeApi.LoadMetadataForAOTAssembly(dllBytes, mode);
+                
+                if (err != LoadImageErrorCode.OK)
+                {
+                    Log.Error($"[ProcedureLoadAssembly] LoadMetadataForAOTAssembly failed: {assetName}, mode: {mode}, error: {err}");
+                    _failureMetadataAssetCount++;
+                }
+                else
+                {
+                    Log.Info($"[ProcedureLoadAssembly] AOT metadata loaded successfully: {assetName}");
+                }
 #endif
             }
             catch (Exception e)
             {
-                m_FailureMetadataAssetCount++;
-                Log.Fatal(e.Message);
-                throw;
+                _failureMetadataAssetCount++;
+                Log.Error($"[ProcedureLoadAssembly] Exception loading AOT metadata '{assetName}': {e.Message}");
             }
             finally
             {
-                m_LoadMetadataAssemblyComplete = m_LoadMetadataAssemblyWait && m_LoadMetadataAssetCount == 0;
+                _loadMetadataAssetCount--;
+                CheckMetadataLoadComplete();
+            }
+        }
+
+        /// <summary>
+        /// 检查元数据加载是否完成
+        /// </summary>
+        private void CheckMetadataLoadComplete()
+        {
+            if (_loadMetadataAssemblyWait && _loadMetadataAssetCount <= 0)
+            {
+                _loadMetadataAssemblyComplete = true;
+                Log.Info($"[ProcedureLoadAssembly] All AOT metadata loaded. Failed: {_failureMetadataAssetCount}");
             }
         }
     }

@@ -2,12 +2,10 @@
 
 namespace GameMain
 {
-    public class UIBase : MonoBehaviour
+    public abstract class UIBase : MonoBehaviour
     {
-        protected object Param;
-        public virtual void OnEnter(object param)
-        {
-            Param = param;
-        }
+        public abstract string Name();
+        public abstract void OnEnter(params object[] param);
+
     }
 }

@@ -56,6 +56,13 @@ public class HybridCLRCustomGlobalSettings
     public string AssemblyTextAssetPath = "AssetRaw/DLL";
 
     /// <summary>
+    /// 是否启用 Addressable 资源系统
+    /// true: 直接使用 DLL 名称作为资源路径（如 "GameLogic.dll"）
+    /// false: 使用完整路径（如 "Assets/AssetRaw/DLL/GameLogic.dll.bytes"）
+    /// </summary>
+    public bool EnableAddressable = true;
+
+    /// <summary>
     /// Resources HybridCLRGlobalSettings Dir
     /// </summary>
     public string HybridCLRGlobalSettings = "Settings/HybridCLRGlobalSettings";

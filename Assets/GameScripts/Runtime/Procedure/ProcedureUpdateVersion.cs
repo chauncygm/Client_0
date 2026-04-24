@@ -1,5 +1,3 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 using YooAsset;
@@ -12,71 +10,46 @@ namespace GameMain
     /// </summary>
     public class ProcedureUpdateVersion : ProcedureBase
     {
-        private ProcedureOwner _procedureOwner;
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
-            _procedureOwner = procedureOwner;
-
-            base.OnEnter(procedureOwner);
-
-            UILoadMgr.Show(UIDefine.UILoadUpdate, "更新静态版本文件...");
-
-            //检查设备是否能够访问互联网
-            if (Application.internetReachability == NetworkReachability.NotReachable)
-            {
-                Log.Warning("The device is not connected to the network");
-                UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.LabelNetUnReachable);
-                UILoadTip.ShowMessageBox(LoadText.Instance.LabelNetUnReachable, MessageShowType.TwoButton,
-                    LoadStyle.StyleEnum.Style_Retry,
-                    GetStaticVersion().Forget,
-                    () => { ChangeState<ProcedureInitResources>(procedureOwner); });
-            }
-
-            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.LabelRequestVersionIng);
-
-            // 用户尝试更新静态版本。
-            GetStaticVersion().Forget();
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.LabelUpdateVersionFile);
+            GetStaticVersion();
         }
 
         /// <summary>
         /// 向用户尝试更新静态版本。
         /// </summary>
-        private async UniTaskVoid GetStaticVersion()
+        private void GetStaticVersion()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
-
+            //检查设备是否能够访问互联网
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                UILoadMgr.ShowMessageBox(LoadText.Instance.LabelNetUnReachable, MessageShowType.OkOrCancel,
+                    GetStaticVersion,
+                    ChangeProcedure<ProcedurePreload>);
+                return;
+            }
             var operation = GameModule.Resource.RequestPackageVersionAsync();
-
-            try
-            {
-                await operation.ToUniTask();
-
-                if (operation.Status == EOperationStatus.Succeed)
-                {
-                    //线上最新版本operation.PackageVersion
-                    Log.Debug($"Updated package Version : from {GameModule.Resource.PackageVersion} to {operation.PackageVersion}");
-                    GameModule.Resource.PackageVersion = operation.PackageVersion;
-                    ChangeState<ProcedureUpdateManifest>(_procedureOwner);
-                }
-                else
-                {
-                    OnGetStaticVersionError(operation.Error);
-                }
-            }
-            catch (Exception e)
-            {
-                OnGetStaticVersionError(e.Message);
-            }
+            operation.Completed += OnRequestPackageVersionCompleted;
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.LabelRequestVersion);
         }
 
-        private void OnGetStaticVersionError(string error)
+        private void OnRequestPackageVersionCompleted(AsyncOperationBase obj)
         {
-            Log.Error(error);
-
-            UILoadTip.ShowMessageBox($"用户尝试更新静态版本失败！点击确认重试 \n \n <color=#FF0000>原因{error}</color>", MessageShowType.TwoButton,
-                LoadStyle.StyleEnum.Style_Retry
-                , () => { ChangeState<ProcedureUpdateVersion>(_procedureOwner); }, UnityEngine.Application.Quit);
+            if (obj is not RequestPackageVersionOperation operation) return;
+            if (operation.Status == EOperationStatus.Succeed)
+            {
+                Log.Debug($"更新静态版本号完成，当前: {GameModule.Resource.PackageVersion} ，远端：{operation.PackageVersion}");
+                GameModule.Resource.PackageVersion = operation.PackageVersion;
+                ChangeProcedure<ProcedureUpdateManifest>();
+            }
+            else
+            {
+                Log.Error("更新静态版本号失败：" + operation.Error);
+                UILoadMgr.ShowMessageBox(LoadText.Instance.LabelUpdateStaticVersionFileFailed, MessageShowType.RetryOrQuitTips, GetStaticVersion);
+            }
         }
+
     }
 }

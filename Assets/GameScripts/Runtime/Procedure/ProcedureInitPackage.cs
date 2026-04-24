@@ -1,4 +1,3 @@
-﻿using System;
 using Cysharp.Threading.Tasks;
 using UnityGameFramework.Runtime;
 using YooAsset;
@@ -14,65 +13,53 @@ namespace GameMain
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
-            base.OnEnter(procedureOwner);
+            InitPackage().Forget();
+        }
+
+        private async UniTaskVoid InitPackage()
+        {
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.LabelInitPackage);
             
-            //Fire Forget立刻触发UniTask初始化Package
-            InitPackage(procedureOwner).Forget();
-        }
-
-        private async UniTaskVoid InitPackage(ProcedureOwner procedureOwner)
-        {
-            await UniTask.WaitForSeconds(0.1f);
-            try
+            var package = YooAssets.TryGetPackage(GameModule.Resource.PackageName);
+            if (package is { InitializeStatus: EOperationStatus.Succeed })
             {
-                var package = YooAssets.TryGetPackage(GameModule.Resource.PackageName);
-                if (package is { InitializeStatus: EOperationStatus.Succeed })
-                {
-                    OnInitSuccess(procedureOwner);
-                    return;
-                }
-                var initializationOperation = await GameModule.Resource.InitPackage();
-
-                if (initializationOperation.Status == EOperationStatus.Succeed)
-                {
-                    OnInitSuccess(procedureOwner);
-                }
-                else
-                {
-                    OnInitPackageFailed(procedureOwner, initializationOperation.Error);
-                }
+                OnInitSuccess();
+                return;
             }
-            catch (Exception e)
+            
+            var operation = await GameModule.Resource.InitPackage();
+            operation.Completed += OnInitPackageCompleted;
+            
+        }
+
+        private void OnInitPackageCompleted(AsyncOperationBase obj)
+        {
+            if (obj.Status == EOperationStatus.Succeed)
             {
-                OnInitPackageFailed(procedureOwner, e.Message);
+                OnInitSuccess();
+                return;
             }
+            
+            OnInitPackageFailed(obj.Error);
         }
 
-        private void OnInitSuccess(ProcedureOwner procedureOwner)
+        private void OnInitSuccess()
         {
-            Log.Info("Init package success.");
-            // 打开启动UI。
-            UILoadMgr.Show(UIDefine.UILoadUpdate);
-            ChangeState<ProcedureUpdateVersion>(procedureOwner);
+            Log.Info("初始化资源包成功！");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.LabelInitPackageSuccess);
+            ChangeProcedure<ProcedureUpdateVersion>();
         }
 
-        private void OnInitPackageFailed(ProcedureOwner procedureOwner, string message)
+        private void OnInitPackageFailed(string message)
         {
-            Log.Error($"{message}");
-            // 打开启动UI。
-            UILoadMgr.Show(UIDefine.UILoadUpdate, "资源初始化失败！");
-
-            UILoadTip.ShowMessageBox($"资源初始化失败！点击确认重试 \n \n <color=#FF0000>原因{message}</color>", MessageShowType.TwoButton,
-                LoadStyle.StyleEnum.Style_Retry
-                , () => { Retry(procedureOwner); }, 
-                GameModule.QuitApplication);
+            Log.Error($"初始化资源包失败: {message}");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.LabelInitPackageFailed);
+            UILoadMgr.ShowMessageBox(LoadText.Instance.LabelInitPackageFailedRetry, MessageShowType.RetryOrQuitTips, Retry);
         }
 
-        private void Retry(ProcedureOwner procedureOwner)
+        private void Retry()
         {
-            // 打开启动UI。
-            UILoadMgr.Show(UIDefine.UILoadUpdate, "重新初始化资源中...");
-            InitPackage(procedureOwner).Forget();
+            InitPackage().Forget();
         }
     }
 }

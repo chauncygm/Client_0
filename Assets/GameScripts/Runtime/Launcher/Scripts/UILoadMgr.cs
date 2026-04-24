@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityGameFramework.Runtime;
+using Object = UnityEngine.Object;
 
 namespace GameMain
 {
@@ -9,8 +12,9 @@ namespace GameMain
     /// </summary>
     public static class UILoadMgr
     {
+        private const string UIRootPath = "UIRoot/UICanvas/SafeArea";
+        
         private static Transform _uiRoot;
-        private static readonly Dictionary<string, string> UIList = new();
         private static readonly Dictionary<string, UIBase> UIMap = new();
 
         /// <summary>
@@ -18,15 +22,43 @@ namespace GameMain
         /// </summary>
         public static void Initialize()
         {
-            _uiRoot = GameObject.Find("UIRoot/UICanvas/SafeArea")?.transform;
+            _uiRoot = GameObject.Find(UIRootPath)?.transform;
             if (_uiRoot == null)
             {
                 Log.Error("Failed to Find UIRoot. Please check the resource path");
                 return;
             }
-            UIList.Add(UIDefine.UILoadUpdate, $"AssetLoad/{UIDefine.UILoadUpdate}");
-            UIList.Add(UIDefine.UILoadTip, $"AssetLoad/{UIDefine.UILoadTip}");
-            UIList.Add(UIDefine.UISplash, $"AssetLoad/{UIDefine.UISplash}");
+            UIMap.Add(UIDefine.UILoadUpdate, null);
+            UIMap.Add(UIDefine.UILoadTip, null);
+            UIMap.Add(UIDefine.UISplash, null);
+        }
+
+        /// <summary>
+        /// 显示提示框，目前最多支持两个按钮
+        /// </summary>
+        /// <param name="desc">描述</param>
+        /// <param name="showType">类型（MessageShowType）</param>
+        /// <param name="onOk">点击事件</param>
+        /// <param name="onCancel">取消事件</param>
+        public static void ShowMessageBox(string desc, MessageShowType showType = MessageShowType.Tips,
+            Action onOk = null, Action onCancel = null)
+        {
+            switch (showType)
+            {
+                case MessageShowType.Quit:
+                    onOk = GameModule.QuitApplication;
+                    onCancel = null;
+                    break;
+                case MessageShowType.RetryOrQuitTips:
+                    onCancel = GameModule.QuitApplication;
+                    break;
+                case MessageShowType.OkOrCancel:
+                case MessageShowType.Tips:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(showType), showType, null);
+            }
+            Show(UIDefine.UILoadTip, desc, showType, onOk, onCancel);
         }
 
         /// <summary>
@@ -34,26 +66,20 @@ namespace GameMain
         /// </summary>
         /// <param name="uiInfo">对应的ui</param>
         /// <param name="param">参数</param>
-        public static void Show(string uiInfo, object param = null)
+        public static void Show(string uiInfo, params object[] param)
         {
-            if (string.IsNullOrEmpty(uiInfo))
+            if (string.IsNullOrEmpty(uiInfo) || !UIMap.ContainsKey(uiInfo))
             {
+                Log.Error($"not define ui: {uiInfo}");
                 return;
             }
 
-            if (!UIList.ContainsKey(uiInfo))
+            if (UIMap[uiInfo] == null)
             {
-                Log.Error($"not define ui:{uiInfo}");
-                return;
-            }
-
-            GameObject ui = null;
-            if (!UIMap.ContainsKey(uiInfo))
-            {
-                var obj = Resources.Load(UIList[uiInfo]);
+                var obj = Resources.Load(uiInfo);
                 if (obj != null)
                 {
-                    ui = Object.Instantiate(obj) as GameObject;
+                    var ui = Object.Instantiate(obj) as GameObject;
                     if (ui)
                     {
                         ui.transform.SetParent(_uiRoot.transform);
@@ -61,20 +87,18 @@ namespace GameMain
                         ui.transform.localPosition = Vector3.zero;
                         var rect = ui.GetComponent<RectTransform>();
                         rect.sizeDelta = Vector2.zero;
+                        var component = ui.GetComponent<UIBase>();
+                        if (component)
+                        {
+                            UIMap[uiInfo] = component;
+                        }
                     }
-                }
-
-                var component = ui?.GetComponent<UIBase>();
-                if (component)
-                {
-                    UIMap.Add(uiInfo, component);
                 }
             }
 
             if (!UIMap.TryGetValue(uiInfo, out var uiBase)) return;
             uiBase.gameObject.SetActive(true);
-            if (param == null) return;
-            UIMap[uiInfo].OnEnter(param);
+            uiBase.OnEnter(param);
         }
 
         /// <summary>
@@ -83,25 +107,10 @@ namespace GameMain
         /// <param name="uiName">对应的ui</param>
         public static void Hide(string uiName)
         {
-            if (string.IsNullOrEmpty(uiName))
-            {
-                return;
-            }
-
             if (!UIMap.TryGetValue(uiName, out var value)) return;
             value.gameObject.SetActive(false);
-            Object.DestroyImmediate(UIMap[uiName].gameObject);
+            Object.Destroy(UIMap[uiName].gameObject);
             UIMap.Remove(uiName);
-        }
-
-        /// <summary>
-        /// 获取显示的ui对象
-        /// </summary>
-        /// <param name="ui"></param>
-        /// <returns></returns>
-        public static UIBase GetActiveUI(string ui)
-        {
-            return UIMap.GetValueOrDefault(ui);
         }
 
         /// <summary>
@@ -109,14 +118,10 @@ namespace GameMain
         /// </summary>
         public static void HideAll()
         {
-            foreach (var item in UIMap)
+            foreach (var item in UIMap.Where(item => item.Value && item.Value.gameObject))
             {
-                if (item.Value && item.Value.gameObject)
-                {
-                    Object.Destroy(item.Value.gameObject);
-                }
+                Object.Destroy(item.Value.gameObject);
             }
-
             UIMap.Clear();
         }
     }

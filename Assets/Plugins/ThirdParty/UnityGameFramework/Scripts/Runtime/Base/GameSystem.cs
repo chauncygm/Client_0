@@ -102,11 +102,7 @@ namespace UnityGameFramework.Runtime
 
             if (shutdownType == ShutdownType.Quit)
             {
-                Application.Quit();
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#endif
-                return;
+                GameModule.QuitApplication();
             }
         }
 

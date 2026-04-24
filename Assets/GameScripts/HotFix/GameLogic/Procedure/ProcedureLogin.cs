@@ -75,7 +75,7 @@ namespace GameLogic
             var serverInfo = SettingsUtils.GetServerIpAndPort();
             _networkChannel.Connect(IPAddress.Parse(serverInfo.Ip), serverInfo.Port);
         }
-
+        
         private static void OnNetworkConnected(object sender, GameFrameworkEventArgs e)
         {
             var ne = (NetworkConnectedEventArgs)e;

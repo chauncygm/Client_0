@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using Google.Protobuf;
 using ICSharpCode.SharpZipLib.Checksum;
+using UnityGameFramework.Runtime;
 
 namespace GameLogic
 {
@@ -38,6 +39,7 @@ namespace GameLogic
                 {
                     throw new Exception($"协议号重复: {protocolHash}, {type}, {_mProtocolIdToType[protocolHash]}");
                 }
+                Log.Debug($"注册协议: {protocolHash} -> {type}");
             }
             
         }

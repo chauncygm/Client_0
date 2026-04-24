@@ -23,13 +23,18 @@ namespace GameMain
         {
             base.OnEnter(procedureOwner);
 
-            // 语言配置：设置当前使用的语言，如果不设置，则默认使用操作系统语言
+            // 语言配置：设置当前使用的语言，默认使用操作系统语言
             InitLanguageSettings();
 
             // 声音配置：根据用户配置数据，设置即将使用的声音选项
             InitSoundSettings();
+            
+            //热更新UI初始化
+            UILoadMgr.Initialize();
+            //热更新阶段文本初始化
+            LoadText.Instance.InitConfigData(null);
 
-            ChangeState<ProcedureSplash>(procedureOwner);
+            ChangeProcedure<ProcedureSplash>();
         }
 
         private static void InitLanguageSettings()

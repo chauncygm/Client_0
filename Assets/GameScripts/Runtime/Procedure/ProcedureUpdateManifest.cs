@@ -1,6 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
-using UnityGameFramework.Runtime;
+﻿using UnityGameFramework.Runtime;
 using YooAsset;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
@@ -14,37 +12,34 @@ namespace GameMain
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
-            Log.Info("更新资源清单！！！");
-            UILoadMgr.Show(UIDefine.UILoadUpdate,"更新清单文件...");
-            UpdateManifest(procedureOwner).Forget();
+            Log.Info("更新资源清单");
+            UpdateManifest();
         }
 
-        private async UniTaskVoid UpdateManifest(ProcedureOwner procedureOwner)
+        private void UpdateManifest()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
-            
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.LabelUpdateManifest);
             var operation = GameModule.Resource.UpdatePackageManifestAsync(GameModule.Resource.PackageVersion);
-            
-            await operation.ToUniTask();
-            
+            operation.Completed += OnOperationCompleted;
+        }
+
+        private void OnOperationCompleted(AsyncOperationBase operation)
+        {
             if(operation.Status == EOperationStatus.Succeed)
             {
                 if (GameModule.Resource.PlayMode == EPlayMode.WebPlayMode ||
                     GameModule.Resource.UpdatableWhilePlaying)
                 {
                     // 边玩边下载还可以拓展首包支持。
-                    ChangeState<ProcedurePreload>(procedureOwner);
+                    ChangeProcedure<ProcedurePreload>();
                     return;
                 }
-                ChangeState<ProcedureCreateDownloader>(procedureOwner);
+                ChangeProcedure<ProcedureDownloader>();
             }
             else
             {
-                Log.Error(operation.Error);
-                
-                UILoadTip.ShowMessageBox($"用户尝试更新清单失败！点击确认重试 \n \n <color=#FF0000>原因{operation.Error}</color>", MessageShowType.TwoButton,
-                    LoadStyle.StyleEnum.Style_Retry
-                    , () => { ChangeState<ProcedureUpdateManifest>(procedureOwner); }, UnityEngine.Application.Quit);
+                Log.Error("更新资源清单失败：" + operation.Error);
+                UILoadMgr.ShowMessageBox(LoadText.Instance.LabelUpdateManifestFailed, MessageShowType.RetryOrQuitTips, UpdateManifest);
             }
         }
     }

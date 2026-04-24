@@ -3,7 +3,6 @@ using System.Reflection;
 using GameConfig;
 using GameLogic;
 using GameFramework;
-using GameFramework.Procedure;
 using UnityGameFramework.Runtime;
 
 public partial class GameApp: Singleton<GameApp>
@@ -65,10 +64,7 @@ public partial class GameApp: Singleton<GameApp>
 
         if (shutdownType == ShutdownType.Quit)
         {
-            UnityEngine.Application.Quit();
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif
+            GameModule.QuitApplication();
         }
     }
 

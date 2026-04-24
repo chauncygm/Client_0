@@ -98,6 +98,7 @@ namespace GameFramework.Fsm
                 throw new GameFrameworkException(Utility.Text.Format("State type '{0}' is invalid.", stateType.FullName));
             }
 
+            Log.Info($"切换状态: {stateType}");
             fsmImplement.ChangeState(stateType);
         }
     }

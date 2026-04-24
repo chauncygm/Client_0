@@ -19,7 +19,7 @@ namespace GameMain
 
         public object ToObject(Type objectType, string json)
         {
-            return JsonConvert.DeserializeObject(json);
+            return JsonConvert.DeserializeObject(json, objectType);
         }
     }
 }

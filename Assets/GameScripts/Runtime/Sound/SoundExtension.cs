@@ -7,54 +7,54 @@ namespace GameMain
     public static class SoundExtension
     {
         private const float FadeVolumeDuration = 1f;
-        private static int? s_MusicSerialId;
+        private static int? _musicSerialId;
 
         public static int? PlayMusic(this SoundComponent soundComponent, string assetName, object userData = null)
         {
             soundComponent.StopMusic();
-            PlaySoundParams playSoundParams = PlaySoundParams.Create();
+            var playSoundParams = PlaySoundParams.Create();
             playSoundParams.Priority = 64;
             playSoundParams.Loop = true;
             playSoundParams.VolumeInSoundGroup = 1f;
             playSoundParams.FadeInSeconds = FadeVolumeDuration;
             playSoundParams.SpatialBlend = 0f;
-            s_MusicSerialId = soundComponent.PlaySound(assetName, "Music", Constant.AssetPriority.MusicAsset, playSoundParams, null, userData);
-            return s_MusicSerialId;
+            _musicSerialId = soundComponent.PlaySound(assetName, "Music", Constant.AssetPriority.MusicAsset, playSoundParams, null, userData);
+            return _musicSerialId;
         }
 
         public static void StopMusic(this SoundComponent soundComponent)
         {
-            if (!s_MusicSerialId.HasValue)
+            if (!_musicSerialId.HasValue)
             {
                 return;
             }
 
-            soundComponent.StopSound(s_MusicSerialId.Value, FadeVolumeDuration);
-            s_MusicSerialId = null;
+            soundComponent.StopSound(_musicSerialId.Value, FadeVolumeDuration);
+            _musicSerialId = null;
         }
 
         public static int? PlaySound(this SoundComponent soundComponent, string assetName, Entity bindingEntity = null, object userData = null)
         {
             if (string.IsNullOrEmpty(assetName))
             {
-                Log.Warning("Can not load sound '{0}' from data table.", assetName.ToString());
+                Log.Warning("Can not load sound '{0}' from data table.", assetName);
                 return null;
             }
 
-            PlaySoundParams playSoundParams = PlaySoundParams.Create();
+            var playSoundParams = PlaySoundParams.Create();
             playSoundParams.Priority = 0;
             playSoundParams.Loop = false;
             playSoundParams.VolumeInSoundGroup = 1;
             playSoundParams.SpatialBlend = 1;
 
-            string soundAssetName = assetName;
+            var soundAssetName = assetName;
             return soundComponent.PlaySound(soundAssetName, "Sound", Constant.AssetPriority.SoundAsset, playSoundParams,
                 bindingEntity != null ? bindingEntity : null, userData);
         }
 
         public static int? PlayUISound(this SoundComponent soundComponent, string assetName, float volume = 1, int priority = 0, object userData = null)
         {
-            PlaySoundParams playSoundParams = PlaySoundParams.Create();
+            var playSoundParams = PlaySoundParams.Create();
             playSoundParams.Priority = priority;
             playSoundParams.Loop = false;
             playSoundParams.VolumeInSoundGroup = volume;
@@ -70,7 +70,7 @@ namespace GameMain
                 return true;
             }
 
-            ISoundGroup soundGroup = soundComponent.GetSoundGroup(soundGroupName);
+            var soundGroup = soundComponent.GetSoundGroup(soundGroupName);
             if (soundGroup == null)
             {
                 Log.Warning("Sound group '{0}' is invalid.", soundGroupName);
@@ -88,7 +88,7 @@ namespace GameMain
                 return;
             }
 
-            ISoundGroup soundGroup = soundComponent.GetSoundGroup(soundGroupName);
+            var soundGroup = soundComponent.GetSoundGroup(soundGroupName);
             if (soundGroup == null)
             {
                 Log.Warning("Sound group '{0}' is invalid.", soundGroupName);
@@ -109,7 +109,7 @@ namespace GameMain
                 return 0f;
             }
 
-            ISoundGroup soundGroup = soundComponent.GetSoundGroup(soundGroupName);
+            var soundGroup = soundComponent.GetSoundGroup(soundGroupName);
             if (soundGroup == null)
             {
                 Log.Warning("Sound group '{0}' is invalid.", soundGroupName);
@@ -127,7 +127,7 @@ namespace GameMain
                 return;
             }
 
-            ISoundGroup soundGroup = soundComponent.GetSoundGroup(soundGroupName);
+            var soundGroup = soundComponent.GetSoundGroup(soundGroupName);
             if (soundGroup == null)
             {
                 Log.Warning("Sound group '{0}' is invalid.", soundGroupName);

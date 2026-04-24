@@ -1,136 +1,102 @@
 ﻿using UnityEngine.UI;
 using System;
-using UnityEngine.Serialization;
 
 namespace GameMain
 {
     public enum MessageShowType
     {
-        None = 0,
-        OneButton = 1,
-        TwoButton = 2,
-        ThreeButton = 3,
+        Tips = 0,
+        OkOrCancel = 1,
+        RetryOrQuitTips = 2,
+        Quit = 3,
     }
 
     public class UILoadTip : UIBase
     {
-        public Button btnUpdate;
-        public Button btnIgnore;
-        public Button btnPackage;
         public Text labelDesc;
+        
+        public Button btnLeft;
+        public Button btnCenter;
+        public Button btnRight;
+        public Text btnLeftText;
+        public Text btnCenterText;
+        public Text btnRightText;
 
         private Action _onOk;
         private Action _onCancel;
-        public MessageShowType showType = MessageShowType.None;
+        public MessageShowType showType;
 
-        void Start()
+        private void OnEnable()
         {
-            btnUpdate.onClick.AddListener(OnGameUpdate);
-            btnIgnore.onClick.AddListener(OnGameIgnore);
-            btnPackage.onClick.AddListener(OnInvoke);
+            btnLeft.onClick.AddListener(OnGameUpdate);
+            btnCenter.onClick.AddListener(OnGameUpdate);
+            btnRight.onClick.AddListener(OnGameIgnore);
         }
 
-        public override void OnEnter(object data)
+        public override string Name()
         {
-            btnIgnore.gameObject.SetActive(false);
-            btnPackage.gameObject.SetActive(false);
-            btnUpdate.gameObject.SetActive(false);
+            return UIDefine.UILoadTip;
+        }
+
+        public override void OnEnter(params object[] data)
+        {
+            if (data.Length < 4)
+            {
+                throw new ArgumentException("params length must be more than 4");
+            }
+            labelDesc.text = data[0].ToString();
+            showType = (MessageShowType)data[1];
+            _onOk = (Action)data[2];
+            _onCancel = (Action)data[3];
+            
+            btnRight.gameObject.SetActive(false);
+            btnCenter.gameObject.SetActive(false);
+            btnLeft.gameObject.SetActive(false);
+            
             switch (showType)
             {
-                case MessageShowType.OneButton:
-                    btnUpdate.gameObject.SetActive(true);
+                case MessageShowType.Tips:
+                    btnCenterText.text = "确定";
+                    btnCenter.gameObject.SetActive(true);
                     break;
-                case MessageShowType.TwoButton:
-                    btnUpdate.gameObject.SetActive(true);
-                    btnIgnore.gameObject.SetActive(true);
+                case MessageShowType.OkOrCancel:
+                    btnLeftText.text = "确定";
+                    btnRightText.text = "取消";
+                    btnLeft.gameObject.SetActive(true);
+                    btnRight.gameObject.SetActive(true);
                     break;
-                case MessageShowType.ThreeButton:
-                    btnIgnore.gameObject.SetActive(true);
-                    btnPackage.gameObject.SetActive(true);
-                    btnUpdate.gameObject.SetActive(true);
+                case MessageShowType.RetryOrQuitTips:
+                    btnLeftText.text = "重试";
+                    btnRightText.text = "退出";
+                    btnLeft.gameObject.SetActive(true);
+                    btnRight.gameObject.SetActive(true);
                     break;
-                case MessageShowType.None:
+                case MessageShowType.Quit: 
+                    btnCenterText.text = "退出";
+                    btnCenter.gameObject.SetActive(true);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            labelDesc.text = data.ToString();
         }
 
         private void OnGameUpdate()
         {
-            if (_onOk == null)
-            {
-                labelDesc.text = "<color=#BA3026>该按钮不应该存在</color>";
-            }
-            else
-            {
-                _onOk();
-                _OnClose();
-            }
+            _onOk?.Invoke();
+            UILoadMgr.Hide(UIDefine.UILoadTip);
         }
 
         private void OnGameIgnore()
         {
-            if (_onCancel == null)
-            {
-                labelDesc.text = "<color=#BA3026>该按钮不应该存在</color>";
-            }
-            else
-            {
-                _onCancel();
-                _OnClose();
-            }
-        }
-
-        private void OnInvoke()
-        {
-            if (_onOk == null)
-            {
-                labelDesc.text = "<color=#BA3026>该按钮不应该存在</color>";
-            }
-            else
-            {
-                _onOk();
-                _OnClose();
-            }
-        }
-
-        private void _OnClose()
-        {
+            _onCancel?.Invoke();
             UILoadMgr.Hide(UIDefine.UILoadTip);
         }
 
-        /// <summary>
-        /// 显示提示框，目前最多支持三个按钮
-        /// </summary>
-        /// <param name="desc">描述</param>
-        /// <param name="showType">类型（MessageShowType）</param>
-        /// <param name="style">StyleEnum</param>
-        /// <param name="onOk">点击事件</param>
-        /// <param name="onCancel">取消事件</param>
-        /// <param name="onPackage">更新事件</param>
-        public static void ShowMessageBox(string desc, 
-            MessageShowType showType = MessageShowType.OneButton,
-            LoadStyle.StyleEnum style = LoadStyle.StyleEnum.Style_Default,
-            Action onOk = null,
-            Action onCancel = null,
-            Action onPackage = null)
+        private void OnDisable()
         {
-            UILoadMgr.Show(UIDefine.UILoadTip, desc);
-            var ui = UILoadMgr.GetActiveUI(UIDefine.UILoadTip) as UILoadTip;
-            if (!ui) return;
-            ui._onOk = onOk;
-            ui._onCancel = onCancel;
-            ui.showType = showType;
-            ui.OnEnter(desc);
-
-            var loadStyleUI = ui.GetComponent<LoadStyle>();
-            if (loadStyleUI)
-            {
-                loadStyleUI.SetStyle(style);
-            }
+            btnLeft.onClick.RemoveAllListeners();
+            btnCenter.onClick.RemoveAllListeners();
+            btnRight.onClick.RemoveAllListeners();
         }
     }
 }

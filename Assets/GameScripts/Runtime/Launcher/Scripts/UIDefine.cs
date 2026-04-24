@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using UnityGameFramework.Runtime;
-
-namespace GameMain
+﻿namespace GameMain
 {
     public static class UIDefine
     {
-        public const string UILoadUpdate = "UILoadUpdate";
-        public const string UILoadTip = "UILoadTip";
-        public const string UISplash = "UISplash";
+        public const string UILoadUpdate = "AssetLoad/UILoadUpdate";
+        public const string UILoadTip = "AssetLoad/UILoadTip";
+        public const string UISplash = "AssetLoad/UISplash";
     }
 }

@@ -10,23 +10,23 @@ namespace GameMain
     public abstract class ProcedureBase : GameFramework.Procedure.ProcedureBase
     {
 
-        protected IFsm<IProcedureManager> ProcedureOwner;
+        private IFsm<IProcedureManager> _procedureOwner;
 
         protected override void OnInit(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnInit(procedureOwner);
-            ProcedureOwner = procedureOwner;
+            _procedureOwner = procedureOwner;
         }
         
         /// <summary>
         /// 如果在dll中的流程代码需要热更，那么这里需要将fsm替换为新的流程
         /// 根据类型查找流程，如果包含名字相同的流程，但是程序集不同，那么应该替换为当前要切换的流程
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">需切换的流程类</typeparam>
         public void ChangeProcedure<T>() where T : ProcedureBase
         {
             var targetType = typeof(T);
-            var allStates = ProcedureOwner.GetAllStates();
+            var allStates = _procedureOwner.GetAllStates();
             
             FsmState<IProcedureManager> targetState = null;
             var isHotUpdateScenario = false;
@@ -72,7 +72,7 @@ namespace GameMain
                 }
             }
             
-            ChangeState(ProcedureOwner, targetState.GetType());
+            ChangeState(_procedureOwner, targetState.GetType());
         }
 
         private FsmState<IProcedureManager> TryReplaceStateInFsm(FsmState<IProcedureManager> oldState, Type newType)
@@ -86,7 +86,7 @@ namespace GameMain
                     return null;
                 }
                 
-                var statesDict = statesDictField.GetValue(ProcedureOwner);
+                var statesDict = statesDictField.GetValue(_procedureOwner);
                 if (statesDict == null)
                 {
                     Log.Error("[ChangeProcedure] m_States dictionary is null");
@@ -119,7 +119,7 @@ namespace GameMain
                 
                 if (onInitMethod != null)
                 {
-                    onInitMethod.Invoke(newInstance, new object[] { ProcedureOwner });
+                    onInitMethod.Invoke(newInstance, new object[] { _procedureOwner });
                     Log.Info("[ChangeProcedure] Called OnInit on new instance via reflection");
                 }
                 else
@@ -144,7 +144,7 @@ namespace GameMain
 
         protected void SetData<T>(string name, T data) where T : Variable
         {
-            ProcedureOwner.SetData(name, data);
+            _procedureOwner.SetData(name, data);
         }
     }
 }

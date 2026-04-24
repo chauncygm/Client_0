@@ -171,9 +171,7 @@ public class GameModule : MonoBehaviour
     public static void QuitApplication()
     {
 #if UNITY_EDITOR
-
-        UnityEditor.EditorApplication.ExecuteMenuItem("Edit/Play");
-
+        UnityEditor.EditorApplication.ExitPlaymode();
 #endif
         Application.Quit();
     }
