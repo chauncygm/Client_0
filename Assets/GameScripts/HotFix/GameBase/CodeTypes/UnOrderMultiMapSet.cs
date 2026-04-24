@@ -11,6 +11,7 @@ namespace GameBase
                 if (!TryGetValue(t, out HashSet<TValue> set))
                 {
                     set = new HashSet<TValue>();
+                    base[t] = set;
                 }
                 return set;
             }

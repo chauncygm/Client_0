@@ -16,11 +16,7 @@
         {
             get
             {
-                if (null == _instance)
-                {
-                    _instance = new T();
-                }
-
+                _instance ??= new T();
                 return _instance;
             }
         }

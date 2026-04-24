@@ -109,14 +109,12 @@ namespace GameMain
         {
             if (!UIMap.TryGetValue(uiName, out var value)) return;
             value.gameObject.SetActive(false);
-            Object.Destroy(UIMap[uiName].gameObject);
-            UIMap.Remove(uiName);
         }
 
         /// <summary>
         /// 隐藏所有热更相关UI。
         /// </summary>
-        public static void HideAll()
+        public static void DestroyAll()
         {
             foreach (var item in UIMap.Where(item => item.Value && item.Value.gameObject))
             {

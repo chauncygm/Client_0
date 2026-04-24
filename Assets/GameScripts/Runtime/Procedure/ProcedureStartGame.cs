@@ -8,7 +8,7 @@ namespace GameMain
 
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
-            UILoadMgr.HideAll();
+            UILoadMgr.DestroyAll();
         }
         
     }

@@ -12,7 +12,7 @@ public partial class GameApp
     private void InitSystem()
     {
         m_ListLogicMgr = new List<ILogicSys>();
-        CodeTypes.Instance.Init(s_HotfixAssembly.ToArray());
+        CodeTypes.Instance.Init(_hotfixAssembly.ToArray());
         EventInterfaceHelper.Init();
         ((CfgDefine)ConfigManager.Instance).Init();
         RegisterAllSystem();

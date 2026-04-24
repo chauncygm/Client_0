@@ -12,6 +12,8 @@ namespace GameLogic
     public class MessageDispatcher : IPacketHandler
     {
         private static readonly Dictionary<Type, MessageHandlerBase> Handlers = new();
+        private static readonly Dictionary<Type, object> HandlerInstances = new();
+
 
         public MessageDispatcher()
         {
@@ -49,7 +51,12 @@ namespace GameLogic
                     else
                     {
                         Debug.Assert(method.DeclaringType != null, "method.DeclaringType != null");
-                        var instance = Activator.CreateInstance(method.DeclaringType);
+                        var declaringType = method.DeclaringType;
+                        if (!HandlerInstances.TryGetValue(declaringType, out var instance))
+                        {
+                            instance = Activator.CreateInstance(declaringType);
+                            HandlerInstances[declaringType] = instance;
+                        }
                         handlerDelegate = Delegate.CreateDelegate(handlerType, instance, method);
                     }
                     registerMethod?.Invoke(null, new object[] { handlerDelegate });

@@ -7,7 +7,7 @@ using UnityGameFramework.Runtime;
 
 public partial class GameApp: Singleton<GameApp>
 {
-    private static List<Assembly> s_HotfixAssembly;
+    private static List<Assembly> _hotfixAssembly;
 
     /// <summary>
     /// 热更域App主入口。
@@ -15,8 +15,8 @@ public partial class GameApp: Singleton<GameApp>
     /// <param name="objects"></param>
     public static void Entrance(object[] objects)
     {
-        s_HotfixAssembly = (List<Assembly>)objects[0];
-        Log.Warning($"======= 看到此条日志代表你成功运行了热更新代码 HotfixAssembly: {s_HotfixAssembly.Count} =======");
+        _hotfixAssembly = (List<Assembly>)objects[0];
+        Log.Warning($"======= 看到此条日志代表你成功运行了热更新代码 HotfixAssembly: {_hotfixAssembly.Count} =======");
         Log.Warning("======= Entrance GameApp =======");
         ConfigManager.Instance.Initialization();
         Instance.InitSystem();

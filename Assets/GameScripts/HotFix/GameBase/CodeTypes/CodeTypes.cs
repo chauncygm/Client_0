@@ -6,8 +6,8 @@ namespace GameBase
 {
     public class CodeTypes
     {
-        private static CodeTypes s_Instance;
-        public static CodeTypes Instance => s_Instance ??= new CodeTypes();
+        private static CodeTypes _instance;
+        public static CodeTypes Instance => _instance ??= new CodeTypes();
 
         private readonly Dictionary<string, Type> _allTypes = new();
         private readonly UnOrderMultiMapSet<Type, Type> _types = new();
@@ -27,7 +27,7 @@ namespace GameBase
                 // 记录所有的有BaseAttribute标记的的类型
                 var objects = type.GetCustomAttributes(typeof(BaseAttribute), true);
 
-                foreach (object o in objects)
+                foreach (var o in objects)
                 {
                     _types.Add(o.GetType(), type);
                 }
