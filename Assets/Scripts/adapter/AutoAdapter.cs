@@ -7,23 +7,19 @@ namespace DefaultNamespace
     {
         private Rect _lastSafeArea;
         private Vector2Int _lastScreenSize;
-
         private CanvasScaler _canvasScaler;
+        public Transform safeAreaTransform;
+        public bool debug;
         
         public void Awake()
         {
-
             _canvasScaler = GetComponentInParent<CanvasScaler>();
-            var safeArea = Screen.safeArea;
-            _lastSafeArea = safeArea;
-            _lastScreenSize = new Vector2Int(Screen.width, Screen.height);
-            PrintSafeArea(safeArea);
-
             ApplySafeArea();
         }
 
-        private static void PrintSafeArea(Rect safeArea)
+        private static void PrintSafeArea()
         {
+            var safeArea = Screen.safeArea;
             Debug.LogWarning("Safe Area: " + safeArea);
             Debug.LogWarning("Screen Size: " + Screen.width + "x" + Screen.height);
             Debug.LogWarning($"position: {safeArea.position}, center: {safeArea.center}, minXY: {safeArea.xMin}, {safeArea.xMax}," +
@@ -32,27 +28,31 @@ namespace DefaultNamespace
     
         private void ApplySafeArea()
         {
-            var safeArea = Screen.safeArea;
-            var safeAreaNode = transform.Find("SafeArea");
-            if (!safeAreaNode) return;
-            var rectTransform = safeAreaNode.GetComponentInChildren<RectTransform>();
+            _lastSafeArea = Screen.safeArea;
+            _lastScreenSize = new Vector2Int(Screen.width, Screen.height);
+            
+            if (!safeAreaTransform) return;
+            var rectTransform = safeAreaTransform.GetComponentInChildren<RectTransform>();
             if (!rectTransform) return;
-
+            
+            var safeArea = Screen.safeArea;
             rectTransform.anchorMin = new Vector2(safeArea.xMin / Screen.width, safeArea.yMin / Screen.height);
             rectTransform.anchorMax = new Vector2(safeArea.xMax / Screen.width, safeArea.yMax / Screen.height);
+            if (debug)
+            {
+                PrintSafeArea();
+            }
+
         }
 
         private void Update()
         {
-            var currentScreenSize = new Vector2Int(Screen.width, Screen.height);
             var safeAreaChanged = _lastSafeArea != Screen.safeArea;
-            var screenSizeChanged = _lastScreenSize != currentScreenSize;
+            var screenSizeChanged = _lastScreenSize != new Vector2Int(Screen.width, Screen.height);
             if (!safeAreaChanged && !screenSizeChanged) return;
 
-            _lastScreenSize = currentScreenSize;
-            _lastSafeArea = Screen.safeArea;
-            UpdateCanvasScaler();
             ApplySafeArea();
+            UpdateCanvasScaler();
         }
 
         private void UpdateCanvasScaler()

@@ -18,10 +18,10 @@ namespace GameLogic
         
         protected override void ScriptGenerator()
         {
-            m_btnServer = FindChildComponent<Button>("m_btnServer");
-            m_tfServerList = FindChildComponent<Transform>("m_tfServerList");
-            m_inputAccount = FindChildComponent<TMP_InputField>("Account Area/m_inputAccount");
-            m_btnLogin = FindChildComponent<Button>("m_btnLogin");
+            m_btnServer = FindChildComponent<Button>("SafeArea/m_btnServer");
+            m_tfServerList = FindChild("SafeArea/m_tfServerList");
+            m_inputAccount = FindChildComponent<TMP_InputField>("SafeArea/Account Area/m_inputAccount");
+            m_btnLogin = FindChildComponent<Button>("SafeArea/m_btnLogin");
             m_btnServer.onClick.AddListener(UniTask.UnityAction(OnClickServerBtn));
             m_btnLogin.onClick.AddListener(UniTask.UnityAction(OnClickLoginBtn));
             m_serverListWidget = CreateWidgetByType<ServerListWidget>(m_tfServerList);

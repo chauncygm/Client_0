@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -26,6 +26,11 @@ namespace GameLogic
         private GraphicRaycaster _raycaster;
 
         private GraphicRaycaster[] _childRaycaster;
+
+        /// <summary>
+        /// 面板内的安全区子节点，基类自动适配。
+        /// </summary>
+        private RectTransform _safeAreaTransform;
 
         public override UIType Type => UIType.Window;
 
@@ -116,6 +121,12 @@ namespace GameLogic
                 }
             }
         }
+
+        /// <summary>
+        /// 面板内安全区子节点的 RectTransform，用于子类访问交互区域边界。
+        /// 如果面板没有 SafeArea 子节点，则返回 null。
+        /// </summary>
+        public RectTransform SafeAreaTransform => _safeAreaTransform;
 
         /// <summary>
         /// 窗口可见性
@@ -376,6 +387,17 @@ namespace GameLogic
             _childCanvas = _panel.GetComponentsInChildren<Canvas>(true);
             _childRaycaster = _panel.GetComponentsInChildren<GraphicRaycaster>(true);
 
+            // 自动适配面板内的 SafeArea 子节点
+            var safeAreaChild = _panel.transform.Find("SafeArea");
+            if (safeAreaChild != null)
+            {
+                _safeAreaTransform = safeAreaChild as RectTransform;
+                if (_safeAreaTransform != null)
+                {
+                    SafeAreaHelper.Apply(_safeAreaTransform);
+                }
+            }
+
             // 通知UI管理器
             IsPrepare = true;
             _prepareCallback?.Invoke(this);
@@ -384,6 +406,17 @@ namespace GameLogic
         protected void Close()
         {
             UISystem.Instance.CloseUI(GetType());
+        }
+
+        /// <summary>
+        /// 刷新面板内安全区适配。由 UISystem 在检测到安全区变化时自动调用。
+        /// </summary>
+        internal void RefreshSafeArea()
+        {
+            if (_safeAreaTransform != null)
+            {
+                SafeAreaHelper.Apply(_safeAreaTransform);
+            }
         }
 
         internal void CancelHideToCloseTimer()

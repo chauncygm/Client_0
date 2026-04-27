@@ -45,15 +45,6 @@ namespace GameLogic
             
             Log.Info("OnInit UISystem");
             
-            // SafeArea 作为 UI 父节点
-            var safeAreaObj = GameObject.Find("UIRoot/UICanvas/SafeArea");
-            if (safeAreaObj == null)
-            {
-                Log.Error("[UISystem] Failed to find UIRoot/UICanvas/SafeArea!");
-                return false;
-            }
-            UICanvasTransform = safeAreaObj.transform;
-
             // Canvas 组件在 UICanvas 节点上
             var canvasObj = GameObject.Find("UIRoot/UICanvas");
             if (canvasObj == null)
@@ -61,6 +52,10 @@ namespace GameLogic
                 Log.Error("[UISystem] Failed to find UIRoot/UICanvas!");
                 return false;
             }
+
+            // 面板统一挂载到 Canvas 下（全屏铺满），安全区适配由面板内部负责
+            UICanvasTransform = canvasObj.transform;
+
             UICanvas = canvasObj.GetComponent<Canvas>();
             if (UICanvas == null)
             {
@@ -449,6 +444,15 @@ namespace GameLogic
             if (_stack == null)
             {
                 return;
+            }
+
+            // 检测安全区变化（屏幕旋转、分屏等），通知所有窗口刷新
+            if (SafeAreaHelper.CheckSafeAreaChanged())
+            {
+                foreach (var window in _stack)
+                {
+                    window.RefreshSafeArea();
+                }
             }
 
             var count = _stack.Count;
