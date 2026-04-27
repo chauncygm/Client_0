@@ -381,7 +381,7 @@ namespace GameLogic
             _prepareCallback?.Invoke(this);
         }
 
-        protected virtual void Close()
+        protected void Close()
         {
             UISystem.Instance.CloseUI(GetType());
         }

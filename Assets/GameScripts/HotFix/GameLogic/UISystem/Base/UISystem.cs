@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameBase;
@@ -45,11 +45,35 @@ namespace GameLogic
             
             Log.Info("OnInit UISystem");
             
-            UICanvasTransform = GameObject.Find("UIRoot/UICanvas/SafeArea").transform;
+            // SafeArea 作为 UI 父节点
+            var safeAreaObj = GameObject.Find("UIRoot/UICanvas/SafeArea");
+            if (safeAreaObj == null)
+            {
+                Log.Error("[UISystem] Failed to find UIRoot/UICanvas/SafeArea!");
+                return false;
+            }
+            UICanvasTransform = safeAreaObj.transform;
 
-            UICanvas = UICanvasTransform.GetComponent<Canvas>();
+            // Canvas 组件在 UICanvas 节点上
+            var canvasObj = GameObject.Find("UIRoot/UICanvas");
+            if (canvasObj == null)
+            {
+                Log.Error("[UISystem] Failed to find UIRoot/UICanvas!");
+                return false;
+            }
+            UICanvas = canvasObj.GetComponent<Canvas>();
+            if (UICanvas == null)
+            {
+                Log.Error("[UISystem] Canvas component not found on UIRoot/UICanvas!");
+                return false;
+            }
 
-            UICamera = GameObject.Find("UIRoot/UICamera").GetComponent<Camera>();
+            UICamera = GameObject.Find("UIRoot/UICamera")?.GetComponent<Camera>();
+            if (UICamera == null)
+            {
+                Log.Warning("[UISystem] UICamera not found, using main camera.");
+                UICamera = Camera.main;
+            }
 
             UICanvasTransform.gameObject.layer = LayerMask.NameToLayer("UI");
 

@@ -92,4 +92,5 @@ MonoBehaviour:
     LogicMainDllName: GameLogic.dll
     AssemblyTextAssetExtension: .bytes
     AssemblyTextAssetPath: AssetRaw/DLL
+    EnableAddressable: 1
     HybridCLRGlobalSettings: Settings/HybridCLRGlobalSettings

@@ -7,12 +7,11 @@ namespace GameLogic
     [AttributeUsage(AttributeTargets.Class)]
     public class EventInterfaceImpAttribute : BaseAttribute
     {
-        private EEventGroup _eGroup;
-        public EEventGroup EventGroup => _eGroup;
+        public EEventGroup EventGroup { get; }
 
         public EventInterfaceImpAttribute(EEventGroup group)
         {
-            _eGroup = group;
+            EventGroup = group;
         }
     }
 

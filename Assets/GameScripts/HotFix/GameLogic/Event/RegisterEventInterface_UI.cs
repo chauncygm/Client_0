@@ -12,7 +12,7 @@ namespace GameLogic
 
             var types = CodeTypes.Instance.GetTypes(typeof(EventInterfaceImpAttribute));
 
-            foreach (Type type in types)
+            foreach (var type in types)
             {
                 var attrs = type.GetCustomAttributes(typeof(EventInterfaceImpAttribute), false);
                 if (attrs.Length == 0)
@@ -20,7 +20,7 @@ namespace GameLogic
                     continue;
                 }
 
-                EventInterfaceImpAttribute httpHandlerAttribute = (EventInterfaceImpAttribute)attrs[0];
+                var httpHandlerAttribute = (EventInterfaceImpAttribute)attrs[0];
 
                 if (httpHandlerAttribute.EventGroup != EEventGroup.GroupUI)
                 {
@@ -28,8 +28,7 @@ namespace GameLogic
                 }
 
                 var obj = Activator.CreateInstance(type, dispatcher);
-
-                mgr.RegWrapInterface(obj.GetType().GetInterfaces()[0]?.FullName, obj);
+                mgr.RegWrapInterface(obj.GetType().GetInterfaces()[0].FullName, obj);
             }
         }
     }

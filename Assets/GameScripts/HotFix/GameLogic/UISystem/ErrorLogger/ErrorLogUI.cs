@@ -10,7 +10,7 @@ namespace GameLogic
     [Window(UILayer.System, "Assets/Res/Prefab/UI/ErrorLogUI")]
     class ErrorLogUI : UIWindow
     {
-        private readonly Stack<string> _errorTextString = new Stack<string>();
+        private readonly Stack<string> _errorTextString = new();
 
         #region 脚本工具生成的代码
 
