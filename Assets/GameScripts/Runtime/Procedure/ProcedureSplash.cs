@@ -12,6 +12,7 @@ namespace GameMain
         {
             //播放 Splash 动画
             UILoadMgr.Show(UIDefine.UISplash, new Action(OnSplashAnimationOver));
+            // OnSplashAnimationOver();
         }
 
         private void OnSplashAnimationOver()

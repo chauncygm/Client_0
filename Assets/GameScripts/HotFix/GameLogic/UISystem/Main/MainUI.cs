@@ -14,10 +14,10 @@ namespace GameLogic
         private GameObject m_itemGM;
         protected override void ScriptGenerator()
         {
-            m_textName = FindChildComponent<TMP_Text>("BaseInfo/m_textName");
-            m_textLevel = FindChildComponent<TMP_Text>("BaseInfo/m_textLevel");
-            m_itemResItem = FindChild("m_itemResItem").gameObject;
-            m_itemGM = FindChild("m_itemGM").gameObject;
+            m_textName = FindChildComponent<TMP_Text>("SafeArea/BaseInfo/m_textName");
+            m_textLevel = FindChildComponent<TMP_Text>("SafeArea/BaseInfo/m_textLevel");
+            m_itemResItem = FindChild("SafeArea/m_itemResItem").gameObject;
+            m_itemGM = FindChild("SafeArea/m_itemGM").gameObject;
         }
         #endregion
 

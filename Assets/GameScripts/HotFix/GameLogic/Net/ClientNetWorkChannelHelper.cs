@@ -33,7 +33,7 @@ namespace GameLogic
         public void Initialize(INetworkChannel networkChannel)
         {
             _mNetworkChannel = networkChannel;
-            networkChannel.HeartBeatInterval = 5L;
+            networkChannel.HeartBeatInterval = 6L;
             networkChannel.RegisterHandler(_messageDispatcher);
             networkChannel.SetDefaultHandler((_, packet) =>
             {

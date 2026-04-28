@@ -12,7 +12,7 @@ namespace GameMain
     /// </summary>
     public static class UILoadMgr
     {
-        private const string UIRootPath = "UIRoot/UICanvas/SafeArea";
+        private const string UIRootPath = "UIRoot/UICanvas";
         
         private static Transform _uiRoot;
         private static readonly Dictionary<string, UIBase> UIMap = new();

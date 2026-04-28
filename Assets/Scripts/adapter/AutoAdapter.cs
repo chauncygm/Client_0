@@ -71,7 +71,7 @@ namespace DefaultNamespace
 #if UNITY_EDITOR
         
         private GUIStyle _safeAreaStyle;
-        private const int BorderSize = 5;
+        private const int BorderSize = 2;
 
         // 创建一个带边框的纹理
         private Texture2D CreateBorderTexture(int borderWidth, Color borderColor, Color fillColor)
@@ -116,7 +116,7 @@ namespace DefaultNamespace
             {
                 // 创建一个带边框的 GUIStyle
                 _safeAreaStyle = new GUIStyle();
-                var borderTexture = CreateBorderTexture(BorderSize, Color.yellow, Color.clear);
+                var borderTexture = CreateBorderTexture(BorderSize, Color.clear, Color.clear);
                 _safeAreaStyle.normal.background = borderTexture;
                 _safeAreaStyle.border = new RectOffset(BorderSize ,BorderSize, BorderSize, BorderSize);
             }

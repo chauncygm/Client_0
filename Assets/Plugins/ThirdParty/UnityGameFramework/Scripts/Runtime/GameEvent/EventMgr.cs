@@ -18,7 +18,7 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 总事件实体数据。
         /// </summary>
-        private readonly Dictionary<string, EventEntryData> m_EventEntryMap = new();
+        private readonly Dictionary<string, EventEntryData> _eventEntryDataMap = new();
 
         /// <summary>
         /// 事件管理器获取接口。
@@ -28,11 +28,11 @@ namespace UnityGameFramework.Runtime
         public T GetInterface<T>()
         {
             var typeName = typeof(T).FullName;
-            if (typeName != null && m_EventEntryMap.TryGetValue(typeName, out var entry))
+            if (typeName != null && _eventEntryDataMap.TryGetValue(typeName, out var entry))
             {
                 return (T)entry.InterfaceWrap;
             }
-            return default(T);
+            return default;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace UnityGameFramework.Runtime
             entry.InterfaceWrap = callerWrap;
             if (typeName != null)
             {
-                m_EventEntryMap.Add(typeName, entry);
+                _eventEntryDataMap.Add(typeName, entry);
             }
         }
         
@@ -58,11 +58,13 @@ namespace UnityGameFramework.Runtime
         /// <param name="callerWrap">调用接口名。</param>
         public void RegWrapInterface(string typeName,object callerWrap)
         {
-            var entry = new EventEntryData();
-            entry.InterfaceWrap = callerWrap;
+            var entry = new EventEntryData
+            {
+                InterfaceWrap = callerWrap
+            };
             if (typeName != null)
             {
-                m_EventEntryMap.Add(typeName, entry);
+                _eventEntryDataMap.Add(typeName, entry);
             }
         }
         

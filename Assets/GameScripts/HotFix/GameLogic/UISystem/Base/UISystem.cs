@@ -23,17 +23,17 @@ namespace GameLogic
         internal const int WindowShowLayer = 5; // UI
 
         /// <summary>
-        /// UI根节点。
+        /// UI根节点
         /// </summary>
         public Transform UICanvasTransform { private set; get; }
 
         /// <summary>
-        /// UI根节点Canvas。
+        /// UI根节点Canvas
         /// </summary>
         public Canvas UICanvas { private set; get; }
 
         /// <summary>
-        /// UI根节点。
+        /// UI相机
         /// </summary>
         public Camera UICamera { private set; get; }
 

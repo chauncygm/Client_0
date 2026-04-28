@@ -58,14 +58,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7b2d5682b143f5340a867f4d3f34993e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -756,7 +756,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0fad7cbc10b815488c9e6ebfeccb210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnClear: {fileID: 8386797903619165155}
   objProgress: {fileID: 2835083178279248017}
   labelDesc: {fileID: 625621492709539730}
   labelAppId: {fileID: 1355718662626521362}
