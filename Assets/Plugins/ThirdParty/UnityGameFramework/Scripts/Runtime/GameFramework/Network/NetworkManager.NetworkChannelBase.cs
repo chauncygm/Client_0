@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace GameFramework.Network
 {
@@ -371,21 +372,17 @@ namespace GameFramework.Network
 
                     try
                     {
+                        m_Socket.LingerState = new LingerOption(true, 1);
                         m_Socket.Shutdown(SocketShutdown.Both);
                     }
                     catch
                     {
+                        throw new GameFrameworkException("socket close error");
                     }
-                    finally
-                    {
-                        m_Socket.Close();
-                        m_Socket = null;
 
-                        if (NetworkChannelClosed != null)
-                        {
-                            NetworkChannelClosed(this);
-                        }
-                    }
+                    m_Socket.Close();
+                    m_Socket = null;
+                    NetworkChannelClosed?.Invoke(this);
 
                     m_SentPacketCount = 0;
                     m_ReceivedPacketCount = 0;
@@ -481,6 +478,11 @@ namespace GameFramework.Network
                 }
 
                 m_Disposed = true;
+            }
+
+            public bool Flush()
+            {
+                return ProcessSend();
             }
 
             protected virtual bool ProcessSend()

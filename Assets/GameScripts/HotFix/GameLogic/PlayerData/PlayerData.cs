@@ -40,9 +40,8 @@ namespace GameLogic
             PlayerId = 0;
             Name = string.Empty;
             Online = false;
-            LevelExp.Level = 0;
-            LevelExp.Exp = 0;
-            Resources.Clear();
+            LevelExp?.Reset();
+            Resources?.Clear();
         }
     }
 }

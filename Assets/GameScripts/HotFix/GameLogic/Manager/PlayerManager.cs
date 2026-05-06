@@ -123,7 +123,7 @@ namespace GameLogic
             SendMsg(reqGm);
         }
 
-        public static void SendMsg(IMessage message)
+        public static void SendMsg(IMessage message, bool flush = false)
         {
             var player = Player.Self;
             var channel = player.Session.Channel;
@@ -131,6 +131,10 @@ namespace GameLogic
             if (channel.Connected)
             {
                 channel.Send(new ProtoMessage(protoId, message));
+                if (flush)
+                {
+                    channel.Flush();
+                }
             }
             else
             {

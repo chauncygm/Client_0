@@ -11,5 +11,11 @@ namespace GameLogic
         /// 经验
         /// </summary>
         public int Exp { get; set;}
+
+        public void Reset()
+        {
+            Level = 0;
+            Exp = 0;
+        }
     }
 }

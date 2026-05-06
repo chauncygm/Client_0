@@ -153,5 +153,11 @@ namespace GameFramework.Network
         /// <typeparam name="T">消息包类型。</typeparam>
         /// <param name="packet">要发送的消息包。</param>
         void Send<T>(T packet) where T : Packet;
+
+        /// <summary>
+        /// 立即发送所有消息包。不会等待下一帧
+        /// </summary>
+        /// <returns></returns>
+        bool Flush();
     }
 }

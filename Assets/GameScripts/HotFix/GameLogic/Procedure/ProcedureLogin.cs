@@ -46,6 +46,8 @@ namespace GameLogic
                 GameModule.Event.Subscribe(NetworkCustomErrorEventArgs.EventId, OnNetworkCustomError);
             }
             
+            // 注册应用退出监听，确保编辑器停止或应用退出时断开连接
+            Application.quitting += OnApplicationQuit;
             
             GameEvent.AddEventListener<long>(ILoginUI_Event.OnRoleLogin, OnLoginEventArgs);
             GameEvent.AddEventListener(IActorLogicEvent_Event.OnMainPlayerLoginSuccess, OnLoginEventResult);
@@ -108,6 +110,18 @@ namespace GameLogic
         private void OnLoginEventResult()
         {
             ChangeProcedure<ProcedureMain>();
+        }
+        
+        private void OnApplicationQuit()
+        {
+            if (_networkChannel is not { Connected: true })
+            {
+                return;
+            }
+            
+            // 发送登出消息
+            PlayerManager.SendMsg(new ReqLogout(), true);
+            Debug.Log("[网络事件] 发送登出消息");
         }
     }
 }
