@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -653,9 +653,9 @@ namespace GameFramework.Resource
  
             AssetHandle handle = GetHandleAsync<T>(location, packageName: packageName);
 
-            bool cancelOrFailed = await handle.ToUniTask().AttachExternalCancellation(cancellationToken).SuppressCancellationThrow();
+            bool isCanceled = await handle.ToUniTask().AttachExternalCancellation(cancellationToken).SuppressCancellationThrow();
 
-            if (cancelOrFailed)
+            if (isCanceled || handle.Status == EOperationStatus.Failed)
             {
                 _assetLoadingList.Remove(assetObjectKey);
                 return null;
@@ -691,9 +691,9 @@ namespace GameFramework.Resource
 
             AssetHandle handle = GetHandleAsync<GameObject>(location, packageName: packageName);
 
-            bool cancelOrFailed = await handle.ToUniTask().AttachExternalCancellation(cancellationToken).SuppressCancellationThrow();
+            bool isCanceled = await handle.ToUniTask().AttachExternalCancellation(cancellationToken).SuppressCancellationThrow();
 
-            if (cancelOrFailed)
+            if (isCanceled || handle.Status == EOperationStatus.Failed)
             {
                 _assetLoadingList.Remove(assetObjectKey);
                 return null;

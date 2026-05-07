@@ -743,6 +743,11 @@ namespace GameFramework.Entity
                 
                 float duration = Time.time;
                 GameObject gameObject = await GameModule.Resource.LoadAssetAsync<GameObject>(entityAssetName);
+                if (gameObject == null)
+                {
+                    throw new GameFrameworkException(Utility.Text.Format("Entity load asset '{0}' failed.", entityAssetName));
+                }
+
                 duration = Time.time - duration;
                 IEntity entity = LoadEntitySyncImp(entityAssetName, gameObject, duration, ShowEntityInfo.Create(serialId, entityId, entityGroup, userData));
                 return entity;

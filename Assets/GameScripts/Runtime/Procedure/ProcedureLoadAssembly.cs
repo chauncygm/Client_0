@@ -252,11 +252,8 @@ namespace GameMain
                     _mainLogicAssembly = assembly;
                     Log.Info($"[ProcedureLoadAssembly] Main logic assembly loaded: {assetName}");
                 }
-                else
-                {
-                    _hotfixAssemblies.Add(assembly);
-                    Log.Debug($"[ProcedureLoadAssembly] Hotfix assembly loaded: {assembly.GetName().Name}");
-                }
+                _hotfixAssemblies.Add(assembly);
+                Log.Debug($"[ProcedureLoadAssembly] Hotfix assembly loaded: {assembly.GetName().Name}");
             }
             catch (Exception e)
             {
