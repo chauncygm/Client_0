@@ -81,8 +81,10 @@
     <type fullname="UnityEngine.Rect" preserve="all" />
     <type fullname="UnityEngine.RectTransform" preserve="all" />
     <type fullname="UnityEngine.Resources" preserve="all" />
+    <type fullname="UnityEngine.SceneManagement.LoadSceneMode" preserve="all" />
     <type fullname="UnityEngine.SceneManagement.Scene" preserve="all" />
     <type fullname="UnityEngine.SceneManagement.SceneManager" preserve="all" />
+    <type fullname="UnityEngine.Screen" preserve="all" />
     <type fullname="UnityEngine.Serialization.FormerlySerializedAsAttribute" preserve="all" />
     <type fullname="UnityEngine.SerializeField" preserve="all" />
     <type fullname="UnityEngine.TextAsset" preserve="all" />
@@ -90,6 +92,7 @@
     <type fullname="UnityEngine.TooltipAttribute" preserve="all" />
     <type fullname="UnityEngine.Transform" preserve="all" />
     <type fullname="UnityEngine.Vector2" preserve="all" />
+    <type fullname="UnityEngine.Vector2Int" preserve="all" />
     <type fullname="UnityEngine.Vector3" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.InputLegacyModule">
@@ -138,6 +141,8 @@
     <type fullname="GameFramework.Procedure.IProcedureManager" preserve="all" />
     <type fullname="GameFramework.Procedure.ProcedureBase" preserve="all" />
     <type fullname="GameFramework.ReferencePool" preserve="all" />
+    <type fullname="GameFramework.Resource.LoadSceneCallbacks" preserve="all" />
+    <type fullname="GameFramework.Resource.LoadSceneSuccessCallback" preserve="all" />
     <type fullname="GameFramework.Sound.PlaySoundParams" preserve="all" />
     <type fullname="GameFramework.Utility" preserve="all" />
     <type fullname="GameFramework.Utility/Unity" preserve="all" />
@@ -150,6 +155,8 @@
     <type fullname="UnityGameFramework.Runtime.DebuggerActiveWindowType" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.DebuggerComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.EEventGroup" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.EntityComponent" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.EntityLogic" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.EventComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.EventDispatcher" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.EventInterfaceAttribute" preserve="all" />
@@ -167,6 +174,7 @@
     <type fullname="UnityGameFramework.Runtime.NetworkErrorEventArgs" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.ProcedureComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.ResourceComponent" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.SceneComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.ShutdownType" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.Singleton`1" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.SoundComponent" preserve="all" />
