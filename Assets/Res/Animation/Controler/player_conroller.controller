@@ -36,7 +36,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 8869a1102821aec4a973fad17f3d5212,
+    m_Motion: {fileID: -203655887218126122, guid: 89ca043b7244ca24eb8cb05ba9c8b97b,
       type: 3}
     m_Threshold: -1.5
     m_Position: {x: 0, y: 0}
@@ -45,7 +45,7 @@ BlendTree:
     m_DirectBlendParameter: speedScale
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 1efecbd6af3b40849a0329462de3bc74,
+    m_Motion: {fileID: -203655887218126122, guid: cc5300e6b6028a94f973f869a31db17d,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -54,7 +54,7 @@ BlendTree:
     m_DirectBlendParameter: speedScale
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 8869a1102821aec4a973fad17f3d5212,
+    m_Motion: {fileID: -203655887218126122, guid: 89ca043b7244ca24eb8cb05ba9c8b97b,
       type: 3}
     m_Threshold: 1.5
     m_Position: {x: 0, y: 0}
@@ -63,7 +63,7 @@ BlendTree:
     m_DirectBlendParameter: speedScale
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: c7d910a3f4eb2844eb585dd0fc56c4ff,
+    m_Motion: {fileID: -203655887218126122, guid: b391042423f503f499a47d79575d8df1,
       type: 3}
     m_Threshold: 3
     m_Position: {x: 0, y: 0}
@@ -282,9 +282,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.20035076
-  m_TransitionOffset: 0.77557015
-  m_ExitTime: 0.791211
+  m_TransitionDuration: 0.20035064
+  m_TransitionOffset: 0
+  m_ExitTime: 0.79121107
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -358,7 +358,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: b8c171131bf29f74dae4af01e5c0eea1,
+  m_Motion: {fileID: -203655887218126122, guid: 1301db0ecd6198f47813afbc4d661356,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

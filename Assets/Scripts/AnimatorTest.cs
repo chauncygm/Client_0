@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace GameMain.Scripts.test
 {
-    public class AnimatorTest : MonoBehaviour
+    public class AnimatorTest : MonoBehaviour, Client_0.IPlayerActions
     {
         private static readonly int SpeedScaleHash = Animator.StringToHash("speedScale");
         private static readonly int JumpHash = Animator.StringToHash("jump");
@@ -16,7 +16,7 @@ namespace GameMain.Scripts.test
 
         private Animator _animator;
         private Rigidbody _rigidbody;
-        private AnimatorStateInfo _stateInfo;
+        private Client_0 _inputActions;
 
         private float _currentSpeed;
         private float _targetSpeed;
@@ -24,21 +24,46 @@ namespace GameMain.Scripts.test
         private Vector3 _playerRotation;
         private float _rotateValue;
 
-        private void Start()
+        private void Awake()
         {
             _animator = GetComponent<Animator>();
             _rigidbody = GetComponent<Rigidbody>();
-            Debug.Log("Current State loop: " + _stateInfo.loop);
+            
+            // 启用根运动，让 Animator 计算移动速度
+            _animator.applyRootMotion = true;
+            
+            // 创建输入动作实例
+            _inputActions = new Client_0();
+            
+            // 注册回调接口
+            _inputActions.Player.AddCallbacks(this);
+        }
+
+        private void Start()
+        {
             Debug.Log("human Scale: " + _animator.humanScale);
+        }
+
+        private void OnEnable()
+        {
+            // 启用玩家输入
+            _inputActions.Player.Enable();
+        }
+
+        private void OnDisable()
+        {
+            // 禁用玩家输入
+            _inputActions.Player.Disable();
+        }
+
+        private void OnDestroy()
+        {
+            // 释放资源
+            _inputActions.Dispose();
         }
 
         private void Update()
         {
-            if (Keyboard.current.backspaceKey.isPressed)
-            {
-                Debug.Log("press the backspace Jump");
-                _animator.SetTrigger(JumpHash);
-            }
             MovePlayer();
             RotatePlayer();
         }
@@ -57,10 +82,10 @@ namespace GameMain.Scripts.test
             transform.Rotate(0, _rotateValue * RotationSpeed * Time.deltaTime, 0);
         }
 
+        
         public void OnAnimatorMove()
         {
-            // transform.position += animator.deltaPosition * Time.deltaTime;
-            // Debug.Log("velocity: " + _rigidbody.linearVelocity);
+            // 应用根运动到 Rigidbody
             var velocity = new Vector3(_animator.velocity.x, _rigidbody.velocity.y, _animator.velocity.z);
             _rigidbody.velocity = velocity;
         }
@@ -114,6 +139,27 @@ namespace GameMain.Scripts.test
             {
                 _targetSpeed = run ? 2 * DefaultSpeed : DefaultSpeed;
             }
+        }
+
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            PlayerMove(context);
+        }
+
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            Debug.Log("look");
+            // do nothing
+        }
+
+        public void OnFire(InputAction.CallbackContext context)
+        {
+            PlayerFire(context);
+        }
+
+        public void OnRun(InputAction.CallbackContext context)
+        {
+            PlayerRun(context);
         }
     }
 }
