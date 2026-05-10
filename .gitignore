@@ -15,9 +15,7 @@ yoo
 Assets/StreamingAssets
 
 *.DotSettings.user
-*.sln
 *.suo
-*.csproj
 *.unityproj
 *.vsconfig
 *.~$lock

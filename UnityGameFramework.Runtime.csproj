@@ -1,0 +1,1371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LangVersion>9.0</LangVersion>
+    <_TargetFrameworkDirectories>non_empty_path_generated_by_unity.rider.package</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>non_empty_path_generated_by_unity.rider.package</_FullFrameworkReferenceAssemblyPaths>
+    <DisableHandlePackageFileConflicts>true</DisableHandlePackageFileConflicts>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{0eb85289-23e5-214d-8225-3ffc54b9e7fc}</ProjectGuid>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>UnityGameFramework.Runtime</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>.</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\Bin\Debug\UnityGameFramework.Runtime\</OutputPath>
+    <DefineConstants>UNITY_2022_3_62;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;ENABLE_LOG;DOTWEEN;TextMeshPro;UNITY_MCP_READY;ENABLE_HYBRIDCLR;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169,0649</NoWarn>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoConfig>true</NoConfig>
+    <NoStdLib>true</NoStdLib>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
+    <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
+  </PropertyGroup>
+  <ItemGroup>
+    <Analyzer Include="D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
+    <Analyzer Include="D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.InputGyroscopeInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.GraphicsInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Download\DownloadAgentHelperBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\StringObfuscator.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadManager.DownloadCounter.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameEvent\GameEvent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\ObjectPool\ObjectPoolManager.Object.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Base\ShutdownType.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarTexture.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\GameFrameworkLinkedListRange.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Google\GoogleTranslation_Post.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Fsm\FsmManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\ShowEntityFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\AwaitExtension\AwaitDataWrap.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\DefaultEntityGroupHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\FileSystem\FileSystemHelperBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\EntityManager.EntityInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\IUIFormHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\DefaultSoundGroupHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\PlaySoundUpdateEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\TaskPool\TaskInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Localize.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\LocalizationComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\WebRequest\WebRequestStartEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameEvent\EventInterfaceAttribute.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\TextureSetComponent.Resource.Await.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\TaskPool\TaskBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Fsm\IFsmManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Download\WWWDownloadAgentHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\SoundComponent.SoundGroup.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TimerExtension\MultiMap.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\FileSystem.BlockData.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.RuntimeMemorySummaryWindow.Record.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarColor32.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\ISoundAgent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Event\EventManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\FileSystem\FileSystemComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\WebRequestManager.WebRequestTask.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_NGUI_Sprite.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\GameFrameworkException.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\UIManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadStartEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\LoadAssetCallbacks.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\GameFrameworkModule.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\SoundGroupHelperBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.SceneInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\ResourceExtension\ResourceExtComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\LocalizedString.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Procedure\IProcedureManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\GameFrameworkMultiDictionary.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Google\TranslationJob_WEB.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Setting\ISettingHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.ScreenInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Event\IEventManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\Constant.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Setting\PlayerPrefsSettingHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\ISoundGroupHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_UnityStandard_MeshRenderer.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkManager.ReceiveState.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Procedure\ProcedureBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\DefaultSoundAgentHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\GameFrameworkSerializer.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\WebRequest\WebRequestComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\ISetTexture2dObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Download\DownloadComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageSource\LanguageSourceData_Misc.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameSettings\Enum\AppStageEnum.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\PlaySoundErrorCode.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\SetLanguage.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\Entity.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\ISoundAgentHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_TextMeshPro_UGUI.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Event\GameEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarDateTime.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_UnityUI_RawImage.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageSource\LanguageSourceData_Terms.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Configurables\PersistentStorage.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Assembly.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadAgentHelperCompleteEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\ResetSoundAgentEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkConnectedEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\Log.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_UnityStandard_TextMesh.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameSettings\GameFrameworkSettings.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.InputLocationInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\ResourceManager.AssetObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\TextureSetComponent.FileSystem.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Unity.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Debugger\IDebuggerManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\TaskPool\ITaskAgent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\PlaySoundSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_UnityUI_Text.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\SoundManager.PlaySoundInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\WebRequestAgentHelperCompleteEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarVector2.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Base\Singleton\Singleton.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarString.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\IUIForm.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\IUIManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\CloseUIFormCompleteEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Download\UnityWebRequestDownloadAgentHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\Variable\GenericVariable.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\UIManager.UIFormInstanceObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Base\Extension\CSharp\SystemCollectionsExtension.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\SoundAgentHelperBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkManager.HeartBeatState.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Manager\LocalizationManager_Parameters.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\IFileSystemManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\AwaitExtension\DownLoadResult.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\ILocalizeTarget.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\TProfiler.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.WebPlayerInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\HasAssetResult.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\PlaySoundSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\TextureSetComponent.LoadTextureObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_UnityStandard_Child.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\ILocalizeTargetDesc.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkManager.TcpWithSyncReceiveNetworkChannel.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_SVGImporter_Image.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\SetTextureExtensions.Await.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarTransform.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TimerExtension\TimerTimeUtility.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameSettings\Enum\ResourcesType.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\LoadAssetUpdateCallback.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\ObjectPool\ObjectPoolComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\WebRequestFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\ResourceExtension\ResourceExtComponent.Resource.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\ResourceManager.Pool.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\AwaitExtension\AwaitableExtensions.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\ObjectPool\ObjectInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.LogNode.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Scene\LoadSceneUpdateEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\LocalizationParamsManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_UnityUI_Image.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.RuntimeMemoryInformationWindow.Sample.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\ObjectPool\IObjectPool.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Download\DownloadStartEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarMaterial.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\ObjectPool\ObjectPoolManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Manager\LocalizationManager_RTL.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Verifier.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameEvent\EventDelegateData.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\EventCallback.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Resource\IResourceManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\EntityLogic.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\WebRequestManager.WebRequestTaskStatus.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\CommonFileSystemStream.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\ServiceType.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Folder.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerActiveWindowType.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\DefaultSoundHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Base\Extension\CSharp\SystemStringExtension.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Base\Extension\CSharp\SystemIOExtension.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\EntityManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\ShowEntityUpdateEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\UIManager.UIGroup.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Download\DownloadUpdateEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\ShowEntitySuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\DataProvider\ReadDataSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Compression.ICompressionHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\CoroutineManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\ReadWritePathType.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.SystemInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\DataProvider\DataProviderCreator.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Debugger\IDebuggerWindowGroup.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Base\BaseComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadManager.DownloadCounter.DownloadCounterNode.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\ObjectPool\ReleaseObjectFilterCallback.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_2DToolKit_Sprite.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\FileSystem.StringData.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageSource\LanguageSourceData_Export_Google.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarVector3.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\FileInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Manager\LocalizationManager_Targets.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\OpenUIFormUpdateEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\WebRequest\WWWWebRequestAgentHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameEvent\EventMgr.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_NGUI_Label.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageSource\LanguageSourceData_Languages.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\OpenUIFormSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Scene\LoadSceneUpdateEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Compression.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarDecimal.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarByteArray.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\ReferencePool\ReferencePoolComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarVector4.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Download\DownloadSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\IWebRequestAgentHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\LoadSceneUpdateCallback.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkCustomErrorEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Json.IJsonHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageSource\LanguageSourceData_Assets.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Constant.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\ResourceManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\TermData.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\LoadResourceStatus.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Scene\UnloadSceneFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\GameFrameworkEntry.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\IPacketHandler.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadAgentHelperUpdateLengthEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\SerializableDictionary\SerializableHashSet.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\FileSystemManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Download\UnityWebRequestDownloadAgentHelper.DownloadHandler.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Debugger\DebuggerManager.DebuggerWindowGroup.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\UnityExtension.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\IEntityGroupHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\UnloadSceneCallbacks.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarSingle.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameModule.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\ReferencePool\ReferencePool.ReferenceCollection.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\ReferencePool\ReferencePool.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Configurables\SpecializationManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\Constant.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\LoadSceneCallbacks.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\FileSystem\DefaultFileSystemHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\Version\Version.IVersionHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\DefaultVersionHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\IEntityHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Base\GameSystem.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.InputCompassInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Scene\LoadSceneSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\EntityComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\EntityManager.EntityGroup.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Manager\LocalizationManager_SystemLanguage.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarInt32.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\PlaySoundFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Localization\Language.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Marshal.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Fsm\FsmState.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Google\TranslationJob.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Setting\DefaultSettingSerializer.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Random.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\HindiFixer.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\PlaySoundInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarGameObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Scene\ISceneManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Google\TranslationJob_Main.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_NGUI_Texture.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\AutoChangeCultureInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\IUIGroup.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\TextureSetComponent.Resource.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadAgentHelperUpdateBytesEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\I2Utils.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\IWebRequestManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_UnityStandard_AudioSource.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Network\NetworkErrorEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Json.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Manager\LocalizationManager_Language.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkManager.ConnectState.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\WebGetTextureData.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Google\SimpleJSON.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\Helper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarInt64.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\WebRequest\WebRequestSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.File.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadAgentHelperErrorEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Network\NetworkClosedEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Fsm\IFsm.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\INetworkChannel.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameEvent\EventDispatcher.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameEvent\StringId.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Reference\AssetsReference.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\StringExtension.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.TimeInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Setting\SettingManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\PlaySoundFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarQuaternion.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\DataProvider\IDataProvider.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\DataStruct\TypeNamePair.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Base\GameFrameworkComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Encryption.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\ShowEntitySuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarColor.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\GameFrameworkEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageSource\LanguageSource.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Setting\ISettingManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\ResourceManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\UIManager.UIGroup.UIFormInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\DataProvider\IDataProviderHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\FileSystem.HeaderData.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadManager.DownloadAgent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarDouble.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\SetRawImage.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\LoadAssetSuccessCallback.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\ShowEntityFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.NetworkInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Network\NetworkCustomErrorEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.PathInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Setting\DefaultSettingHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Network\NetworkMissHeartBeatEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Fsm\FsmBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\TaskPool\TaskPool.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Google\TranslationJob_GET.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\HideEntityCompleteEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\DefaultTextHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Network\NetworkConnectedEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\Packet.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\UnloadSceneSuccessCallback.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarBoolean.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkMissHeartBeatEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Google\GoogleTranslation_Queries.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\SoundManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\WebRequest\WebRequestAgentHelperBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\DefaultJsonHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\SetTextureExtensions.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\CustomLocalizeCallback.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\EventPool\EventPoolMode.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarUInt16.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\ResourceExtension\Implement\SetSpriteObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.ProfilerInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\FileSystemStream.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Reference\AssetsSetHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\ReferencePool\IReference.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\CSharpExtension\AsyncExtension.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\BuildinFileManifest.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\EntityManager.EntityInstanceObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\IPacketHeader.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.OperationsWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\Log\GameFrameworkLog.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkManager.SendState.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\IDownloadManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.InputAccelerationInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\IDownloadAgentHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\ReferencePool\ReferenceStrictCheckType.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Manager\LocalizationManager_Sources.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Manager\LocalizationManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarRect.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarInt16.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Google\TranslationJob_POST.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Fsm\Fsm.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Procedure\ProcedureManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\ObjectPool\ObjectPoolBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\TextureSetComponent.NetWork.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\ResourceManager.Services.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\PlaySoundParams.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadManager.DownloadTaskStatus.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\Constant.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageData.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\ResourceExtension\AssetItemObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkErrorEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Download\DownloadFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadUpdateEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameSettings\HybridCLR\HybridCLRCustomGlobalSettings.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkManager.NetworkChannelBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.ObjectPoolInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Scene\ActiveSceneChangedEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\DataProvider\ReadDataUpdateEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\LoadSceneSuccessCallback.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LocalizationReader.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Scene\UnloadSceneFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\RegisterCallback_AllowSyncFromGoogle.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Scene\LoadSceneFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameSettings\SettingsUtils.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkErrorCode.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\WebRequestSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\AddressFamily.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Google\GoogleTranslation.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Extension\RealTimeTranslation.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameSettings\Enum\ServerTypeEnum.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\ShowEntityInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\TaskPool\TaskStatus.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.SettingsWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_TextMeshPro_Label.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\LoadAssetFailureCallback.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\EventPool\BaseEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Base\Extension\CSharp\SystemReflectionExtension.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageSource\LanguageSourceData_Export_CSV.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\Log\GameFrameworkLogLevel.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Scene\LoadSceneSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.QualityInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameEvent\GameEventMgr.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\ResourceLogger.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarChar.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\ResourceExtension\ISetAssetObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Base\Extension\CSharp\SystemObjectExtension.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Scene\SceneManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\HideEntityCompleteEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\EventPool\EventPool.Event.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\WebRequestStartEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\RegisterGlobalParameters.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\TextureItemObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\DefaultEntityHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\DataProvider\ReadDataFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkManager.TcpNetworkChannel.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\GameFrameworkFunc.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\SerializableDictionary\SerializableDictionary.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Text.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.ReferencePoolInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\ISoundGroup.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\DefaultOldLogHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\SoundComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\BinaryExtension.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.RuntimeMemoryInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\WebRequestManager.WebRequestAgent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\ObjectPool\IObjectPoolManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\EntityHelperBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\INetworkChannelHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageSource\LanguageSourceData_Import_CSV.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Download\DownloadManager.DownloadTask.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageSource\LanguageSourceData_Import_Google.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarSByte.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\FileSystem.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\ISoundManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\AttachEntityInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Procedure\ProcedureComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\INetworkManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.InputSummaryInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\FileSystemAccess.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\IFileSystem.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Verifier.Crc32.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Debugger\DebuggerManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarUnityObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.ScrollableDebuggerWindowBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\WebRequest\WebRequestFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Path.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\IUpdateModule.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Setting\SettingHelperBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Debugger\IDebuggerWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\ISoundHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Network\NetworkClosedEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\OpenUIFormFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\DataProvider\DataProvider.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\IEntityGroup.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\WebRequestManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\GameFrameworkAction.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\IEntityManager.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarUInt32.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_2DToolKit_Label.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Base\Extension\UniTask\UniTaskVoidExtension.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.InputTouchInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_UnityStandard_VideoPlayer.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\AwaitExtension\WebResult.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\EntityComponent.EntityGroup.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Fsm\FsmComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\EventPool\EventPool.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\ShowEntityUpdateEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.FpsCounter.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\TextureSetComponent.NetWork.Await.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_SVGImporter_Renderer.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\WebRequest\UnityWebRequestAgentHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\GameFrameworkLinkedList.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Network\NetworkComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameEvent\ActorEventDispatcher.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\DUnityUtil.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\SetLanguageDropdown.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\TaskPool\StartTaskStatus.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\ResourceExtension\LoadAssetObject.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Manager\LocalizationManager_Translation.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Scene\SceneComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Event\EventComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Setting\SettingComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\DefaultCompressionHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Utility\DefaultLogHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\Log\GameFrameworkLog.ILogHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\IEntity.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\WebRequest\WWWFormInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Text.ITextHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\EntityManager.ShowEntityInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\LoadSceneFailureCallback.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\Variable\Variable.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Scene\LoadSceneFailureEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\ReferencePool\ReferencePoolInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Entity\EntityManager.EntityStatus.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Utils\RTLFixer.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarUInt64.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Google\GoogleLanguages.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\ObjectPool\ObjectBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\PlaySoundUpdateEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Utility\Utility.Converter.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarByte.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LocalizeDropdown.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\FileSystem\IFileSystemHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageSource\LanguageSourceData.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.ConsoleWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Base\Version\Version.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\Callback\UnloadSceneFailureCallback.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TextureExtension\TextureSetComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\FileSystem\AndroidFileSystemStream.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Scene\UnloadSceneSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Variable\VarCharArray.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Scene\UnloadSceneSuccessEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\IUIGroupHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\LanguageSource\LanguageSourceAsset.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_UnityStandard_SpriteRenderer.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TimerExtension\CancellationToken.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\WebRequest\WebRequestAgentHelperErrorEventArgs.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Entity\EntityGroupHelperBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\TimerExtension\TimerComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Resource\ResourceComponent.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Extension\ResourceExtension\Implement\SetSpriteExtensions.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\UI\UIManager.OpenUIFormInfo.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\SoundManager.SoundGroup.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\Core\Targets\LocalizeTarget_UnityStandard_Prefab.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Setting\DefaultSetting.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameSettings\Framework\FrameworkGlobalSettings.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.EnvironmentInformationWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Debugger\DebuggerComponent.RuntimeMemorySummaryWindow.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Sound\SoundHelperBase.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\Localization\DefaultLocalizationHelper.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\ObjectPool\ObjectPoolManager.ObjectPool.cs" />
+    <Compile Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\GameFramework\Sound\SoundManager.SoundAgent.cs" />
+    <None Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\link.xml" />
+    <None Include="Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Runtime\UnityGameFramework.Runtime.asmdef" />
+    <Reference Include="UnityEngine">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ContentLoadModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.ContentLoadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GIModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.GIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PropertiesModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.PropertiesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreFontEngineModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityCurlModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UnityCurlModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VirtualTexturingModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.VirtualTexturingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.CoreModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.DeviceSimulatorModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.DeviceSimulatorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.DiagnosticsModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.DiagnosticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.EditorToolbarModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.EditorToolbarModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.GraphViewModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.GraphViewModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.PresetsUIModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.PresetsUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.QuickSearchModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.QuickSearchModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.SceneTemplateModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.SceneTemplateModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.SceneViewModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.SceneViewModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TextCoreFontEngineModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.TextCoreFontEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TextCoreTextEngineModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.TextCoreTextEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UIBuilderModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.UIBuilderModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UIElementsModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UIElementsSamplesModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.UIElementsSamplesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UnityConnectModule">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Diagnostics.Abstractions.8.0.1">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.Diagnostics.Abstractions.8.0.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions.8.0.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.Caching.Abstractions.8.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\ThirdParty\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives.8.0.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.Primitives.8.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Connections.Common.8.0.15">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.AspNetCore.Http.Connections.Common.8.0.15.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json.8.0.5">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\System.Text.Json.8.0.5.dll</HintPath>
+    </Reference>
+    <Reference Include="McpPlugin.Common.6.2.1">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\McpPlugin.Common.6.2.1.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\PackageCache\com.unity.ext.nunit@2.0.3\net40\unity-custom\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.Memory.10.0.3">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Bcl.Memory.10.0.3.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages.7.0.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\System.Text.Encoding.CodePages.7.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource.8.0.1">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\System.Diagnostics.DiagnosticSource.8.0.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.SignalR.Protocols.Json.8.0.15">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.AspNetCore.SignalR.Protocols.Json.8.0.15.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\ThirdParty\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\ThirdParty\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions.8.0.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.FileProviders.Abstractions.8.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web.8.0.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\System.Text.Encodings.Web.8.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions.8.0.3">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.Logging.Abstractions.8.0.3.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines.8.0.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\System.IO.Pipelines.8.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\PackageCache\com.unity.collab-proxy@2.8.2\Lib\Editor\unityplastic.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Plastic.Antlr3.Runtime">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\PackageCache\com.unity.collab-proxy@2.8.2\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="McpPlugin.6.2.1">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\McpPlugin.6.2.1.dll</HintPath>
+    </Reference>
+    <Reference Include="R3.1.3.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\R3.1.3.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions.8.0.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.Configuration.Abstractions.8.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels.8.0.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\System.Threading.Channels.8.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable.7.0.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\System.Collections.Immutable.7.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ReflectorNet.5.1.1">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\ReflectorNet.5.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting.Abstractions.8.0.1">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.Hosting.Abstractions.8.0.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Plastic.Newtonsoft.Json">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\PackageCache\com.unity.collab-proxy@2.8.2\Lib\Editor\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.TimeProvider.8.0.1">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Bcl.TimeProvider.8.0.1.dll</HintPath>
+    </Reference>
+    <Reference Include="log4netPlastic">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\PackageCache\com.unity.collab-proxy@2.8.2\Lib\Editor\log4netPlastic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.8.0.1">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.DependencyInjection.8.0.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.4.8.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.CodeAnalysis.4.8.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.SignalR.Client.8.0.15">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.AspNetCore.SignalR.Client.8.0.15.dll</HintPath>
+    </Reference>
+    <Reference Include="dnlib">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\PackageCache\com.code-philosophy.hybridclr@4feac30cb2\Plugins\dnlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.SignalR.Common.8.0.15">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.AspNetCore.SignalR.Common.8.0.15.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata.7.0.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\System.Reflection.Metadata.7.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.4.8.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.CodeAnalysis.CSharp.4.8.0.dll</HintPath>
+    </Reference>
+    <Reference Include="LZ4">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\PackageCache\com.code-philosophy.hybridclr@4feac30cb2\Plugins\LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS_I2Loc.Xcode">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\ThirdParty\UnityGameFramework\Scripts\Editor\Localization\Unity XCode\UnityEditor.iOS_I2Loc.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGetForUnity.PluginAPI">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\ThirdParty\NuGet\Editor\NuGetForUnity.PluginAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Connections.Client.8.0.15">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.AspNetCore.Http.Connections.Client.8.0.15.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options.8.0.2">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.Options.8.0.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.SignalR.Client.Core.8.0.15">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.AspNetCore.SignalR.Client.Core.8.0.15.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.2\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\ThirdParty\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\ThirdParty\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="NugetForUnity">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\ThirdParty\NuGet\Editor\NugetForUnity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.8.0.1">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.Logging.8.0.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Connections.Abstractions.8.0.15">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.AspNetCore.Connections.Abstractions.8.0.15.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Features.8.0.15">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Extensions.Features.8.0.15.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces.8.0.0">
+      <HintPath>D:\workspace\unity_project\Client_0\Assets\Plugins\NuGet\Microsoft.Bcl.AsyncInterfaces.8.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Microsoft.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.Data.DataSetExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.IO.Compression.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.Transactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="System.AppContext">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.AppContext.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Concurrent">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Collections.Concurrent.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.NonGeneric">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Collections.NonGeneric.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Specialized">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Collections.Specialized.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ComponentModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.EventBasedAsync">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ComponentModel.EventBasedAsync.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Primitives">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ComponentModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.TypeConverter">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ComponentModel.TypeConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Console">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Common">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Contracts">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Diagnostics.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Debug">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Diagnostics.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.FileVersionInfo">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Diagnostics.FileVersionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Process">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Diagnostics.Process.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.StackTrace">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Diagnostics.StackTrace.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.TextWriterTraceListener">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Diagnostics.TextWriterTraceListener.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tools">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Diagnostics.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.TraceSource">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Diagnostics.TraceSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Primitives">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Drawing.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Dynamic.Runtime">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Dynamic.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Globalization.Calendars.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Globalization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Extensions">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Globalization.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.ZipFile">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.IO.Compression.ZipFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.DriveInfo">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.IO.FileSystem.DriveInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Watcher">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.IO.FileSystem.Watcher.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.IsolatedStorage">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.IO.IsolatedStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.MemoryMappedFiles">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.IO.MemoryMappedFiles.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipes">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.IO.Pipes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.UnmanagedMemoryStream">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.IO.UnmanagedMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Expressions">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Linq.Expressions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Parallel">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Linq.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Queryable">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Linq.Queryable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Rtc">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Net.Http.Rtc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.NameResolution">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Net.NameResolution.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.NetworkInformation">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Net.NetworkInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Ping">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Net.Ping.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Primitives">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Net.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Requests">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Net.Requests.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Security">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Net.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Sockets">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Net.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebHeaderCollection">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Net.WebHeaderCollection.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebSockets.Client">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Net.WebSockets.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebSockets">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Net.WebSockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ObjectModel">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.DispatchProxy">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Reflection.DispatchProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Emit">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Reflection.Emit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Emit.ILGeneration">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Reflection.Emit.ILGeneration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Emit.Lightweight">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Reflection.Emit.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Extensions">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Reflection.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Primitives">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Reflection.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Resources.Reader">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Resources.Reader.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Resources.ResourceManager">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Resources.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Resources.Writer">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Resources.Writer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.VisualC">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.CompilerServices.VisualC.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Handles">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.Handles.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.InteropServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.WindowsRuntime">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Numerics">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.Serialization.Formatters.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Json">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.Serialization.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Primitives">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.Serialization.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Xml">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.Serialization.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Claims">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Security.Claims.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Csp">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Security.Cryptography.Csp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Security.Principal.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.SecureString">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Security.SecureString.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Duplex">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ServiceModel.Duplex.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Http">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ServiceModel.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.NetTcp">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ServiceModel.NetTcp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Primitives">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ServiceModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Security">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ServiceModel.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Text.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.Extensions">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Text.Encoding.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Text.RegularExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Overlapped">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Threading.Overlapped.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Parallel">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Threading.Tasks.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Thread">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Threading.Thread.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.ThreadPool">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Threading.ThreadPool.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Timer">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Threading.Timer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.ReaderWriter">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.ReaderWriter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XDocument">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XmlDocument">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XmlDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XmlSerializer">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XmlSerializer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XPath.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XDocument">
+      <HintPath>D:\Program Files\Unity\Unity 2022.3.62f3\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\ScriptAssemblies\UniTask.dll</HintPath>
+    </Reference>
+    <Reference Include="YooAsset">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\ScriptAssemblies\YooAsset.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:\workspace\unity_project\Client_0\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
